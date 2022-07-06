@@ -1,0 +1,28 @@
+root = true
+# 所有文件
+[*]
+# 代码统一编码为 utf-8
+charset = utf-8
+# 换行符为crlf
+end_of_line = lf
+# 默认缩进 2
+indent_size = 2
+# 默认缩进方式使用空格
+indent_style = space
+# 文件末尾插入一个新行
+insert_final_newline = true
+# 最长行长度为 120 字符
+max_line_length = 120
+# tab宽度 4 空格
+tab_width = 2
+# 删除行尾空格
+trim_trailing_whitespace = true
+
+# yml 文件
+[*.yml]
+# 缩进为 2 空格
+indent_size = 2
+# tab宽度 2 空格
+tab_width = 2
+# 不删除尾部空白
+trim_trailing_whitespace = false
