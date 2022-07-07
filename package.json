@@ -1,6 +1,6 @@
 {
   "name": "notion-kroki",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "notion support kroki",
   "main": "index.js",
   "author": "zuisong",

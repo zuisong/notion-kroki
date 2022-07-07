@@ -2,7 +2,7 @@
 // @name        notion-kroki
 // @namespace   https://github.com/zuisong/notion-kroki
 // @grant       none
-// @version     1.0.0
+// @version     [version]
 // @inject-into content
 // @match        *://www.notion.so/*
 // @supportURL  https://github.com/zuisong/notion-kroki/issues

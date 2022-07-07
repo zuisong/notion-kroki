@@ -21,6 +21,7 @@ for (const block of blocks) {
     const data = lines.filter((value, index) => index != 0).join('\n');
     const obj = plant(data, type, defaultConfig);
     const div = document.createElement('div', undefined);
+    div.style.cssText = 'display: flex; flex-direction: row; place-content: center;'
     div.innerHTML = obj;
 
     codeDiv.parentElement?.appendChild(div);
