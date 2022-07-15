@@ -5,6 +5,11 @@
   "main": "notion-kroki.user.js",
   "author": "zuisong",
   "license": "MIT",
+  "homepage": "https://github.com/zuisong/notion-kroki",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zuisong/notion-kroki"
+  },
   "scripts": {
     "build-webpack": "webpack",
     "test": "jest",
