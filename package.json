@@ -2,10 +2,9 @@
   "name": "notion-kroki",
   "version": "1.0.1",
   "description": "notion support kroki",
-  "main": "index.js",
+  "main": "notion-kroki.user.js",
   "author": "zuisong",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "build-webpack": "webpack",
     "test": "jest",
