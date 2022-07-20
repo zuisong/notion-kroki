@@ -19,15 +19,12 @@ const config: Configuration = {
       },
     ],
   },
-  experiments: {
-    topLevelAwait: true,
-  },
   resolve: {
     extensions: ['.ts', '.js', '.tsx'],
   },
   plugins: [],
   optimization: {
-    minimize: true,
+    minimize: false,
   },
 };
 

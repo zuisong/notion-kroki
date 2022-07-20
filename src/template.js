@@ -3,7 +3,6 @@
 // @namespace   https://github.com/zuisong/notion-kroki
 // @grant       none
 // @version     [version]
-// @inject-into content
 // @match        *://www.notion.so/*
 // @supportURL  https://github.com/zuisong/notion-kroki/issues
 // @run-at      document-idle
