@@ -27,6 +27,7 @@ specifiers:
   fflate: ^0.7.3
   fs-extra: ^10.1.0
   jest: ^28.1.2
+  just-debounce-it: ^3.1.1
   prettier: ^2.7.1
   typescript: ~4.7.4
   webpack: ^5.73.0
@@ -36,6 +37,7 @@ dependencies:
   '@babel/runtime': 7.18.6
   core-js: 3.23.3
   fflate: 0.7.3
+  just-debounce-it: 3.1.1
 
 devDependencies:
   '@babel/core': 7.18.6
@@ -4883,6 +4885,10 @@ packages:
     optionalDependencies:
       graceful-fs: 4.2.10
     dev: true
+
+  /just-debounce-it/3.1.1:
+    resolution: {integrity: sha512-oPsuRyWp99LJaQ4KXC3A42tQNqkRTcPy0A8BCkRZ5cPCgsx81upB2KUrmHZvDUNhnCDKe7MshfTuWFQB9iXwDg==}
+    dev: false
 
   /keyv/3.1.0:
     resolution: {integrity: sha512-9ykJ/46SN/9KPM/sichzQ7OvXyGDYKGTaDlKMGCAlg2UK8KRy4jb0d8sFc+0Tt0YYnThq8X2RZgCg74RPxgcVA==}
