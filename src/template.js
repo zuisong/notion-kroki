@@ -4,6 +4,7 @@
 // @grant       none
 // @version     [version]
 // @match        *://www.notion.so/*
+// @match        *://*.super.site/*
 // @supportURL  https://github.com/zuisong/notion-kroki/issues
 // @run-at      document-idle
 // @author      zuisong
