@@ -2682,7 +2682,7 @@ async function main(element = null) {
       const div = document.createElement('div', undefined);
       div.style.cssText = 'display: flex; flex-direction: row; place-content: center;';
       div.setAttribute("notion-kroki", "true");
-      div.innerHTML = `<object type="image/svg+xml" data="${svgUrl}" />`;
+      div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
       const preCreatedNode = (_codeDiv$parentElemen = codeDiv.parentElement) === null || _codeDiv$parentElemen === void 0 ? void 0 : (_codeDiv$parentElemen2 = _codeDiv$parentElemen.parentElement) === null || _codeDiv$parentElemen2 === void 0 ? void 0 : _codeDiv$parentElemen2.querySelector("div[notion-kroki]");
 
       if (preCreatedNode) {

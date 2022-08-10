@@ -22,7 +22,7 @@ async function main(element: Node | null = null) {
       const div = document.createElement('div', undefined);
       div.style.cssText = 'display: flex; flex-direction: row; place-content: center;'
       div.setAttribute("notion-kroki", "true");
-      div.innerHTML = `<object type="image/svg+xml" data="${svgUrl}" />`;
+      div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
 
       const preCreatedNode = codeDiv.parentElement?.parentElement?.querySelector("div[notion-kroki]")
       if (preCreatedNode) {
