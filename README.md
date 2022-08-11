@@ -14,26 +14,30 @@
 
 ## 安装(How to install)
 
-### [🚀 🚀 🚀 🚀 🚀 click me install 🚀 🚀 🚀 🚀 🚀][install_link]
+[💥 Click me install user script 💥][install_link]
 
-### [🚀 🚀 🚀 🚀 🚀 点我安装 🚀 🚀 🚀 🚀 🚀][install_link]
+[💥 点我安装脚本 💥][install_link]
 
 ## Usage
 
-1. Add a  **Plain Text** code block with content
+### 1. Add a  **Plain Text** code block with content
 
-```text
-//kroki plantuml
-a->b
-b->c
-c->a
-```
+  ```text
+  //kroki plantuml
+  @startuml
+  Alice -> "Bob()" : Hello
+  "Bob()" -> "This is very\nlong" as Long
+  ' You can also declare:
+  ' "Bob()" -> Long as "This is very\nlong"
+  Long --> "Bob()" : ok
+  @enduml
+  ```
 
-PS:  **first line is very important**
+  PS:  **first line is very important**
 
-2. Then **refresh** noition page, you will got like this
+### 2. Then, you will got like this
 
-![demo](./imgs/demo.jpg)
+![demo](./imgs/demo.png)
 
 [chrome_violentmonkey]: https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag
 
