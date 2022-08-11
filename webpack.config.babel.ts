@@ -24,7 +24,7 @@ const config: Configuration = {
   },
   plugins: [],
   optimization: {
-    minimize: false,
+    minimize: true,
   },
 };
 
