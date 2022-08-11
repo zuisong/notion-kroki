@@ -9,28 +9,30 @@ async function main(element: Node | null = null) {
   await sleep(3000); // wait document render end
   const blocks: HTMLElement[] = _xpath("//*[starts-with(text(),'//kroki ')]", element ?? document.body);
   for (const codeDiv of blocks) {
-
     if (!codeDiv) continue;
 
     if (codeDiv.innerText.startsWith('//kroki')) {
       const lines = codeDiv.innerText.split('\n');
       const type = lines[0].replace('//kroki', '').trim();
-      if (!type?.trim()) continue
+      if (!type?.trim()) continue;
       const data = lines.filter((value, index) => index != 0).join('\n');
-      if (!data?.trim()) continue
+      if (!data?.trim()) continue;
       const svgUrl = plant(data, type, defaultConfig);
       const div = document.createElement('div', undefined);
-      div.style.cssText = 'display: flex; flex-direction: row; place-content: center;'
-      div.setAttribute("notion-kroki", "true");
+      div.style.cssText = 'display: flex; flex-direction: row; place-content: center;';
+      div.setAttribute('notion-kroki', 'true');
       div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
 
-      const preCreatedNode = codeDiv.parentElement?.parentElement?.querySelector("div[notion-kroki]")
+      const preCreatedNode = codeDiv.parentElement?.parentElement?.querySelector('div[notion-kroki]');
       if (preCreatedNode) {
-        const preSvgUrl = preCreatedNode.firstElementChild?.getAttribute("data")
-        _debug("preSvgUrl:" + preSvgUrl)
-        _debug("svgUrl:" + svgUrl)
-        if (preSvgUrl == svgUrl) { continue }
-        else { codeDiv.parentElement?.parentElement?.removeChild(preCreatedNode) }
+        const preSvgUrl = preCreatedNode.firstElementChild?.getAttribute('data');
+        _debug(`preSvgUrl:${preSvgUrl}`);
+        _debug(`svgUrl:${svgUrl}`);
+        if (preSvgUrl == svgUrl) {
+          continue;
+        } else {
+          codeDiv.parentElement?.parentElement?.removeChild(preCreatedNode);
+        }
       }
 
       codeDiv.parentElement?.parentElement?.appendChild(div);
@@ -62,15 +64,11 @@ interface KrokiOption {
 
 main();
 
-
-
-(new MutationObserver(check)).observe(document, { childList: true, subtree: true });
+new MutationObserver(check).observe(document, { childList: true, subtree: true });
 
 function check(mutations: MutationRecord[], observer: MutationObserver) {
-  _debug(mutations)
-  mutations.forEach(mutation => {
-    debounce(main, 1000, true)(mutation.target)
-  })
+  _debug(mutations);
+  mutations.forEach((mutation) => {
+    debounce(main, 1000, true)(mutation.target);
+  });
 }
-
-

@@ -14,8 +14,9 @@
     "build-webpack": "webpack",
     "test": "jest",
     "lint": "eslint **/*.ts **/*.js --format=friendly",
+    "lint-autofix": "eslint **/*.ts **/*.js --format=friendly",
     "write-html": "babel-node -x .ts write-code.ts",
-    "build": "npm run build-webpack && npm run write-html"
+    "build": "npm run lint-autofix && npm run build-webpack && npm run write-html"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

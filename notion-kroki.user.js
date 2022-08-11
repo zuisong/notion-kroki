@@ -4,6 +4,7 @@
 // @grant       none
 // @version     1.1.1
 // @match        *://www.notion.so/*
+// @match        *://*.notion.site/*
 // @match        *://*.super.site/*
 // @supportURL  https://github.com/zuisong/notion-kroki/issues
 // @run-at      document-idle
@@ -2681,18 +2682,18 @@ async function main(element = null) {
       const svgUrl = plant(data, type, defaultConfig);
       const div = document.createElement('div', undefined);
       div.style.cssText = 'display: flex; flex-direction: row; place-content: center;';
-      div.setAttribute("notion-kroki", "true");
+      div.setAttribute('notion-kroki', 'true');
       div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
-      const preCreatedNode = (_codeDiv$parentElemen = codeDiv.parentElement) === null || _codeDiv$parentElemen === void 0 ? void 0 : (_codeDiv$parentElemen2 = _codeDiv$parentElemen.parentElement) === null || _codeDiv$parentElemen2 === void 0 ? void 0 : _codeDiv$parentElemen2.querySelector("div[notion-kroki]");
+      const preCreatedNode = (_codeDiv$parentElemen = codeDiv.parentElement) === null || _codeDiv$parentElemen === void 0 ? void 0 : (_codeDiv$parentElemen2 = _codeDiv$parentElemen.parentElement) === null || _codeDiv$parentElemen2 === void 0 ? void 0 : _codeDiv$parentElemen2.querySelector('div[notion-kroki]');
 
       if (preCreatedNode) {
         var _preCreatedNode$first;
 
-        const preSvgUrl = (_preCreatedNode$first = preCreatedNode.firstElementChild) === null || _preCreatedNode$first === void 0 ? void 0 : _preCreatedNode$first.getAttribute("data");
+        const preSvgUrl = (_preCreatedNode$first = preCreatedNode.firstElementChild) === null || _preCreatedNode$first === void 0 ? void 0 : _preCreatedNode$first.getAttribute('data');
 
-        _debug("preSvgUrl:" + preSvgUrl);
+        _debug(`preSvgUrl:${preSvgUrl}`);
 
-        _debug("svgUrl:" + svgUrl);
+        _debug(`svgUrl:${svgUrl}`);
 
         if (preSvgUrl == svgUrl) {
           continue;
