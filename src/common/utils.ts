@@ -5,7 +5,13 @@ export async function sleep(ms: number): Promise<null> {
 }
 
 export function _xpath(xpath: string, node: Node): HTMLElement[] {
-  const xresult: XPathResult = document.evaluate(xpath, node, null, XPathResult.ANY_TYPE, null);
+  const xresult: XPathResult = document.evaluate(
+    xpath,
+    node,
+    null,
+    XPathResult.ANY_TYPE,
+    null,
+  );
   const xnodes = [];
   let xres: Node | null;
   // eslint-disable-next-line no-constant-condition
@@ -23,7 +29,7 @@ export function _xpath(xpath: string, node: Node): HTMLElement[] {
 
 // deno-lint-ignore no-explicit-any
 export function _debug(text: any): void {
-  if (localStorage.getItem('debug')) {
+  if (localStorage.getItem("debug")) {
     console.log(text);
   }
 }
