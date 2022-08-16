@@ -1,7 +1,7 @@
 import * as esbuild from 'https://deno.land/x/esbuild@v0.15.3/mod.js'
 import { httpImports } from "https://deno.land/x/esbuild_plugin_http_imports@v1.2.4/index.ts";
 
-const VERSION = "1.1.2"
+const VERSION = "1.1.3"
 
 await esbuild.build({
   bundle: true,
