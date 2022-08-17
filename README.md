@@ -55,4 +55,4 @@
 
 [opera_violentmonkey]: https://addons.opera.com/extensions/details/violent-monkey/
 
-[install_link]: https://raw.githubusercontent.com/zuisong/notion-kroki/master/notion-kroki.user.js
+[install_link]: https://cdn.jsdelivr.net/gh/zuisong/notion-kroki@latest/notion-kroki.user.js
