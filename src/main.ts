@@ -64,10 +64,9 @@ function plant(content: string, type: string, config: KrokiOption) {
   const urlPrefix = `${config?.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
   const compressed: string = strFromU8(zlibSync(data, { level: 9 }), true);
-  const result: string = btoa(compressed).replace(/\+/g, "-").replace(
-    /\//g,
-    "_",
-  );
+  const result: string = btoa(compressed)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
   const svgUrl: string = urlPrefix + result;
 
   return svgUrl;

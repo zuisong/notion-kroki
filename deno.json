@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "ESNext",
+      "deno.ns"
+    ],
+    "allowJs": true,
+    "strict": true,
+  },
+  "include": [
+    "src"
+  ]
+}
