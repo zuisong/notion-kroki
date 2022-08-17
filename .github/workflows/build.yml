@@ -1,9 +1,9 @@
 on:
   push:
     branches:
-    - main
-    - master
-    - release/*
+      - main
+      - master
+      - release/*
 
 jobs:
   test:
@@ -13,17 +13,17 @@ jobs:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     strategy:
       matrix:
-        node_version: ['18']
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-    - run:  git config --global core.autocrlf false
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node_version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node_version }}
-    - run: npm i -g pnpm
-    - run: pnpm install
-    - run: pnpm run build
+      - run: git config --global core.autocrlf false
 
+      - uses: actions/checkout@v3
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run build
+        run: deno run -A build.ts
