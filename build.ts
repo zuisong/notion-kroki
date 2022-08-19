@@ -1,5 +1,4 @@
-import * as esbuild from "https://deno.land/x/esbuild@v0.15.3/mod.js";
-import { httpImports } from "https://deno.land/x/esbuild_plugin_http_imports@v1.2.4/index.ts";
+import { esbuild, httpImports } from "./dev_deps.ts";
 
 const VERSION = "1.1.3";
 
@@ -8,10 +7,14 @@ export async function build() {
     bundle: true,
     entryPoints: ["./src/main.ts"],
     minify: true,
-    target: "chrome60",
+    target: [
+      "chrome57",
+      "edge16",
+      "firefox57",
+      "safari11",
+    ],
     format: "esm",
     outdir: "./dist",
-    platform: "browser",
     keepNames: false,
     treeShaking: true,
     plugins: [httpImports()],
@@ -19,7 +22,7 @@ export async function build() {
       ".ts": "ts",
       ".js": "js",
     },
-    logLevel: "debug",
+    logLevel: "verbose",
   });
   esbuild.stop();
 

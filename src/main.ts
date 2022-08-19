@@ -1,10 +1,5 @@
-// @deno-types="https://unpkg.com/fflate@0.7.3/lib/index.d.ts"
-import {
-  strFromU8,
-  zlibSync,
-} from "https://unpkg.com/fflate@0.7.3/esm/browser.js";
-
 import { _debug, _xpath, debounce, sleep } from "./common/utils.ts";
+import { strFromU8, zlibSync } from "./deps.ts";
 
 const defaultConfig: KrokiOption = {
   serverPath: "//kroki.io/",
