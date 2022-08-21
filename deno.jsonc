@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "strict": true,
+    "lib": [
+      "deno.window",
+      "dom"
+    ]
+  },
+  "lint": {
+    "files": {
+      "include": [
+        "src/",
+        "build.ts",
+        "dev_deps.ts",
+      ],
+      "exclude": [
+        "dist/",
+        "notion-kroki.user.js"
+      ]
+    },
+    "rules": {
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "ban-untagged-todo"
+      ],
+      "exclude": [
+        "no-unused-vars"
+      ]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": [
+        "src/",
+        "*.ts",
+      ],
+      "exclude": [
+        "src/testdata/"
+      ]
+    },
+    "options": {
+      "useTabs": false,
+      "lineWidth": 120,
+      "indentWidth": 2,
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  },
+  "test": {
+    "files": {
+      "include": [
+        "test/",
+      ],
+      "exclude": [
+      ]
+    }
+  }
+}

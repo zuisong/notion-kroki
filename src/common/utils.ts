@@ -12,7 +12,7 @@ export function _xpath(xpath: string, node: Node): HTMLElement[] {
     XPathResult.ANY_TYPE,
     null,
   );
-  const xnodes = [];
+  const xnodes: Node[] = [];
   let xres: Node | null;
   // eslint-disable-next-line no-constant-condition
   while (true) {
@@ -29,7 +29,7 @@ export function _xpath(xpath: string, node: Node): HTMLElement[] {
 
 // deno-lint-ignore no-explicit-any
 export function _debug(text: any): void {
-  if (localStorage.getItem("debug")) {
+  if (localStorage.getItem('debug')) {
     console.log(text);
   }
 }
