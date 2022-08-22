@@ -17,7 +17,9 @@ export async function build() {
     outdir: './dist',
     keepNames: false,
     treeShaking: true,
-    plugins: [httpImports()],
+    plugins: [httpImports({
+      defaultToJavascriptIfNothingElseFound: true,
+    })],
     loader: {
       '.ts': 'ts',
       '.js': 'js',
@@ -44,7 +46,7 @@ export async function build() {
     await Deno.writeTextFile(targetFile, result);
   }
 
-  writeCode();
+  await writeCode();
 }
 
 build();

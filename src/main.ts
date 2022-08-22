@@ -1,9 +1,13 @@
 import { _debug, _xpath, debounce, sleep } from './common/utils.ts';
-import { strFromU8, zlibSync } from './deps.ts';
+import { zlibSync } from './deps.ts';
 
 const defaultConfig: KrokiOption = {
   serverPath: '//kroki.io/',
 };
+
+function b64encode(str: string): string {
+  return btoa(str);
+}
 
 async function main(element: Node | null = null) {
   await sleep(3000); // wait document render end
@@ -61,8 +65,8 @@ function plant(content: string, type: string, config: KrokiOption) {
 
   const urlPrefix = `${config?.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
-  const compressed: string = strFromU8(zlibSync(data, { level: 9 }), true);
-  const result: string = btoa(compressed)
+  const compressed: string = decode(zlibSync(data, { level: 9 }));
+  const result: string = b64encode(compressed)
     .replace(/\+/g, '-')
     .replace(/\//g, '_');
   const svgUrl: string = urlPrefix + result;
@@ -86,4 +90,12 @@ function check(mutations: MutationRecord[], _observer: MutationObserver) {
   mutations.forEach((mutation) => {
     debounce(() => main(), 1000)(mutation.target);
   });
+}
+
+function decode(dat: Uint8Array) {
+  let r = '';
+  for (let i = 0; i < dat.length; i += 16384) {
+    r += String.fromCharCode(...dat.subarray(i, i + 16384));
+  }
+  return r;
 }
