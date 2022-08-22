@@ -1,4 +1,5 @@
 {
+  "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
@@ -7,6 +8,7 @@
       "dom"
     ]
   },
+  "importMap": "import_map.json",
   "lint": {
     "files": {
       "include": [
