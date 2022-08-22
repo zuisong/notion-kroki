@@ -1,6 +1,6 @@
 import { esbuild, httpImports } from './dev_deps.ts';
 
-const VERSION = '1.1.3';
+const VERSION = '1.1.4';
 
 export async function build() {
   await esbuild.build({
