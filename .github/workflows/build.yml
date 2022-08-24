@@ -25,5 +25,8 @@ jobs:
         with:
           deno-version: v1.x
 
+      - name: Run Test
+        run: deno test --no-check -A
+
       - name: Run build
         run: deno run -A build.ts

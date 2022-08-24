@@ -9,8 +9,7 @@ function b64encode(str: string): string {
   return btoa(str);
 }
 
-async function main(element: Node | null = null) {
-  await sleep(3000); // wait document render end
+function main(element: Node | null = null) {
   const blocks: HTMLElement[] = _xpath(
     '//*[starts-with(text(),\'//kroki \')]',
     element ?? document.body,
@@ -18,8 +17,8 @@ async function main(element: Node | null = null) {
   for (const codeDiv of blocks) {
     if (!codeDiv) continue;
 
-    if (codeDiv.innerText.startsWith('//kroki')) {
-      const lines = codeDiv.innerText.split('\n');
+    if (codeDiv.textContent?.startsWith('//kroki')) {
+      const lines = codeDiv.textContent.split('\n');
       const type = lines[0].replace('//kroki', '').trim();
       if (!type?.trim()) continue;
       const data = lines.filter((_value, index) => index != 0).join('\n');
