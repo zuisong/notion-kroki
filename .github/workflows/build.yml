@@ -26,7 +26,13 @@ jobs:
           deno-version: v1.x
 
       - name: Run Test
-        run: deno test --no-check -A
+        run: |
+          deno test --coverage=coverage --no-check -A
+          deno coverage coverage --lcov --output=coverage/lcov.info
 
       - name: Run build
         run: deno run -A build.ts
+
+      - uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov.info

@@ -28,9 +28,9 @@ export function _xpath(xpath: string, node: Node): HTMLElement[] {
 }
 
 // deno-lint-ignore no-explicit-any
-export function _debug(text: any): void {
+export function _debug(...data: any[]): void {
   if (localStorage.getItem('debug')) {
-    console.log(text);
+    console.log(...data);
   }
 }
 

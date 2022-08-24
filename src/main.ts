@@ -85,7 +85,7 @@ new MutationObserver(check).observe(document, {
 });
 
 function check(mutations: MutationRecord[], _observer: MutationObserver) {
-  _debug(mutations);
+  _debug("mutations", mutations);
   mutations.forEach((mutation) => {
     debounce(() => main(), 1000)(mutation.target);
   });
