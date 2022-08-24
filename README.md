@@ -1,5 +1,10 @@
 # notion-kroki
 
+![Codecov](https://img.shields.io/codecov/c/github/zuisong/notion-kroki)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/zuisong/notion-kroki/main)
+![GitHub top language](https://img.shields.io/github/languages/top/zuisong/notion-kroki)
+![GitHub last commit](https://img.shields.io/github/last-commit/zuisong/notion-kroki)
+
 ## 前置条件(Pre Condition)
 
 ### Make sure you have installed **Violentmonkey** or **Tampermonkey**
