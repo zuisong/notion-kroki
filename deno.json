@@ -4,8 +4,9 @@
     "allowJs": true,
     "strict": true,
     "lib": [
-      "deno.window",
-      "dom"
+      "dom",
+      "ESNEXT",
+      "deno.window"
     ]
   },
   "importMap": "import_map.json",
@@ -14,7 +15,7 @@
       "include": [
         "src/",
         "build.ts",
-        "dev_deps.ts",
+        "dev_deps.ts"
       ],
       "exclude": [
         "dist/",
@@ -37,7 +38,7 @@
     "files": {
       "include": [
         "src/",
-        "*.ts",
+        "*.ts"
       ],
       "exclude": [
         "src/testdata/"
@@ -54,7 +55,7 @@
   "test": {
     "files": {
       "include": [
-        "test/",
+        "test/"
       ],
       "exclude": [
       ]
