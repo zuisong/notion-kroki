@@ -5,7 +5,7 @@ bundle:
   deno bundle src/main.ts
 
 fmt:
-  deno fmt src/ build.ts dev_deps.ts
+  deno fmt src/ test/ build.ts dev_deps.ts
 
 test_cov:
   deno test --coverage=coverage --no-check -A

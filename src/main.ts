@@ -1,8 +1,8 @@
-import { _debug, _xpath, debounce, sleep } from './common/utils.ts';
-import { zlibSync } from './deps.ts';
+import { _debug, _xpath, debounce } from "./common/utils.ts";
+import { zlibSync } from "./deps.ts";
 
 const defaultConfig: KrokiOption = {
-  serverPath: '//kroki.io/',
+  serverPath: "//kroki.io/",
 };
 
 function b64encode(str: string): string {
@@ -11,30 +11,32 @@ function b64encode(str: string): string {
 
 function main(element: Node | null = null) {
   const blocks: HTMLElement[] = _xpath(
-    '//*[starts-with(text(),\'//kroki \')]',
+    "//*[starts-with(text(),'//kroki ')]",
     element ?? document.body,
   );
   for (const codeDiv of blocks) {
     if (!codeDiv) continue;
 
-    if (codeDiv.textContent?.startsWith('//kroki')) {
-      const lines = codeDiv.textContent.split('\n');
-      const type = lines[0].replace('//kroki', '').trim();
+    if (codeDiv.textContent?.startsWith("//kroki")) {
+      const lines = codeDiv.textContent.split("\n");
+      const type = lines[0].replace("//kroki", "").trim();
       if (!type?.trim()) continue;
-      const data = lines.filter((_value, index) => index != 0).join('\n');
+      const data = lines.filter((_value, index) => index != 0).join("\n");
       if (!data?.trim()) continue;
       const svgUrl = plant(data, type, defaultConfig);
-      const div = document.createElement('div', undefined);
-      div.style.cssText = 'display: flex; flex-direction: row; place-content: center;';
-      div.setAttribute('notion-kroki', 'true');
-      div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
+      const div = document.createElement("div", undefined);
+      div.style.cssText =
+        "display: flex; flex-direction: row; place-content: center;";
+      div.setAttribute("notion-kroki", "true");
+      div.innerHTML =
+        `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
 
       const preCreatedNode = codeDiv.parentElement?.parentElement
-        ?.querySelector('div[notion-kroki]');
+        ?.querySelector("div[notion-kroki]");
       if (preCreatedNode) {
         const preSvgUrl = preCreatedNode.firstElementChild
           ?.getAttribute(
-            'data',
+            "data",
           );
         _debug(`preSvgUrl:${preSvgUrl}`);
         _debug(`svgUrl:${svgUrl}`);
@@ -66,8 +68,8 @@ function plant(content: string, type: string, config: KrokiOption) {
   const data: Uint8Array = textEncode(content);
   const compressed: string = decode(zlibSync(data, { level: 9 }));
   const result: string = b64encode(compressed)
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_');
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
   const svgUrl: string = urlPrefix + result;
 
   return svgUrl;
@@ -92,7 +94,7 @@ function check(mutations: MutationRecord[], _observer: MutationObserver) {
 }
 
 function decode(dat: Uint8Array) {
-  let r = '';
+  let r = "";
   for (let i = 0; i < dat.length; i += 16384) {
     r += String.fromCharCode(...dat.subarray(i, i + 16384));
   }

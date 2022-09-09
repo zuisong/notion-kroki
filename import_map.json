@@ -1,9 +1,9 @@
 {
   "imports": {
-    "esbuild": "https://deno.land/x/esbuild@v0.15.5/mod.js",
+    "esbuild": "https://deno.land/x/esbuild@v0.15.7/mod.js",
     "httpImports": "https://deno.land/x/esbuild_plugin_http_imports@v1.2.4/index.ts",
     "fflate": "https://unpkg.com/fflate@0.7.3/esm/browser.js",
-    "deno_std/": "https://deno.land/std@0.153.0/",
+    "deno_std/": "https://deno.land/std@0.154.0/",
     "jsdom": "https://jspm.dev/jsdom"
   }
 }

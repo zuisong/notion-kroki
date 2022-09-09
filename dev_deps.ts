@@ -1,2 +1,2 @@
-export * as esbuild from 'esbuild';
-export { httpImports } from 'httpImports';
+export * as esbuild from "esbuild";
+export { httpImports } from "httpImports";
