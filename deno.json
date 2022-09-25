@@ -9,6 +9,12 @@
       "deno.window"
     ]
   },
+  "tasks": {
+    "build": "deno run -A build.ts",
+    "bundle": "deno bundle --no-check src/main.ts",
+    "fmt": "deno fmt src/ test/ build.ts dev_deps.ts",
+    "test-cov": "deno test --coverage=coverage --no-check -A && deno coverage coverage --lcov --output=coverage/lcov.info"
+  },
   "importMap": "import_map.json",
   "lint": {
     "files": {
@@ -45,16 +51,14 @@
         "src/testdata/"
       ]
     },
-    "options": {
-    }
+    "options": {}
   },
   "test": {
     "files": {
       "include": [
         "test/"
       ],
-      "exclude": [
-      ]
+      "exclude": []
     }
   }
 }
