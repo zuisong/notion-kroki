@@ -46,4 +46,6 @@ asserts.assertEquals(svgUrl, "//kroki.io/plantuml/svg/eNoBBAD7_2EtPmIC7QEv");
 
 console.log("render svgUrl ->", svgUrl);
 
-Deno.exit(0);
+setTimeout(() => {
+  Deno.exit(0);
+}, 1000);
