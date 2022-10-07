@@ -3,10 +3,12 @@
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
+    "target": "esnext",
     "lib": [
       "dom",
-      "ESNEXT",
-      "deno.window"
+      "dom.iterable",
+      "dom.asynciterable",
+      "deno.ns"
     ]
   },
   "tasks": {

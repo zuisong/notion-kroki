@@ -1,6 +1,5 @@
 import { JSDOM } from "jsdom";
 import * as asserts from "deno_std/testing/asserts.ts";
-import { sleep } from "../src/common/utils.ts";
 
 // language=HTML
 const doc = new JSDOM(`
