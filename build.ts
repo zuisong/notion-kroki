@@ -6,7 +6,7 @@ export async function build() {
   await esbuild.build({
     bundle: true,
     entryPoints: ["./src/main.ts"],
-    minify: true,
+    minify: false,
     target: [
       "chrome57",
       "edge16",

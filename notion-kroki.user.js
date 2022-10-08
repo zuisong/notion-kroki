@@ -3,17 +3,570 @@
 // @namespace   https://github.com/zuisong/notion-kroki
 // @grant       none
 // @version     1.1.4
-// @match        *://www.notion.so/*
-// @match        *://*.notion.site/*
-// @match        *://*.super.site/*
+// @license     MIT
+// @match       *://www.notion.so/*
+// @match       *://*.notion.site/*
+// @match       *://*.super.site/*
 // @supportURL  https://github.com/zuisong/notion-kroki/issues
 // @run-at      document-idle
 // @author      zuisong
 // @description Render notion code block as graph by kroki
 // ==/UserScript==
 
-function pr(r,n){let e=document.evaluate(r,n,null,XPathResult.ANY_TYPE,null),t=[],i;for(;i=e.iterateNext(),i;)t.push(i);return t}function K(...r){localStorage.getItem("debug")&&console.log(...r)}function gr(r,n){let e;return function(...t){clearTimeout(e),e=setTimeout(()=>{clearTimeout(e),r(t)},n)}}var P=Uint8Array,x=Uint16Array,b=Uint32Array,fr=new P([0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0,0,0,0]),sr=new P([0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,0,0]),yr=new P([16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15]),xr=function(r,n){for(var e=new x(31),t=0;t<31;++t)e[t]=n+=1<<r[t-1];for(var i=new b(e[30]),t=1;t<30;++t)for(var o=e[t];o<e[t+1];++o)i[o]=o-e[t]<<5|t;return[e,i]},Tr=xr(fr,2),Cr=Tr[0],er=Tr[1];Cr[28]=258,er[258]=28;var Er=xr(sr,0),Wr=Er[0],mr=Er[1],ir=new x(32768);for(u=0;u<32768;++u)G=(u&43690)>>>1|(u&21845)<<1,G=(G&52428)>>>2|(G&13107)<<2,G=(G&61680)>>>4|(G&3855)<<4,ir[u]=((G&65280)>>>8|(G&255)<<8)>>>1;var G,u,J=function(r,n,e){for(var t=r.length,i=0,o=new x(n);i<t;++i)r[i]&&++o[r[i]-1];var f=new x(n);for(i=0;i<n;++i)f[i]=f[i-1]+o[i-1]<<1;var l;if(e){l=new x(1<<n);var h=15-n;for(i=0;i<t;++i)if(r[i])for(var v=i<<4|r[i],a=n-r[i],g=f[r[i]-1]++<<a,y=g|(1<<a)-1;g<=y;++g)l[ir[g]>>>h]=v}else for(l=new x(t),i=0;i<t;++i)r[i]&&(l[i]=ir[f[r[i]-1]++]>>>15-r[i]);return l},R=new P(288);for(u=0;u<144;++u)R[u]=8;var u;for(u=144;u<256;++u)R[u]=9;var u;for(u=256;u<280;++u)R[u]=7;var u;for(u=280;u<288;++u)R[u]=8;var u,V=new P(32);for(u=0;u<32;++u)V[u]=5;var u,Dr=J(R,9,0);var dr=J(V,5,0);var Mr=function(r){return(r+7)/8|0},Ir=function(r,n,e){(n==null||n<0)&&(n=0),(e==null||e>r.length)&&(e=r.length);var t=new(r.BYTES_PER_ELEMENT==2?x:r.BYTES_PER_ELEMENT==4?b:P)(e-n);return t.set(r.subarray(n,e)),t};var L=function(r,n,e){e<<=n&7;var t=n/8|0;r[t]|=e,r[t+1]|=e>>>8},W=function(r,n,e){e<<=n&7;var t=n/8|0;r[t]|=e,r[t+1]|=e>>>8,r[t+2]|=e>>>16},tr=function(r,n){for(var e=[],t=0;t<r.length;++t)r[t]&&e.push({s:t,f:r[t]});var i=e.length,o=e.slice();if(!i)return[ur,0];if(i==1){var f=new P(e[0].s+1);return f[e[0].s]=1,[f,1]}e.sort(function(I,U){return I.f-U.f}),e.push({s:-1,f:25001});var l=e[0],h=e[1],v=0,a=1,g=2;for(e[0]={s:-1,f:l.f+h.f,l,r:h};a!=i-1;)l=e[e[v].f<e[g].f?v++:g++],h=e[v!=a&&e[v].f<e[g].f?v++:g++],e[a++]={s:-1,f:l.f+h.f,l,r:h};for(var y=o[0].s,t=1;t<i;++t)o[t].s>y&&(y=o[t].s);var c=new x(y+1),z=ar(e[a-1],c,0);if(z>n){var t=0,p=0,M=z-n,S=1<<M;for(o.sort(function(U,w){return c[w.s]-c[U.s]||U.f-w.f});t<i;++t){var A=o[t].s;if(c[A]>n)p+=S-(1<<z-c[A]),c[A]=n;else break}for(p>>>=M;p>0;){var B=o[t].s;c[B]<n?p-=1<<n-c[B]++-1:++t}for(;t>=0&&p;--t){var N=o[t].s;c[N]==n&&(--c[N],++p)}z=n}return[new P(c),z]},ar=function(r,n,e){return r.s==-1?Math.max(ar(r.l,n,e+1),ar(r.r,n,e+1)):n[r.s]=e},wr=function(r){for(var n=r.length;n&&!r[--n];);for(var e=new x(++n),t=0,i=r[0],o=1,f=function(h){e[t++]=h},l=1;l<=n;++l)if(r[l]==i&&l!=n)++o;else{if(!i&&o>2){for(;o>138;o-=138)f(32754);o>2&&(f(o>10?o-11<<5|28690:o-3<<5|12305),o=0)}else if(o>3){for(f(i),--o;o>6;o-=6)f(8304);o>2&&(f(o-3<<5|8208),o=0)}for(;o--;)f(i);o=1,i=r[l]}return[e.subarray(0,t),n]},X=function(r,n){for(var e=0,t=0;t<n.length;++t)e+=r[t]*n[t];return e},or=function(r,n,e){var t=e.length,i=Mr(n+2);r[i]=t&255,r[i+1]=t>>>8,r[i+2]=r[i]^255,r[i+3]=r[i+1]^255;for(var o=0;o<t;++o)r[i+o+4]=e[o];return(i+4+t)*8},zr=function(r,n,e,t,i,o,f,l,h,v,a){L(n,a++,e),++i[256];for(var g=tr(i,15),y=g[0],c=g[1],z=tr(o,15),p=z[0],M=z[1],S=wr(y),A=S[0],B=S[1],N=wr(p),I=N[0],U=N[1],w=new x(19),s=0;s<A.length;++s)w[A[s]&31]++;for(var s=0;s<I.length;++s)w[I[s]&31]++;for(var H=tr(w,7),k=H[0],Q=H[1],T=19;T>4&&!k[yr[T-1]];--T);var Y=v+5<<3,C=X(i,R)+X(o,V)+f,D=X(i,y)+X(o,p)+f+14+3*T+X(w,k)+(2*w[16]+3*w[17]+7*w[18]);if(Y<=C&&Y<=D)return or(n,a,r.subarray(h,h+v));var Z,m,d,$;if(L(n,a,1+(D<C)),a+=2,D<C){Z=J(y,c,0),m=y,d=J(p,M,0),$=p;var _=J(k,Q,0);L(n,a,B-257),L(n,a+5,U-1),L(n,a+10,T-4),a+=14;for(var s=0;s<T;++s)L(n,a+3*s,k[yr[s]]);a+=3*T;for(var F=[A,I],j=0;j<2;++j)for(var q=F[j],s=0;s<q.length;++s){var O=q[s]&31;L(n,a,_[O]),a+=k[O],O>15&&(L(n,a,q[s]>>>5&127),a+=q[s]>>>12)}}else Z=Dr,m=R,d=dr,$=V;for(var s=0;s<l;++s)if(t[s]>255){var O=t[s]>>>18&31;W(n,a,Z[O+257]),a+=m[O+257],O>7&&(L(n,a,t[s]>>>23&31),a+=fr[O]);var E=t[s]&31;W(n,a,d[E]),a+=$[E],E>3&&(W(n,a,t[s]>>>5&8191),a+=sr[E])}else W(n,a,Z[t[s]]),a+=m[t[s]];return W(n,a,Z[256]),a+m[256]},Zr=new b([65540,131080,131088,131104,262176,1048704,1048832,2114560,2117632]),ur=new P(0),Fr=function(r,n,e,t,i,o){var f=r.length,l=new P(t+f+5*(1+Math.ceil(f/7e3))+i),h=l.subarray(t,l.length-i),v=0;if(!n||f<8)for(var a=0;a<=f;a+=65535){var g=a+65535;g>=f&&(h[v>>3]=o),v=or(h,v+1,r.subarray(a,g))}else{for(var y=Zr[n-1],c=y>>>13,z=y&8191,p=(1<<e)-1,M=new x(32768),S=new x(p+1),A=Math.ceil(e/3),B=2*A,N=function(nr){return(r[nr]^r[nr+1]<<A^r[nr+2]<<B)&p},I=new b(25e3),U=new x(288),w=new x(32),s=0,H=0,a=0,k=0,Q=0,T=0;a<f;++a){var Y=N(a),C=a&32767,D=S[Y];if(M[C]=D,S[Y]=C,Q<=a){var Z=f-a;if((s>7e3||k>24576)&&Z>423){v=zr(r,h,0,I,U,w,H,k,T,a-T,v),k=s=H=0,T=a;for(var m=0;m<286;++m)U[m]=0;for(var m=0;m<30;++m)w[m]=0}var d=2,$=0,_=z,F=C-D&32767;if(Z>2&&Y==N(a-F))for(var j=Math.min(c,Z)-1,q=Math.min(32767,a),O=Math.min(258,Z);F<=q&&--_&&C!=D;){if(r[a+d]==r[a+d-F]){for(var E=0;E<O&&r[a+E]==r[a+E-F];++E);if(E>d){if(d=E,$=F,E>j)break;for(var kr=Math.min(F,E-2),lr=0,m=0;m<kr;++m){var rr=a-F+m+32768&32767,Sr=M[rr],vr=rr-Sr+32768&32767;vr>lr&&(lr=vr,D=rr)}}}C=D,D=M[C],F+=C-D+32768&32767}if($){I[k++]=268435456|er[d]<<18|mr[$];var hr=er[d]&31,cr=mr[$]&31;H+=fr[hr]+sr[cr],++U[257+hr],++w[cr],Q=a+d,++s}else I[k++]=r[a],++U[r[a]]}}v=zr(r,h,o,I,U,w,H,k,T,a-T,v),!o&&v&7&&(v=or(h,v+1,ur))}return Ir(l,0,t+Mr(v)+i)};var Or=function(){var r=1,n=0;return{p:function(e){for(var t=r,i=n,o=e.length|0,f=0;f!=o;){for(var l=Math.min(f+2655,o);f<l;++f)i+=t+=e[f];t=(t&65535)+15*(t>>16),i=(i&65535)+15*(i>>16)}r=t,n=i},d:function(){return r%=65521,n%=65521,(r&255)<<24|r>>>8<<16|(n&255)<<8|n>>>8}}},Pr=function(r,n,e,t,i){return Fr(r,n.level==null?6:n.level,n.mem==null?Math.ceil(Math.max(8,Math.min(13,Math.log(r.length)))*1.5):12+n.mem,e,t,!i)};var Gr=function(r,n,e){for(;e;++n)r[n]=e,e>>>=8};var Lr=function(r,n){var e=n.level,t=e==0?0:e<6?1:e==9?3:2;r[0]=120,r[1]=t<<6|(t?32-2*t:1)};function Ar(r,n){n||(n={});var e=Or();e.p(r);var t=Pr(r,n,2,4);return Lr(t,n),Gr(t,t.length-4,e.d()),t}var Nr=typeof TextDecoder<"u"&&new TextDecoder,$r=0;try{Nr.decode(ur,{stream:!0}),$r=1}catch(r){}var Hr={serverPath:"//kroki.io/"};function Rr(r){return btoa(r)}function Ur(r=null){var e,t,i,o,f,l,h,v;let n=pr("//*[starts-with(text(),'//kroki ')]",r!=null?r:document.body);for(let a of n)if(!!a&&(e=a.textContent)!=null&&e.startsWith("//kroki")){let g=a.textContent.split(`
-`),y=g[0].replace("//kroki","").trim();if(!(y!=null&&y.trim()))continue;let c=g.filter((S,A)=>A!=0).join(`
-`);if(!(c!=null&&c.trim()))continue;let z=Yr(c,y,Hr),p=document.createElement("div",void 0);p.style.cssText="display: flex; flex-direction: row; place-content: center;",p.setAttribute("notion-kroki","true"),p.innerHTML=`<object type="image/svg+xml" style="max-width: 100%;" data="${z}" />`;let M=(i=(t=a.parentElement)==null?void 0:t.parentElement)==null?void 0:i.querySelector("div[notion-kroki]");if(M){let S=(o=M.firstElementChild)==null?void 0:o.getAttribute("data");if(K(`preSvgUrl:${S}`),K(`svgUrl:${z}`),S==z)continue;(l=(f=a.parentElement)==null?void 0:f.parentElement)==null||l.removeChild(M)}(v=(h=a.parentElement)==null?void 0:h.parentElement)==null||v.appendChild(p)}}function Br(r){return new TextEncoder().encode(r)}function Yr(r,n,e){r=r.trim(),K(`kroki render type: ${n}`),K(`kroki render content: 
- ${r}`);let t=`${(e==null?void 0:e.serverPath)+n}/svg/`,i=Br(r),o=Kr(Ar(i,{level:9})),f=Rr(o).replace(/\+/g,"-").replace(/\//g,"_");return t+f}Ur();new MutationObserver(qr).observe(document,{childList:!0,subtree:!0});function qr(r,n){K("mutations",r),r.forEach(e=>{gr(()=>Ur(),1e3)(e.target)})}function Kr(r){let n="";for(let e=0;e<r.length;e+=16384)n+=String.fromCharCode(...r.subarray(e,e+16384));return n}
+// src/common/utils.ts
+function _xpath(xpath, node) {
+  const xresult = document.evaluate(
+    xpath,
+    node,
+    null,
+    XPathResult.ANY_TYPE,
+    null
+  );
+  const xnodes = [];
+  let xres;
+  while (true) {
+    xres = xresult.iterateNext();
+    if (xres) {
+      xnodes.push(xres);
+    } else {
+      break;
+    }
+  }
+  return xnodes;
+}
+function _debug(...data) {
+  if (localStorage.getItem("debug")) {
+    console.log(...data);
+  }
+}
+function debounce(callback, ms) {
+  let timer;
+  return function(...t) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      clearTimeout(timer);
+      callback(t);
+    }, ms);
+  };
+}
+
+// http-import:https://cdn.skypack.dev/-/fflate@v0.7.4-fETn8a72iL31qF6yw7Is/dist=es2019,mode=imports/optimized/fflate.js
+var u8 = Uint8Array;
+var u16 = Uint16Array;
+var u32 = Uint32Array;
+var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0]);
+var fdeb = new u8([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0]);
+var clim = new u8([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
+var freb = function(eb, start) {
+  var b = new u16(31);
+  for (var i = 0; i < 31; ++i) {
+    b[i] = start += 1 << eb[i - 1];
+  }
+  var r = new u32(b[30]);
+  for (var i = 1; i < 30; ++i) {
+    for (var j = b[i]; j < b[i + 1]; ++j) {
+      r[j] = j - b[i] << 5 | i;
+    }
+  }
+  return [b, r];
+};
+var _a = freb(fleb, 2);
+var fl = _a[0];
+var revfl = _a[1];
+fl[28] = 258, revfl[258] = 28;
+var _b = freb(fdeb, 0);
+var fd = _b[0];
+var revfd = _b[1];
+var rev = new u16(32768);
+for (i = 0; i < 32768; ++i) {
+  x = (i & 43690) >>> 1 | (i & 21845) << 1;
+  x = (x & 52428) >>> 2 | (x & 13107) << 2;
+  x = (x & 61680) >>> 4 | (x & 3855) << 4;
+  rev[i] = ((x & 65280) >>> 8 | (x & 255) << 8) >>> 1;
+}
+var x;
+var i;
+var hMap = function(cd, mb, r) {
+  var s = cd.length;
+  var i = 0;
+  var l = new u16(mb);
+  for (; i < s; ++i) {
+    if (cd[i])
+      ++l[cd[i] - 1];
+  }
+  var le = new u16(mb);
+  for (i = 0; i < mb; ++i) {
+    le[i] = le[i - 1] + l[i - 1] << 1;
+  }
+  var co;
+  if (r) {
+    co = new u16(1 << mb);
+    var rvb = 15 - mb;
+    for (i = 0; i < s; ++i) {
+      if (cd[i]) {
+        var sv = i << 4 | cd[i];
+        var r_1 = mb - cd[i];
+        var v = le[cd[i] - 1]++ << r_1;
+        for (var m = v | (1 << r_1) - 1; v <= m; ++v) {
+          co[rev[v] >>> rvb] = sv;
+        }
+      }
+    }
+  } else {
+    co = new u16(s);
+    for (i = 0; i < s; ++i) {
+      if (cd[i]) {
+        co[i] = rev[le[cd[i] - 1]++] >>> 15 - cd[i];
+      }
+    }
+  }
+  return co;
+};
+var flt = new u8(288);
+for (i = 0; i < 144; ++i)
+  flt[i] = 8;
+var i;
+for (i = 144; i < 256; ++i)
+  flt[i] = 9;
+var i;
+for (i = 256; i < 280; ++i)
+  flt[i] = 7;
+var i;
+for (i = 280; i < 288; ++i)
+  flt[i] = 8;
+var i;
+var fdt = new u8(32);
+for (i = 0; i < 32; ++i)
+  fdt[i] = 5;
+var i;
+var flm = /* @__PURE__ */ hMap(flt, 9, 0);
+var fdm = /* @__PURE__ */ hMap(fdt, 5, 0);
+var shft = function(p) {
+  return (p + 7) / 8 | 0;
+};
+var slc = function(v, s, e) {
+  if (s == null || s < 0)
+    s = 0;
+  if (e == null || e > v.length)
+    e = v.length;
+  var n = new (v.BYTES_PER_ELEMENT == 2 ? u16 : v.BYTES_PER_ELEMENT == 4 ? u32 : u8)(e - s);
+  n.set(v.subarray(s, e));
+  return n;
+};
+var wbits = function(d, p, v) {
+  v <<= p & 7;
+  var o = p / 8 | 0;
+  d[o] |= v;
+  d[o + 1] |= v >>> 8;
+};
+var wbits16 = function(d, p, v) {
+  v <<= p & 7;
+  var o = p / 8 | 0;
+  d[o] |= v;
+  d[o + 1] |= v >>> 8;
+  d[o + 2] |= v >>> 16;
+};
+var hTree = function(d, mb) {
+  var t = [];
+  for (var i = 0; i < d.length; ++i) {
+    if (d[i])
+      t.push({ s: i, f: d[i] });
+  }
+  var s = t.length;
+  var t2 = t.slice();
+  if (!s)
+    return [et, 0];
+  if (s == 1) {
+    var v = new u8(t[0].s + 1);
+    v[t[0].s] = 1;
+    return [v, 1];
+  }
+  t.sort(function(a, b) {
+    return a.f - b.f;
+  });
+  t.push({ s: -1, f: 25001 });
+  var l = t[0], r = t[1], i0 = 0, i1 = 1, i2 = 2;
+  t[0] = { s: -1, f: l.f + r.f, l, r };
+  while (i1 != s - 1) {
+    l = t[t[i0].f < t[i2].f ? i0++ : i2++];
+    r = t[i0 != i1 && t[i0].f < t[i2].f ? i0++ : i2++];
+    t[i1++] = { s: -1, f: l.f + r.f, l, r };
+  }
+  var maxSym = t2[0].s;
+  for (var i = 1; i < s; ++i) {
+    if (t2[i].s > maxSym)
+      maxSym = t2[i].s;
+  }
+  var tr = new u16(maxSym + 1);
+  var mbt = ln(t[i1 - 1], tr, 0);
+  if (mbt > mb) {
+    var i = 0, dt = 0;
+    var lft = mbt - mb, cst = 1 << lft;
+    t2.sort(function(a, b) {
+      return tr[b.s] - tr[a.s] || a.f - b.f;
+    });
+    for (; i < s; ++i) {
+      var i2_1 = t2[i].s;
+      if (tr[i2_1] > mb) {
+        dt += cst - (1 << mbt - tr[i2_1]);
+        tr[i2_1] = mb;
+      } else
+        break;
+    }
+    dt >>>= lft;
+    while (dt > 0) {
+      var i2_2 = t2[i].s;
+      if (tr[i2_2] < mb)
+        dt -= 1 << mb - tr[i2_2]++ - 1;
+      else
+        ++i;
+    }
+    for (; i >= 0 && dt; --i) {
+      var i2_3 = t2[i].s;
+      if (tr[i2_3] == mb) {
+        --tr[i2_3];
+        ++dt;
+      }
+    }
+    mbt = mb;
+  }
+  return [new u8(tr), mbt];
+};
+var ln = function(n, l, d) {
+  return n.s == -1 ? Math.max(ln(n.l, l, d + 1), ln(n.r, l, d + 1)) : l[n.s] = d;
+};
+var lc = function(c) {
+  var s = c.length;
+  while (s && !c[--s])
+    ;
+  var cl = new u16(++s);
+  var cli = 0, cln = c[0], cls = 1;
+  var w = function(v) {
+    cl[cli++] = v;
+  };
+  for (var i = 1; i <= s; ++i) {
+    if (c[i] == cln && i != s)
+      ++cls;
+    else {
+      if (!cln && cls > 2) {
+        for (; cls > 138; cls -= 138)
+          w(32754);
+        if (cls > 2) {
+          w(cls > 10 ? cls - 11 << 5 | 28690 : cls - 3 << 5 | 12305);
+          cls = 0;
+        }
+      } else if (cls > 3) {
+        w(cln), --cls;
+        for (; cls > 6; cls -= 6)
+          w(8304);
+        if (cls > 2)
+          w(cls - 3 << 5 | 8208), cls = 0;
+      }
+      while (cls--)
+        w(cln);
+      cls = 1;
+      cln = c[i];
+    }
+  }
+  return [cl.subarray(0, cli), s];
+};
+var clen = function(cf, cl) {
+  var l = 0;
+  for (var i = 0; i < cl.length; ++i)
+    l += cf[i] * cl[i];
+  return l;
+};
+var wfblk = function(out, pos, dat) {
+  var s = dat.length;
+  var o = shft(pos + 2);
+  out[o] = s & 255;
+  out[o + 1] = s >>> 8;
+  out[o + 2] = out[o] ^ 255;
+  out[o + 3] = out[o + 1] ^ 255;
+  for (var i = 0; i < s; ++i)
+    out[o + i + 4] = dat[i];
+  return (o + 4 + s) * 8;
+};
+var wblk = function(dat, out, final, syms, lf, df, eb, li, bs, bl, p) {
+  wbits(out, p++, final);
+  ++lf[256];
+  var _a2 = hTree(lf, 15), dlt = _a2[0], mlb = _a2[1];
+  var _b2 = hTree(df, 15), ddt = _b2[0], mdb = _b2[1];
+  var _c = lc(dlt), lclt = _c[0], nlc = _c[1];
+  var _d = lc(ddt), lcdt = _d[0], ndc = _d[1];
+  var lcfreq = new u16(19);
+  for (var i = 0; i < lclt.length; ++i)
+    lcfreq[lclt[i] & 31]++;
+  for (var i = 0; i < lcdt.length; ++i)
+    lcfreq[lcdt[i] & 31]++;
+  var _e = hTree(lcfreq, 7), lct = _e[0], mlcb = _e[1];
+  var nlcc = 19;
+  for (; nlcc > 4 && !lct[clim[nlcc - 1]]; --nlcc)
+    ;
+  var flen = bl + 5 << 3;
+  var ftlen = clen(lf, flt) + clen(df, fdt) + eb;
+  var dtlen = clen(lf, dlt) + clen(df, ddt) + eb + 14 + 3 * nlcc + clen(lcfreq, lct) + (2 * lcfreq[16] + 3 * lcfreq[17] + 7 * lcfreq[18]);
+  if (flen <= ftlen && flen <= dtlen)
+    return wfblk(out, p, dat.subarray(bs, bs + bl));
+  var lm, ll, dm, dl;
+  wbits(out, p, 1 + (dtlen < ftlen)), p += 2;
+  if (dtlen < ftlen) {
+    lm = hMap(dlt, mlb, 0), ll = dlt, dm = hMap(ddt, mdb, 0), dl = ddt;
+    var llm = hMap(lct, mlcb, 0);
+    wbits(out, p, nlc - 257);
+    wbits(out, p + 5, ndc - 1);
+    wbits(out, p + 10, nlcc - 4);
+    p += 14;
+    for (var i = 0; i < nlcc; ++i)
+      wbits(out, p + 3 * i, lct[clim[i]]);
+    p += 3 * nlcc;
+    var lcts = [lclt, lcdt];
+    for (var it = 0; it < 2; ++it) {
+      var clct = lcts[it];
+      for (var i = 0; i < clct.length; ++i) {
+        var len = clct[i] & 31;
+        wbits(out, p, llm[len]), p += lct[len];
+        if (len > 15)
+          wbits(out, p, clct[i] >>> 5 & 127), p += clct[i] >>> 12;
+      }
+    }
+  } else {
+    lm = flm, ll = flt, dm = fdm, dl = fdt;
+  }
+  for (var i = 0; i < li; ++i) {
+    if (syms[i] > 255) {
+      var len = syms[i] >>> 18 & 31;
+      wbits16(out, p, lm[len + 257]), p += ll[len + 257];
+      if (len > 7)
+        wbits(out, p, syms[i] >>> 23 & 31), p += fleb[len];
+      var dst = syms[i] & 31;
+      wbits16(out, p, dm[dst]), p += dl[dst];
+      if (dst > 3)
+        wbits16(out, p, syms[i] >>> 5 & 8191), p += fdeb[dst];
+    } else {
+      wbits16(out, p, lm[syms[i]]), p += ll[syms[i]];
+    }
+  }
+  wbits16(out, p, lm[256]);
+  return p + ll[256];
+};
+var deo = /* @__PURE__ */ new u32([65540, 131080, 131088, 131104, 262176, 1048704, 1048832, 2114560, 2117632]);
+var et = /* @__PURE__ */ new u8(0);
+var dflt = function(dat, lvl, plvl, pre, post, lst) {
+  var s = dat.length;
+  var o = new u8(pre + s + 5 * (1 + Math.ceil(s / 7e3)) + post);
+  var w = o.subarray(pre, o.length - post);
+  var pos = 0;
+  if (!lvl || s < 8) {
+    for (var i = 0; i <= s; i += 65535) {
+      var e = i + 65535;
+      if (e >= s) {
+        w[pos >> 3] = lst;
+      }
+      pos = wfblk(w, pos + 1, dat.subarray(i, e));
+    }
+  } else {
+    var opt = deo[lvl - 1];
+    var n = opt >>> 13, c = opt & 8191;
+    var msk_1 = (1 << plvl) - 1;
+    var prev = new u16(32768), head = new u16(msk_1 + 1);
+    var bs1_1 = Math.ceil(plvl / 3), bs2_1 = 2 * bs1_1;
+    var hsh = function(i2) {
+      return (dat[i2] ^ dat[i2 + 1] << bs1_1 ^ dat[i2 + 2] << bs2_1) & msk_1;
+    };
+    var syms = new u32(25e3);
+    var lf = new u16(288), df = new u16(32);
+    var lc_1 = 0, eb = 0, i = 0, li = 0, wi = 0, bs = 0;
+    for (; i < s; ++i) {
+      var hv = hsh(i);
+      var imod = i & 32767, pimod = head[hv];
+      prev[imod] = pimod;
+      head[hv] = imod;
+      if (wi <= i) {
+        var rem = s - i;
+        if ((lc_1 > 7e3 || li > 24576) && rem > 423) {
+          pos = wblk(dat, w, 0, syms, lf, df, eb, li, bs, i - bs, pos);
+          li = lc_1 = eb = 0, bs = i;
+          for (var j = 0; j < 286; ++j)
+            lf[j] = 0;
+          for (var j = 0; j < 30; ++j)
+            df[j] = 0;
+        }
+        var l = 2, d = 0, ch_1 = c, dif = imod - pimod & 32767;
+        if (rem > 2 && hv == hsh(i - dif)) {
+          var maxn = Math.min(n, rem) - 1;
+          var maxd = Math.min(32767, i);
+          var ml = Math.min(258, rem);
+          while (dif <= maxd && --ch_1 && imod != pimod) {
+            if (dat[i + l] == dat[i + l - dif]) {
+              var nl = 0;
+              for (; nl < ml && dat[i + nl] == dat[i + nl - dif]; ++nl)
+                ;
+              if (nl > l) {
+                l = nl, d = dif;
+                if (nl > maxn)
+                  break;
+                var mmd = Math.min(dif, nl - 2);
+                var md = 0;
+                for (var j = 0; j < mmd; ++j) {
+                  var ti = i - dif + j + 32768 & 32767;
+                  var pti = prev[ti];
+                  var cd = ti - pti + 32768 & 32767;
+                  if (cd > md)
+                    md = cd, pimod = ti;
+                }
+              }
+            }
+            imod = pimod, pimod = prev[imod];
+            dif += imod - pimod + 32768 & 32767;
+          }
+        }
+        if (d) {
+          syms[li++] = 268435456 | revfl[l] << 18 | revfd[d];
+          var lin = revfl[l] & 31, din = revfd[d] & 31;
+          eb += fleb[lin] + fdeb[din];
+          ++lf[257 + lin];
+          ++df[din];
+          wi = i + l;
+          ++lc_1;
+        } else {
+          syms[li++] = dat[i];
+          ++lf[dat[i]];
+        }
+      }
+    }
+    pos = wblk(dat, w, lst, syms, lf, df, eb, li, bs, i - bs, pos);
+    if (!lst && pos & 7)
+      pos = wfblk(w, pos + 1, et);
+  }
+  return slc(o, 0, pre + shft(pos) + post);
+};
+var adler = function() {
+  var a = 1, b = 0;
+  return {
+    p: function(d) {
+      var n = a, m = b;
+      var l = d.length | 0;
+      for (var i = 0; i != l; ) {
+        var e = Math.min(i + 2655, l);
+        for (; i < e; ++i)
+          m += n += d[i];
+        n = (n & 65535) + 15 * (n >> 16), m = (m & 65535) + 15 * (m >> 16);
+      }
+      a = n, b = m;
+    },
+    d: function() {
+      a %= 65521, b %= 65521;
+      return (a & 255) << 24 | a >>> 8 << 16 | (b & 255) << 8 | b >>> 8;
+    }
+  };
+};
+var dopt = function(dat, opt, pre, post, st) {
+  return dflt(dat, opt.level == null ? 6 : opt.level, opt.mem == null ? Math.ceil(Math.max(8, Math.min(13, Math.log(dat.length))) * 1.5) : 12 + opt.mem, pre, post, !st);
+};
+var wbytes = function(d, b, v) {
+  for (; v; ++b)
+    d[b] = v, v >>>= 8;
+};
+var zlh = function(c, o) {
+  var lv = o.level, fl2 = lv == 0 ? 0 : lv < 6 ? 1 : lv == 9 ? 3 : 2;
+  c[0] = 120, c[1] = fl2 << 6 | (fl2 ? 32 - 2 * fl2 : 1);
+};
+function zlibSync(data, opts) {
+  if (!opts)
+    opts = {};
+  var a = adler();
+  a.p(data);
+  var d = dopt(data, opts, 2, 4);
+  return zlh(d, opts), wbytes(d, d.length - 4, a.d()), d;
+}
+var td = typeof TextDecoder != "undefined" && /* @__PURE__ */ new TextDecoder();
+var tds = 0;
+try {
+  td.decode(et, { stream: true });
+  tds = 1;
+} catch (e) {
+}
+
+// src/main.ts
+var defaultConfig = {
+  serverPath: "//kroki.io/"
+};
+function b64encode(str) {
+  return btoa(str);
+}
+function main(element = null) {
+  var _a2, _b2, _c, _d, _e, _f, _g, _h;
+  const blocks = _xpath(
+    "//*[starts-with(text(),'//kroki ')]",
+    element != null ? element : document.body
+  );
+  for (const codeDiv of blocks) {
+    if (!codeDiv)
+      continue;
+    if ((_a2 = codeDiv.textContent) == null ? void 0 : _a2.startsWith("//kroki")) {
+      const lines = codeDiv.textContent.split("\n");
+      const type = lines[0].replace("//kroki", "").trim();
+      if (!(type == null ? void 0 : type.trim()))
+        continue;
+      const data = lines.filter((_value, index) => index != 0).join("\n");
+      if (!(data == null ? void 0 : data.trim()))
+        continue;
+      const svgUrl = plant(data, type, defaultConfig);
+      const div = document.createElement("div", void 0);
+      div.style.cssText = "display: flex; flex-direction: row; place-content: center;";
+      div.setAttribute("notion-kroki", "true");
+      div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
+      const preCreatedNode = (_c = (_b2 = codeDiv.parentElement) == null ? void 0 : _b2.parentElement) == null ? void 0 : _c.querySelector("div[notion-kroki]");
+      if (preCreatedNode) {
+        const preSvgUrl = (_d = preCreatedNode.firstElementChild) == null ? void 0 : _d.getAttribute(
+          "data"
+        );
+        _debug(`preSvgUrl:${preSvgUrl}`);
+        _debug(`svgUrl:${svgUrl}`);
+        if (preSvgUrl == svgUrl) {
+          continue;
+        } else {
+          (_f = (_e = codeDiv.parentElement) == null ? void 0 : _e.parentElement) == null ? void 0 : _f.removeChild(
+            preCreatedNode
+          );
+        }
+      }
+      (_h = (_g = codeDiv.parentElement) == null ? void 0 : _g.parentElement) == null ? void 0 : _h.appendChild(div);
+    }
+  }
+}
+function textEncode(str) {
+  return new TextEncoder().encode(str);
+}
+function plant(content, type, config) {
+  content = content.trim();
+  _debug(`kroki render type: ${type}`);
+  _debug(`kroki render content: 
+ ${content}`);
+  const urlPrefix = `${(config == null ? void 0 : config.serverPath) + type}/svg/`;
+  const data = textEncode(content);
+  const compressed = decode(zlibSync(data, { level: 9 }));
+  const result = b64encode(compressed).replace(/\+/g, "-").replace(/\//g, "_");
+  const svgUrl = urlPrefix + result;
+  return svgUrl;
+}
+main();
+new MutationObserver(check).observe(document, {
+  childList: true,
+  subtree: true
+});
+function check(mutations, _observer) {
+  _debug("mutations", mutations);
+  mutations.forEach((mutation) => {
+    debounce(() => main(), 1e3)(mutation.target);
+  });
+}
+function decode(dat) {
+  let r = "";
+  for (let i = 0; i < dat.length; i += 16384) {
+    r += String.fromCharCode(...dat.subarray(i, i + 16384));
+  }
+  return r;
+}
 
