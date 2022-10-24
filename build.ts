@@ -7,6 +7,7 @@ export async function build() {
     bundle: true,
     entryPoints: ["./src/main.ts"],
     minify: false,
+    sourcemap: true,
     target: [
       "chrome57",
       "edge16",

@@ -12,7 +12,9 @@
     ]
   },
   "tasks": {
-    "build": "deno run -A build.ts",
+    "build": "deno task clean && deno task test-cov && deno task esbuild",
+    "clean": "rm -rf dist/ coverage/",
+    "esbuild": "deno run -A build.ts",
     "bundle": "deno bundle --no-check src/main.ts",
     "fmt": "deno fmt src/ test/ build.ts dev_deps.ts",
     "test-cov": "deno test --coverage=coverage --no-check -A && deno coverage coverage --lcov --output=coverage/lcov.info"
