@@ -35,8 +35,8 @@ export function debounce(callback: Handler, ms: number) {
   return function <T>(...t: T[]) {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      clearTimeout(timer);
       callback(t);
+      clearTimeout(timer);
     }, ms);
   };
 }

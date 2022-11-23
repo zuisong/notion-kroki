@@ -44,8 +44,8 @@ function debounce(callback, ms) {
   return function(...t) {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      clearTimeout(timer);
       callback(t);
+      clearTimeout(timer);
     }, ms);
   };
 }
@@ -542,7 +542,11 @@ new MutationObserver(check).observe(document, {
 function check(mutations, _observer) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
-    debounce(() => main(), 1e3)(mutation.target);
+    if (localStorage.getItem("debug")) {
+      main();
+    } else {
+      debounce(() => main(), 1e3)(mutation.target);
+    }
   });
 }
 function decode(dat) {

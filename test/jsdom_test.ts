@@ -1,8 +1,33 @@
 import { JSDOM } from "jsdom";
 import * as asserts from "deno_std/testing/asserts.ts";
 
-// language=HTML
-const doc = new JSDOM(`
+// import { DOMParser } from "https://esm.sh/linkedom@0.14.14"
+// import { render } from "https://esm.sh/@testing-library/preact@3.2.2?deps=preact@10.10.6"; // make sure to specify preact version
+import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
+
+describe("components/nav", () => {
+  beforeEach(() => {
+    init();
+  });
+
+  it("render docsify", async () => {
+    await testDom();
+  });
+});
+
+function init() {
+  const doc = (new JSDOM("") as any);
+
+  window.document = doc.window.document;
+  window.TextDecoder = undefined as any;
+  window.XPathEvaluator = doc.window.XPathEvaluator;
+  window.XPathResult = doc.window.XPathResult;
+  window.MutationObserver = doc.window.MutationObserver;
+}
+
+async function testDom() {
+  // language=HTML
+  document.body.innerHTML = `
   <!DOCTYPE html>
   <body>
   <div>
@@ -16,42 +41,44 @@ const doc = new JSDOM(`
   </div>
   <div id="change"></span>
   </body>
-`);
+`;
 
-globalThis.document = doc.window.document;
-globalThis.window.XPathEvaluator = doc.window.XPathEvaluator;
-globalThis.window.XPathResult = doc.window.XPathResult;
-globalThis.window.MutationObserver = doc.window.MutationObserver;
+  localStorage.setItem("debug", "1");
 
-localStorage.setItem("debug", "1");
-
-console.log(`
+  console.log(`
 origin html is  ------
 ${document.documentElement.outerHTML}
 ------ `);
 
-await import("../src/main.ts");
+  await import("../src/main.ts");
 
-document.getElementById("change")!!.textContent = "changed";
+  document.getElementById("change")!!.textContent = "changed";
 
-console.log(`
+  console.log(`
 rendered html is  ------
 ${document.documentElement.outerHTML}
 ------ `);
 
-const svgUrl = document.querySelector("div[notion-kroki]")?.firstElementChild
-  ?.getAttribute("data");
+  const svgUrl = document.querySelector("div[notion-kroki]")?.firstElementChild
+    ?.getAttribute("data");
 
-asserts.assertEquals(svgUrl, "//kroki.io/plantuml/svg/eNoBBAD7_2EtPmIC7QEv");
+  asserts.assertEquals(svgUrl, "//kroki.io/plantuml/svg/eNoBBAD7_2EtPmIC7QEv");
 
-console.log("render svgUrl ->", svgUrl);
+  console.log("render svgUrl ->", svgUrl);
 
-Deno.exit();
+  var id = window.setTimeout(function () {}, 0);
 
-async function sleep(n: number) {
-  return new Promise((r) =>
-    setTimeout(() => {
-      r(1);
-    }, n)
-  );
+  while (id--) {
+    window.clearTimeout(id); // will do nothing if no timeout with id is present
+  }
+
+  async function sleep(n: number) {
+    return new Promise((r) =>
+      setTimeout(() => {
+        r(1);
+      }, n)
+    );
+  }
 }
+// init()
+// await testDom()
