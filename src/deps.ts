@@ -1,1 +1,1 @@
-export * from "https://cdn.skypack.dev/fflate?dts";
+export { zlibSync } from "fflate";

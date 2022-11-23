@@ -3,7 +3,6 @@
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
-    "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,11 +11,10 @@
     ]
   },
   "tasks": {
-    "build": "deno task clean && deno task test-cov && deno task esbuild",
+    "build": "deno task clean && deno task test-cov && deno task vite-build",
+    "vite-build": "deno run -A --node-modules-dir npm:vite build && deno run -A build-write-code.ts",
     "clean": "rm -rf dist/ coverage/",
-    "esbuild": "deno run -A build.ts",
-    "bundle": "deno bundle --no-check src/main.ts",
-    "fmt": "deno fmt src/ test/ build.ts dev_deps.ts",
+    "fmt": "deno fmt",
     "test-cov": "deno test --coverage=coverage --no-check -A && deno coverage coverage --lcov --output=coverage/lcov.info"
   },
   "importMap": "import_map.json",
@@ -49,13 +47,18 @@
       "include": [
         "src/",
         "test/",
-        "*.ts"
+        "vite.config.mts",
+        "deno.jsonc",
+        "README.md",
+        "import_map.json"
       ],
       "exclude": [
         "src/testdata/"
       ]
     },
-    "options": {}
+    "options": {
+      "useTabs": false
+    }
   },
   "test": {
     "files": {

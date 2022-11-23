@@ -13,7 +13,7 @@
 // @description Render notion code block as graph by kroki
 // ==/UserScript==
 
-// src/common/utils.ts
+"use strict";
 function _xpath(xpath, node) {
   const xresult = document.evaluate(
     xpath,
@@ -49,11 +49,7 @@ function debounce(callback, ms) {
     }, ms);
   };
 }
-
-// http-import:https://cdn.skypack.dev/-/fflate@v0.7.4-fETn8a72iL31qF6yw7Is/dist=es2019,mode=imports/optimized/fflate.js
-var u8 = Uint8Array;
-var u16 = Uint16Array;
-var u32 = Uint32Array;
+var u8 = Uint8Array, u16 = Uint16Array, u32 = Uint32Array;
 var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0]);
 var fdeb = new u8([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0]);
 var clim = new u8([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
@@ -70,22 +66,16 @@ var freb = function(eb, start) {
   }
   return [b, r];
 };
-var _a = freb(fleb, 2);
-var fl = _a[0];
-var revfl = _a[1];
+var _a = freb(fleb, 2), fl = _a[0], revfl = _a[1];
 fl[28] = 258, revfl[258] = 28;
-var _b = freb(fdeb, 0);
-var fd = _b[0];
-var revfd = _b[1];
+var _b = freb(fdeb, 0), revfd = _b[1];
 var rev = new u16(32768);
-for (i = 0; i < 32768; ++i) {
-  x = (i & 43690) >>> 1 | (i & 21845) << 1;
+for (var i = 0; i < 32768; ++i) {
+  var x = (i & 43690) >>> 1 | (i & 21845) << 1;
   x = (x & 52428) >>> 2 | (x & 13107) << 2;
   x = (x & 61680) >>> 4 | (x & 3855) << 4;
   rev[i] = ((x & 65280) >>> 8 | (x & 255) << 8) >>> 1;
 }
-var x;
-var i;
 var hMap = function(cd, mb, r) {
   var s = cd.length;
   var i = 0;
@@ -123,22 +113,17 @@ var hMap = function(cd, mb, r) {
   return co;
 };
 var flt = new u8(288);
-for (i = 0; i < 144; ++i)
+for (var i = 0; i < 144; ++i)
   flt[i] = 8;
-var i;
-for (i = 144; i < 256; ++i)
+for (var i = 144; i < 256; ++i)
   flt[i] = 9;
-var i;
-for (i = 256; i < 280; ++i)
+for (var i = 256; i < 280; ++i)
   flt[i] = 7;
-var i;
-for (i = 280; i < 288; ++i)
+for (var i = 280; i < 288; ++i)
   flt[i] = 8;
-var i;
 var fdt = new u8(32);
-for (i = 0; i < 32; ++i)
+for (var i = 0; i < 32; ++i)
   fdt[i] = 5;
-var i;
 var flm = /* @__PURE__ */ hMap(flt, 9, 0);
 var fdm = /* @__PURE__ */ hMap(fdt, 5, 0);
 var shft = function(p) {
@@ -487,9 +472,7 @@ try {
   tds = 1;
 } catch (e) {
 }
-
-// src/main.ts
-var defaultConfig = {
+const defaultConfig = {
   serverPath: "//kroki.io/"
 };
 function b64encode(str) {
@@ -569,5 +552,4 @@ function decode(dat) {
   }
   return r;
 }
-//# sourceMappingURL=main.js.map
 

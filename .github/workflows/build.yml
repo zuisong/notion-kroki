@@ -27,12 +27,10 @@ jobs:
 
       - name: Run Test
         run: |
-          deno test --coverage=coverage --no-check -A
-          deno coverage coverage --lcov --output=coverage/lcov.info
+          deno task test-cov
 
       - name: Run build
-        run: deno run -A build.ts
-
+        run:  deno task build
       - uses: codecov/codecov-action@v3
         with:
           files: coverage/lcov.info
