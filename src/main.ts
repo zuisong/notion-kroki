@@ -92,7 +92,7 @@ function check(mutations: MutationRecord[], _observer: MutationObserver) {
     if (localStorage.getItem("debug")) {
       main();
     } else {
-      debounce(() => main(), 1000)(mutation.target);
+      debounce(() => main(), 1000)();
     }
   });
 }

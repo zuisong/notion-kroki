@@ -1,8 +1,5 @@
 import { JSDOM } from "jsdom";
 import * as asserts from "deno_std/testing/asserts.ts";
-
-// import { DOMParser } from "https://esm.sh/linkedom@0.14.14"
-// import { render } from "https://esm.sh/@testing-library/preact@3.2.2?deps=preact@10.10.6"; // make sure to specify preact version
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
 
 describe("components/nav", () => {

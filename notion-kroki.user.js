@@ -14,6 +14,13 @@
 // ==/UserScript==
 
 "use strict";
+const debounce = (fn, ms = 300) => {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+  };
+};
 function _xpath(xpath, node) {
   const xresult = document.evaluate(
     xpath,
@@ -38,16 +45,6 @@ function _debug(...data) {
   if (localStorage.getItem("debug")) {
     console.log(...data);
   }
-}
-function debounce(callback, ms) {
-  let timer;
-  return function(...t) {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      callback(t);
-      clearTimeout(timer);
-    }, ms);
-  };
 }
 var u8 = Uint8Array, u16 = Uint16Array, u32 = Uint32Array;
 var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0]);
@@ -545,7 +542,7 @@ function check(mutations, _observer) {
     if (localStorage.getItem("debug")) {
       main();
     } else {
-      debounce(() => main(), 1e3)(mutation.target);
+      debounce(() => main(), 1e3)();
     }
   });
 }

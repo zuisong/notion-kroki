@@ -1,3 +1,11 @@
+export const debounce = (fn: Function, ms = 300) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return function (this: any, ...args: any[]) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+  };
+};
+
 export function _xpath(xpath: string, node: Node): HTMLElement[] {
   const xresult: XPathResult = document.evaluate(
     xpath,
@@ -26,17 +34,4 @@ export function _debug(...data: any[]): void {
   if (localStorage.getItem("debug")) {
     console.log(...data);
   }
-}
-
-type Handler = <T>(t: T) => void;
-
-export function debounce(callback: Handler, ms: number) {
-  let timer: number;
-  return function <T>(...t: T[]) {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      callback(t);
-      clearTimeout(timer);
-    }, ms);
-  };
 }

@@ -1,7 +1,7 @@
 {
   "imports": {
     "fflate": "npm:fflate",
-    "deno_std/": "https://deno.land/std@0.160.0/",
+    "deno_std/": "https://deno.land/std@0.165.0/",
     "jsdom": "https://esm.sh/jsdom@19.0.0?no-check&pin=v64"
   }
 }
