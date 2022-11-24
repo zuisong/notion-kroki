@@ -8,6 +8,7 @@
 // @match       *://*.notion.site/*
 // @match       *://*.super.site/*
 // @supportURL  https://github.com/zuisong/notion-kroki/issues
+// @updateURL   https://github.com/zuisong/notion-kroki/raw/main/notion-kroki.user.js
 // @run-at      document-idle
 // @author      zuisong
 // @description Render notion code block as graph by kroki

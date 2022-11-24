@@ -50,6 +50,4 @@ PS: **first line is very important**
 [firefox_violentmonkey]: https://addons.mozilla.org/firefox/addon/violentmonkey/
 [edge_tampermonkey]: https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd
 [edge_violentmonkey]: https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao
-[opera_tampermonkey]: https://addons.opera.com/extensions/details/tampermonkey-beta/
-[opera_violentmonkey]: https://addons.opera.com/extensions/details/violent-monkey/
-[install_link]: https://cdn.jsdelivr.net/gh/zuisong/notion-kroki@latest/notion-kroki.user.js
+[install_link]: https://github.com/zuisong/notion-kroki/raw/main/notion-kroki.user.js
