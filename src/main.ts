@@ -1,4 +1,4 @@
-import { _debug, _xpath, debounce } from "./common/utils.ts";
+import { _debug, _xpath, debounce, isDebugMode } from "./common/utils.ts";
 import { zlibSync } from "./deps.ts";
 
 const defaultConfig: KrokiOption = {
@@ -89,7 +89,7 @@ new MutationObserver(check).observe(document, {
 function check(mutations: MutationRecord[], _observer: MutationObserver) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
-    if (localStorage.getItem("debug")) {
+    if (isDebugMode()) {
       main();
     } else {
       debounce(() => main(), 1000)();

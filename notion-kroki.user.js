@@ -42,9 +42,12 @@ function _xpath(xpath, node) {
   return xnodes;
 }
 function _debug(...data) {
-  if (localStorage.getItem("debug")) {
+  if (isDebugMode()) {
     console.log(...data);
   }
+}
+function isDebugMode() {
+  return !!localStorage.getItem("debug");
 }
 var u8 = Uint8Array, u16 = Uint16Array, u32 = Uint32Array;
 var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0]);
@@ -539,7 +542,7 @@ new MutationObserver(check).observe(document, {
 function check(mutations, _observer) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
-    if (localStorage.getItem("debug")) {
+    if (isDebugMode()) {
       main();
     } else {
       debounce(() => main(), 1e3)();
