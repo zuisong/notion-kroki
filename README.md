@@ -50,4 +50,4 @@ PS: **first line is very important**
 [firefox_violentmonkey]: https://addons.mozilla.org/firefox/addon/violentmonkey/
 [edge_tampermonkey]: https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd
 [edge_violentmonkey]: https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao
-[install_link]: https://unpkg.com/notion-kroki
+[install_link]: https://github.com/zuisong/notion-kroki/raw/main/notion-kroki.user.js

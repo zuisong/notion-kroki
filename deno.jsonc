@@ -18,7 +18,7 @@
     "fmt": "deno fmt",
     "test-cov": "deno test --coverage=coverage --no-check -A && deno coverage coverage --lcov --output=coverage/lcov.info"
   },
-  "importMap": "import_map.json",
+  "importMap": "import_map.jsonc",
   "lint": {
     "files": {
       "include": [
