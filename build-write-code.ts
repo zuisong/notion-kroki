@@ -1,4 +1,4 @@
-export const VERSION = "1.1.4";
+let VERSION =  JSON.parse(await Deno.readTextFile("package.json")).version;
 
 export async function build() {
   async function writeCode() {

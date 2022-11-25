@@ -1,6 +1,0 @@
-/build/
-/dist/*
-/node_modules/
-/test/
-/.cache/
-/notion-kroki.user.js

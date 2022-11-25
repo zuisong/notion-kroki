@@ -1,0 +1,10 @@
+node_modules/
+.*
+coverage/
+src/
+dist/
+deno.*
+import_map.jsonc
+test/
+/*.ts
+/*.mts

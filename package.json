@@ -1,0 +1,14 @@
+{
+  "main": "./notion-kroki.user.js",
+  "name": "notion-kroki",
+  "version": "1.1.4",
+  "description": "notion-kroki",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuisong/notion-kroki.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zuisong/notion-kroki/issues"
+  }
+}

@@ -1,11 +1,13 @@
 // ex. scripts/build_npm.ts
 import { build, emptyDir } from "https://deno.land/x/dnt@0.32.0/mod.ts";
-import { VERSION } from "./build-write-code.ts";
+// import { VERSION } from "./build-write-code.ts";
 
+const VERSION="1.14.0"
 await emptyDir("./npm");
 
 await build({
   entryPoints: ["./dist/notion-kroki.js"],
+  // entryPoints: ["./src/main.ts"],
   outDir: "./npm",
   shims: {
     deno: false,
@@ -19,9 +21,12 @@ await build({
     ],
 
   },
+  declaration: false,
   test: false,
+  // scriptModule: "cjs",
   esModule: false,
   typeCheck: false,
+  packageManager: "pnpm",
   package: {
     // package.json properties
     name: "notion-kroki",
