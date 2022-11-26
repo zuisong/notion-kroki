@@ -1,3 +1,4 @@
+// @deno-types="npm:@types/jsdom"
 import { JSDOM } from "jsdom";
 import * as asserts from "deno_std/testing/asserts.ts";
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
@@ -13,7 +14,7 @@ describe("components/nav", () => {
 });
 
 function init() {
-  const doc = (new JSDOM("") as any);
+  const doc = new JSDOM("");
 
   window.document = doc.window.document;
   window.TextDecoder = undefined as any;

@@ -1,5 +1,7 @@
+// deno-lint-ignore ban-types
 export const debounce = (fn: Function, ms = 300) => {
   let timeoutId: ReturnType<typeof setTimeout>;
+  // deno-lint-ignore no-explicit-any
   return function (this: any, ...args: any[]) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn.apply(this, args), ms);
@@ -36,9 +38,6 @@ export function _debug(...data: any[]): void {
   }
 }
 
-
-export
- function isDebugMode(): boolean{
-
- return !!localStorage.getItem("debug")
- }
+export function isDebugMode(): boolean {
+  return !!localStorage.getItem("debug");
+}
