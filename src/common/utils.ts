@@ -18,7 +18,6 @@ export function _xpath(xpath: string, node: Node): HTMLElement[] {
   );
   const xnodes: Node[] = [];
   let xres: Node | null;
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     xres = xresult.iterateNext();
     if (xres) {
@@ -27,7 +26,6 @@ export function _xpath(xpath: string, node: Node): HTMLElement[] {
       break;
     }
   }
-  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   return xnodes as HTMLElement[];
 }
 
