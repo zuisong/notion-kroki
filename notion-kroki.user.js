@@ -486,8 +486,6 @@ function main(element = null) {
     element != null ? element : document.body
   );
   for (const codeDiv of blocks) {
-    if (!codeDiv)
-      continue;
     if ((_a2 = codeDiv.textContent) == null ? void 0 : _a2.startsWith("//kroki")) {
       const lines = codeDiv.textContent.split("\n");
       const type = lines[0].replace("//kroki", "").trim();
@@ -535,19 +533,16 @@ function plant(content, type, config) {
   const svgUrl = urlPrefix + result;
   return svgUrl;
 }
-main();
-new MutationObserver(check).observe(document, {
-  childList: true,
-  subtree: true
-});
+function init_listener() {
+  new MutationObserver(check).observe(document, {
+    childList: true,
+    subtree: true
+  });
+}
 function check(mutations, _observer) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
-    if (isDebugMode()) {
-      main();
-    } else {
-      debounce(() => main(), 1e3)();
-    }
+    debounce(() => main(), 500)();
   });
 }
 function decode(dat) {
@@ -557,4 +552,6 @@ function decode(dat) {
   }
   return r;
 }
+main();
+init_listener();
 

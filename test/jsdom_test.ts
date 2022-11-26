@@ -1,27 +1,17 @@
-// @deno-types="npm:@types/jsdom"
-import { JSDOM } from "jsdom";
 import * as asserts from "deno_std/testing/asserts.ts";
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
+import { delay } from "deno_std/async/delay.ts";
+import { init } from "./common/jdsom-env-init.ts";
 
-describe("components/nav", () => {
+describe("base case", () => {
   beforeEach(() => {
     init();
   });
 
-  it("render docsify", async () => {
+  it("render docsify normal", async () => {
     await testDom();
   });
 });
-
-function init() {
-  const doc = new JSDOM("");
-
-  window.document = doc.window.document;
-  window.TextDecoder = undefined as any;
-  window.XPathEvaluator = doc.window.XPathEvaluator;
-  window.XPathResult = doc.window.XPathResult;
-  window.MutationObserver = doc.window.MutationObserver;
-}
 
 async function testDom() {
   // language=HTML
@@ -31,7 +21,7 @@ async function testDom() {
   <div>
     <div>
       <div>
-        <p>//kroki plantuml
+        <p id="kroki-code">//kroki plantuml
           a->b
         </p>
       </div>
@@ -41,14 +31,12 @@ async function testDom() {
   </body>
 `;
 
-  localStorage.setItem("debug", "1");
-
   console.log(`
 origin html is  ------
 ${document.documentElement.outerHTML}
 ------ `);
 
-  await import("../src/main.ts");
+  await import("../src/index.ts");
 
   document.getElementById("change")!!.textContent = "changed";
 
@@ -69,14 +57,5 @@ ${document.documentElement.outerHTML}
   while (id--) {
     window.clearTimeout(id); // will do nothing if no timeout with id is present
   }
-
-  async function sleep(n: number) {
-    return new Promise((r) =>
-      setTimeout(() => {
-        r(1);
-      }, n)
-    );
-  }
+  await delay(1000);
 }
-// init()
-// await testDom()

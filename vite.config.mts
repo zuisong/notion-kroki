@@ -6,7 +6,7 @@ export default defineConfig({
   esbuild: {},
   build: {
     lib: {
-      entry: "./src/main.ts",
+      entry: "./src/index.ts",
       name: "notion-kroki",
       formats: ["es", "cjs", "umd"],
       fileName: "notion-kroki",

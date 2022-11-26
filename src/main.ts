@@ -9,14 +9,12 @@ function b64encode(str: string): string {
   return btoa(str);
 }
 
-function main(element: Node | null = null) {
+export function main(element: Node | null = null) {
   const blocks: HTMLElement[] = _xpath(
     "//*[starts-with(text(),'//kroki ')]",
     element ?? document.body,
   );
   for (const codeDiv of blocks) {
-    if (!codeDiv) continue;
-
     if (codeDiv.textContent?.startsWith("//kroki")) {
       const lines = codeDiv.textContent.split("\n");
       const type = lines[0].replace("//kroki", "").trim();
@@ -79,21 +77,17 @@ interface KrokiOption {
   serverPath: string;
 }
 
-main();
-
-new MutationObserver(check).observe(document, {
-  childList: true,
-  subtree: true,
-});
+export function init_listener() {
+  new MutationObserver(check).observe(document, {
+    childList: true,
+    subtree: true,
+  });
+}
 
 function check(mutations: MutationRecord[], _observer: MutationObserver) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
-    if (isDebugMode()) {
-      main();
-    } else {
-      debounce(() => main(), 1000)();
-    }
+    debounce(() => main(), 500)();
   });
 }
 
