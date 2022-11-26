@@ -1,4 +1,4 @@
-import { _debug, _xpath, debounce, isDebugMode } from "./common/utils.ts";
+import { _debug, _xpath, debounce } from "./common/utils.ts";
 import { zlibSync } from "./deps.ts";
 
 const defaultConfig: KrokiOption = {
