@@ -57,8 +57,6 @@ function textEncode(str: string) {
 }
 
 function plant(content: string, type: string, config: KrokiOption) {
-  content = content.trim();
-
   _debug(`kroki render type: ${type}`);
   _debug(`kroki render content: \n ${content}`);
 
@@ -84,10 +82,12 @@ export function init_listener() {
   });
 }
 
+const render = debounce(main, 100);
+
 function check(mutations: MutationRecord[], _observer: MutationObserver) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
-    debounce(() => main(), 500)();
+    render();
   });
 }
 

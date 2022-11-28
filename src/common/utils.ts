@@ -1,5 +1,5 @@
 // deno-lint-ignore ban-types
-export const debounce = (fn: Function, ms = 300) => {
+export const debounce = (fn: Function, ms: number) => {
   let timeoutId: ReturnType<typeof setTimeout>;
   // deno-lint-ignore no-explicit-any
   return function (this: any, ...args: any[]) {

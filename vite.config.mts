@@ -12,6 +12,7 @@ export default defineConfig({
       fileName: "notion-kroki",
     },
     minify: false,
+    sourcemap: true,
   },
 
   plugins: [],

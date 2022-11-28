@@ -15,7 +15,7 @@
 // ==/UserScript==
 
 "use strict";
-const debounce = (fn, ms = 300) => {
+const debounce = (fn, ms) => {
   let timeoutId;
   return function(...args) {
     clearTimeout(timeoutId);
@@ -522,7 +522,6 @@ function textEncode(str) {
   return new TextEncoder().encode(str);
 }
 function plant(content, type, config) {
-  content = content.trim();
   _debug(`kroki render type: ${type}`);
   _debug(`kroki render content: 
  ${content}`);
@@ -539,10 +538,11 @@ function init_listener() {
     subtree: true
   });
 }
+const render = debounce(main, 100);
 function check(mutations, _observer) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
-    debounce(() => main(), 500)();
+    render();
   });
 }
 function decode(dat) {
@@ -554,4 +554,5 @@ function decode(dat) {
 }
 main();
 init_listener();
+//# sourceMappingURL=notion-kroki.js.map
 

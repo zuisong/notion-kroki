@@ -30,19 +30,19 @@ describe("coverage other case", () => {
     const { main } = await import("../src/main.ts");
     document.getElementById("kroki-code")!!.textContent = `//kroki `;
     main();
-    await delay(600);
+    await delay(300);
 
     document.getElementById("kroki-code")!!.textContent = `//kroki plantuml
 
 `;
     main();
-    await delay(600);
+    await delay(300);
 
     var id = window.setTimeout(function () {}, 0);
     while (id--) {
       window.clearTimeout(id); // will do nothing if no timeout with id is present
     }
-    await delay(1000);
+    await delay(500);
   });
 
   it("change content auto render", async () => {
@@ -66,15 +66,15 @@ describe("coverage other case", () => {
     const { main, init_listener } = await import("../src/main.ts");
     main();
     init_listener();
-    await delay(600);
+    await delay(300);
     document.getElementById("kroki-code")!!.textContent = `//kroki plantuml
     a->b
     `;
-    await delay(600);
+    await delay(300);
     document.getElementById("kroki-code")!!.textContent = `//kroki plantuml
 
 `;
-    await delay(600);
+    await delay(300);
 
     const svgUrl = document.querySelector("div[notion-kroki]")
       ?.firstElementChild
@@ -82,13 +82,13 @@ describe("coverage other case", () => {
 
     asserts.assertEquals(
       svgUrl,
-      "//kroki.io/plantuml/svg/eNoBBAD7_2EtPmIC7QEv",
+      "//kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
     );
 
     var id = window.setTimeout(function () {}, 0);
     while (id--) {
       window.clearTimeout(id); // will do nothing if no timeout with id is present
     }
-    await delay(1000);
+    await delay(500);
   });
 });

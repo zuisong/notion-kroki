@@ -48,7 +48,10 @@ ${document.documentElement.outerHTML}
   const svgUrl = document.querySelector("div[notion-kroki]")?.firstElementChild
     ?.getAttribute("data");
 
-  asserts.assertEquals(svgUrl, "//kroki.io/plantuml/svg/eNoBBAD7_2EtPmIC7QEv");
+  asserts.assertEquals(
+    svgUrl,
+    "//kroki.io/plantuml/svg/eNpTgINEXbskLhgHACmYA3k=",
+  );
 
   console.log("render svgUrl ->", svgUrl);
 
@@ -57,5 +60,5 @@ ${document.documentElement.outerHTML}
   while (id--) {
     window.clearTimeout(id); // will do nothing if no timeout with id is present
   }
-  await delay(1000);
+  await delay(500);
 }

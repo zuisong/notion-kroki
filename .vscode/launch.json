@@ -1,6 +1,13 @@
 {
   "configurations": [
-
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Brave",
+      "userDataDir": true,
+      "runtimeExecutable": "${env:CHROME_PATH}",
+      "url": "http://localhost:8080/test/web/index.html",
+      "webRoot": "${workspaceFolder}"
+    }
   ]
-
 }
