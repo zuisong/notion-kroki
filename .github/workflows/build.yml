@@ -26,12 +26,6 @@ jobs:
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
-        with:
-          deno-version: 1.28.1
-
-      - name: Run Test
-        run: |
-          deno task test-cov
 
       - name: Run build
         run:  deno task build
