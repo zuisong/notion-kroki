@@ -483,7 +483,7 @@ function main(element = null) {
   var _a2, _b2, _c, _d, _e, _f, _g, _h;
   const blocks = _xpath(
     "//*[starts-with(text(),'//kroki ')]",
-    element != null ? element : document.body
+    element ?? document.body
   );
   for (const codeDiv of blocks) {
     if ((_a2 = codeDiv.textContent) == null ? void 0 : _a2.startsWith("//kroki")) {

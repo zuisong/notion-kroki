@@ -1,6 +1,6 @@
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
 import { delay } from "deno_std/async/delay.ts";
-import { init } from "./common/jdsom-env-init.ts";
+import { init, tearDown } from "./common/jdsom-env-init.ts";
 import * as asserts from "deno_std/testing/asserts.ts";
 
 describe("coverage other case", () => {
@@ -37,12 +37,7 @@ describe("coverage other case", () => {
 `;
     main();
     await delay(300);
-
-    var id = window.setTimeout(function () {}, 0);
-    while (id--) {
-      window.clearTimeout(id); // will do nothing if no timeout with id is present
-    }
-    await delay(500);
+    await tearDown();
   });
 
   it("change content auto render", async () => {
@@ -85,10 +80,6 @@ describe("coverage other case", () => {
       "//kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
     );
 
-    var id = window.setTimeout(function () {}, 0);
-    while (id--) {
-      window.clearTimeout(id); // will do nothing if no timeout with id is present
-    }
-    await delay(500);
+    await tearDown();
   });
 });
