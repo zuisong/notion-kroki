@@ -50,428 +50,271 @@ function _debug(...data) {
 function isDebugMode() {
   return !!localStorage.getItem("debug");
 }
-var u8 = Uint8Array, u16 = Uint16Array, u32 = Uint32Array;
-var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0]);
-var fdeb = new u8([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0]);
-var clim = new u8([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
-var freb = function(eb, start) {
-  var b = new u16(31);
-  for (var i = 0; i < 31; ++i) {
-    b[i] = start += 1 << eb[i - 1];
+var T = Uint8Array, $ = Uint16Array, pr = Uint32Array, gr = new T([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0]), yr = new T([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0]), Tr = new T([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]), wn = function(n, r) {
+  for (var t = new $(31), e = 0; e < 31; ++e)
+    t[e] = r += 1 << n[e - 1];
+  for (var i = new pr(t[30]), e = 1; e < 30; ++e)
+    for (var a = t[e]; a < t[e + 1]; ++a)
+      i[a] = a - t[e] << 5 | e;
+  return [t, i];
+}, mn = wn(gr, 2), Xr = mn[0], Gr = mn[1];
+Xr[28] = 258, Gr[258] = 28;
+var xn = wn(yr, 0), Hr = xn[1], Ur = new $(32768);
+for (C = 0; C < 32768; ++C)
+  nr = (C & 43690) >>> 1 | (C & 21845) << 1, nr = (nr & 52428) >>> 2 | (nr & 13107) << 2, nr = (nr & 61680) >>> 4 | (nr & 3855) << 4, Ur[C] = ((nr & 65280) >>> 8 | (nr & 255) << 8) >>> 1;
+var nr, C, V = function(n, r, t) {
+  for (var e = n.length, i = 0, a = new $(r); i < e; ++i)
+    n[i] && ++a[n[i] - 1];
+  var o = new $(r);
+  for (i = 0; i < r; ++i)
+    o[i] = o[i - 1] + a[i - 1] << 1;
+  var f;
+  if (t) {
+    f = new $(1 << r);
+    var u = 15 - r;
+    for (i = 0; i < e; ++i)
+      if (n[i])
+        for (var s = i << 4 | n[i], v = r - n[i], h = o[n[i] - 1]++ << v, g = h | (1 << v) - 1; h <= g; ++h)
+          f[Ur[h] >>> u] = s;
+  } else
+    for (f = new $(e), i = 0; i < e; ++i)
+      n[i] && (f[i] = Ur[o[n[i] - 1]++] >>> 15 - n[i]);
+  return f;
+}, er = new T(288);
+for (C = 0; C < 144; ++C)
+  er[C] = 8;
+var C;
+for (C = 144; C < 256; ++C)
+  er[C] = 9;
+var C;
+for (C = 256; C < 280; ++C)
+  er[C] = 7;
+var C;
+for (C = 280; C < 288; ++C)
+  er[C] = 8;
+var C, lr = new T(32);
+for (C = 0; C < 32; ++C)
+  lr[C] = 5;
+var C, An = V(er, 9, 0);
+V(er, 9, 1);
+var Tn = V(lr, 5, 0);
+V(lr, 5, 1);
+var Dr = function(n) {
+  return (n + 7) / 8 | 0;
+}, X = function(n, r, t) {
+  (r == null || r < 0) && (r = 0), (t == null || t > n.length) && (t = n.length);
+  var e = new (n.BYTES_PER_ELEMENT == 2 ? $ : n.BYTES_PER_ELEMENT == 4 ? pr : T)(t - r);
+  return e.set(n.subarray(r, t)), e;
+}, rr = function(n, r, t) {
+  t <<= r & 7;
+  var e = r / 8 | 0;
+  n[e] |= t, n[e + 1] |= t >>> 8;
+}, vr = function(n, r, t) {
+  t <<= r & 7;
+  var e = r / 8 | 0;
+  n[e] |= t, n[e + 1] |= t >>> 8, n[e + 2] |= t >>> 16;
+}, kr = function(n, r) {
+  for (var t = [], e = 0; e < n.length; ++e)
+    n[e] && t.push({ s: e, f: n[e] });
+  var i = t.length, a = t.slice();
+  if (!i)
+    return [tr, 0];
+  if (i == 1) {
+    var o = new T(t[0].s + 1);
+    return o[t[0].s] = 1, [o, 1];
   }
-  var r = new u32(b[30]);
-  for (var i = 1; i < 30; ++i) {
-    for (var j = b[i]; j < b[i + 1]; ++j) {
-      r[j] = j - b[i] << 5 | i;
-    }
-  }
-  return [b, r];
-};
-var _a = freb(fleb, 2), fl = _a[0], revfl = _a[1];
-fl[28] = 258, revfl[258] = 28;
-var _b = freb(fdeb, 0), revfd = _b[1];
-var rev = new u16(32768);
-for (var i = 0; i < 32768; ++i) {
-  var x = (i & 43690) >>> 1 | (i & 21845) << 1;
-  x = (x & 52428) >>> 2 | (x & 13107) << 2;
-  x = (x & 61680) >>> 4 | (x & 3855) << 4;
-  rev[i] = ((x & 65280) >>> 8 | (x & 255) << 8) >>> 1;
-}
-var hMap = function(cd, mb, r) {
-  var s = cd.length;
-  var i = 0;
-  var l = new u16(mb);
-  for (; i < s; ++i) {
-    if (cd[i])
-      ++l[cd[i] - 1];
-  }
-  var le = new u16(mb);
-  for (i = 0; i < mb; ++i) {
-    le[i] = le[i - 1] + l[i - 1] << 1;
-  }
-  var co;
-  if (r) {
-    co = new u16(1 << mb);
-    var rvb = 15 - mb;
-    for (i = 0; i < s; ++i) {
-      if (cd[i]) {
-        var sv = i << 4 | cd[i];
-        var r_1 = mb - cd[i];
-        var v = le[cd[i] - 1]++ << r_1;
-        for (var m = v | (1 << r_1) - 1; v <= m; ++v) {
-          co[rev[v] >>> rvb] = sv;
-        }
-      }
-    }
-  } else {
-    co = new u16(s);
-    for (i = 0; i < s; ++i) {
-      if (cd[i]) {
-        co[i] = rev[le[cd[i] - 1]++] >>> 15 - cd[i];
-      }
-    }
-  }
-  return co;
-};
-var flt = new u8(288);
-for (var i = 0; i < 144; ++i)
-  flt[i] = 8;
-for (var i = 144; i < 256; ++i)
-  flt[i] = 9;
-for (var i = 256; i < 280; ++i)
-  flt[i] = 7;
-for (var i = 280; i < 288; ++i)
-  flt[i] = 8;
-var fdt = new u8(32);
-for (var i = 0; i < 32; ++i)
-  fdt[i] = 5;
-var flm = /* @__PURE__ */ hMap(flt, 9, 0);
-var fdm = /* @__PURE__ */ hMap(fdt, 5, 0);
-var shft = function(p) {
-  return (p + 7) / 8 | 0;
-};
-var slc = function(v, s, e) {
-  if (s == null || s < 0)
-    s = 0;
-  if (e == null || e > v.length)
-    e = v.length;
-  var n = new (v.BYTES_PER_ELEMENT == 2 ? u16 : v.BYTES_PER_ELEMENT == 4 ? u32 : u8)(e - s);
-  n.set(v.subarray(s, e));
-  return n;
-};
-var wbits = function(d, p, v) {
-  v <<= p & 7;
-  var o = p / 8 | 0;
-  d[o] |= v;
-  d[o + 1] |= v >>> 8;
-};
-var wbits16 = function(d, p, v) {
-  v <<= p & 7;
-  var o = p / 8 | 0;
-  d[o] |= v;
-  d[o + 1] |= v >>> 8;
-  d[o + 2] |= v >>> 16;
-};
-var hTree = function(d, mb) {
-  var t = [];
-  for (var i = 0; i < d.length; ++i) {
-    if (d[i])
-      t.push({ s: i, f: d[i] });
-  }
-  var s = t.length;
-  var t2 = t.slice();
-  if (!s)
-    return [et, 0];
-  if (s == 1) {
-    var v = new u8(t[0].s + 1);
-    v[t[0].s] = 1;
-    return [v, 1];
-  }
-  t.sort(function(a, b) {
-    return a.f - b.f;
-  });
-  t.push({ s: -1, f: 25001 });
-  var l = t[0], r = t[1], i0 = 0, i1 = 1, i2 = 2;
-  t[0] = { s: -1, f: l.f + r.f, l, r };
-  while (i1 != s - 1) {
-    l = t[t[i0].f < t[i2].f ? i0++ : i2++];
-    r = t[i0 != i1 && t[i0].f < t[i2].f ? i0++ : i2++];
-    t[i1++] = { s: -1, f: l.f + r.f, l, r };
-  }
-  var maxSym = t2[0].s;
-  for (var i = 1; i < s; ++i) {
-    if (t2[i].s > maxSym)
-      maxSym = t2[i].s;
-  }
-  var tr = new u16(maxSym + 1);
-  var mbt = ln(t[i1 - 1], tr, 0);
-  if (mbt > mb) {
-    var i = 0, dt = 0;
-    var lft = mbt - mb, cst = 1 << lft;
-    t2.sort(function(a, b) {
-      return tr[b.s] - tr[a.s] || a.f - b.f;
-    });
-    for (; i < s; ++i) {
-      var i2_1 = t2[i].s;
-      if (tr[i2_1] > mb) {
-        dt += cst - (1 << mbt - tr[i2_1]);
-        tr[i2_1] = mb;
-      } else
+  t.sort(function(I, S) {
+    return I.f - S.f;
+  }), t.push({ s: -1, f: 25001 });
+  var f = t[0], u = t[1], s = 0, v = 1, h = 2;
+  for (t[0] = { s: -1, f: f.f + u.f, l: f, r: u }; v != i - 1; )
+    f = t[t[s].f < t[h].f ? s++ : h++], u = t[s != v && t[s].f < t[h].f ? s++ : h++], t[v++] = { s: -1, f: f.f + u.f, l: f, r: u };
+  for (var g = a[0].s, e = 1; e < i; ++e)
+    a[e].s > g && (g = a[e].s);
+  var x = new $(g + 1), m = Or(t[v - 1], x, 0);
+  if (m > r) {
+    var e = 0, z = 0, c = m - r, y = 1 << c;
+    for (a.sort(function(S, U) {
+      return x[U.s] - x[S.s] || S.f - U.f;
+    }); e < i; ++e) {
+      var M = a[e].s;
+      if (x[M] > r)
+        z += y - (1 << m - x[M]), x[M] = r;
+      else
         break;
     }
-    dt >>>= lft;
-    while (dt > 0) {
-      var i2_2 = t2[i].s;
-      if (tr[i2_2] < mb)
-        dt -= 1 << mb - tr[i2_2]++ - 1;
-      else
-        ++i;
+    for (z >>>= c; z > 0; ) {
+      var A = a[e].s;
+      x[A] < r ? z -= 1 << r - x[A]++ - 1 : ++e;
     }
-    for (; i >= 0 && dt; --i) {
-      var i2_3 = t2[i].s;
-      if (tr[i2_3] == mb) {
-        --tr[i2_3];
-        ++dt;
-      }
+    for (; e >= 0 && z; --e) {
+      var w = a[e].s;
+      x[w] == r && (--x[w], ++z);
     }
-    mbt = mb;
+    m = r;
   }
-  return [new u8(tr), mbt];
-};
-var ln = function(n, l, d) {
-  return n.s == -1 ? Math.max(ln(n.l, l, d + 1), ln(n.r, l, d + 1)) : l[n.s] = d;
-};
-var lc = function(c) {
-  var s = c.length;
-  while (s && !c[--s])
+  return [new T(x), m];
+}, Or = function(n, r, t) {
+  return n.s == -1 ? Math.max(Or(n.l, r, t + 1), Or(n.r, r, t + 1)) : r[n.s] = t;
+}, Yr = function(n) {
+  for (var r = n.length; r && !n[--r]; )
     ;
-  var cl = new u16(++s);
-  var cli = 0, cln = c[0], cls = 1;
-  var w = function(v) {
-    cl[cli++] = v;
-  };
-  for (var i = 1; i <= s; ++i) {
-    if (c[i] == cln && i != s)
-      ++cls;
+  for (var t = new $(++r), e = 0, i = n[0], a = 1, o = function(u) {
+    t[e++] = u;
+  }, f = 1; f <= r; ++f)
+    if (n[f] == i && f != r)
+      ++a;
     else {
-      if (!cln && cls > 2) {
-        for (; cls > 138; cls -= 138)
-          w(32754);
-        if (cls > 2) {
-          w(cls > 10 ? cls - 11 << 5 | 28690 : cls - 3 << 5 | 12305);
-          cls = 0;
-        }
-      } else if (cls > 3) {
-        w(cln), --cls;
-        for (; cls > 6; cls -= 6)
-          w(8304);
-        if (cls > 2)
-          w(cls - 3 << 5 | 8208), cls = 0;
+      if (!i && a > 2) {
+        for (; a > 138; a -= 138)
+          o(32754);
+        a > 2 && (o(a > 10 ? a - 11 << 5 | 28690 : a - 3 << 5 | 12305), a = 0);
+      } else if (a > 3) {
+        for (o(i), --a; a > 6; a -= 6)
+          o(8304);
+        a > 2 && (o(a - 3 << 5 | 8208), a = 0);
       }
-      while (cls--)
-        w(cln);
-      cls = 1;
-      cln = c[i];
+      for (; a--; )
+        o(i);
+      a = 1, i = n[f];
     }
-  }
-  return [cl.subarray(0, cli), s];
-};
-var clen = function(cf, cl) {
-  var l = 0;
-  for (var i = 0; i < cl.length; ++i)
-    l += cf[i] * cl[i];
-  return l;
-};
-var wfblk = function(out, pos, dat) {
-  var s = dat.length;
-  var o = shft(pos + 2);
-  out[o] = s & 255;
-  out[o + 1] = s >>> 8;
-  out[o + 2] = out[o] ^ 255;
-  out[o + 3] = out[o + 1] ^ 255;
-  for (var i = 0; i < s; ++i)
-    out[o + i + 4] = dat[i];
-  return (o + 4 + s) * 8;
-};
-var wblk = function(dat, out, final, syms, lf, df, eb, li, bs, bl, p) {
-  wbits(out, p++, final);
-  ++lf[256];
-  var _a2 = hTree(lf, 15), dlt = _a2[0], mlb = _a2[1];
-  var _b2 = hTree(df, 15), ddt = _b2[0], mdb = _b2[1];
-  var _c = lc(dlt), lclt = _c[0], nlc = _c[1];
-  var _d = lc(ddt), lcdt = _d[0], ndc = _d[1];
-  var lcfreq = new u16(19);
-  for (var i = 0; i < lclt.length; ++i)
-    lcfreq[lclt[i] & 31]++;
-  for (var i = 0; i < lcdt.length; ++i)
-    lcfreq[lcdt[i] & 31]++;
-  var _e = hTree(lcfreq, 7), lct = _e[0], mlcb = _e[1];
-  var nlcc = 19;
-  for (; nlcc > 4 && !lct[clim[nlcc - 1]]; --nlcc)
+  return [t.subarray(0, e), r];
+}, hr = function(n, r) {
+  for (var t = 0, e = 0; e < r.length; ++e)
+    t += n[e] * r[e];
+  return t;
+}, Lr = function(n, r, t) {
+  var e = t.length, i = Dr(r + 2);
+  n[i] = e & 255, n[i + 1] = e >>> 8, n[i + 2] = n[i] ^ 255, n[i + 3] = n[i + 1] ^ 255;
+  for (var a = 0; a < e; ++a)
+    n[i + a + 4] = t[a];
+  return (i + 4 + e) * 8;
+}, Wr = function(n, r, t, e, i, a, o, f, u, s, v) {
+  rr(r, v++, t), ++i[256];
+  for (var h = kr(i, 15), g = h[0], x = h[1], m = kr(a, 15), z = m[0], c = m[1], y = Yr(g), M = y[0], A = y[1], w = Yr(z), I = w[0], S = w[1], U = new $(19), l = 0; l < M.length; ++l)
+    U[M[l] & 31]++;
+  for (var l = 0; l < I.length; ++l)
+    U[I[l] & 31]++;
+  for (var k = kr(U, 7), D = k[0], N = k[1], B = 19; B > 4 && !D[Tr[B - 1]]; --B)
     ;
-  var flen = bl + 5 << 3;
-  var ftlen = clen(lf, flt) + clen(df, fdt) + eb;
-  var dtlen = clen(lf, dlt) + clen(df, ddt) + eb + 14 + 3 * nlcc + clen(lcfreq, lct) + (2 * lcfreq[16] + 3 * lcfreq[17] + 7 * lcfreq[18]);
-  if (flen <= ftlen && flen <= dtlen)
-    return wfblk(out, p, dat.subarray(bs, bs + bl));
-  var lm, ll, dm, dl;
-  wbits(out, p, 1 + (dtlen < ftlen)), p += 2;
-  if (dtlen < ftlen) {
-    lm = hMap(dlt, mlb, 0), ll = dlt, dm = hMap(ddt, mdb, 0), dl = ddt;
-    var llm = hMap(lct, mlcb, 0);
-    wbits(out, p, nlc - 257);
-    wbits(out, p + 5, ndc - 1);
-    wbits(out, p + 10, nlcc - 4);
-    p += 14;
-    for (var i = 0; i < nlcc; ++i)
-      wbits(out, p + 3 * i, lct[clim[i]]);
-    p += 3 * nlcc;
-    var lcts = [lclt, lcdt];
-    for (var it = 0; it < 2; ++it) {
-      var clct = lcts[it];
-      for (var i = 0; i < clct.length; ++i) {
-        var len = clct[i] & 31;
-        wbits(out, p, llm[len]), p += lct[len];
-        if (len > 15)
-          wbits(out, p, clct[i] >>> 5 & 127), p += clct[i] >>> 12;
+  var G = s + 5 << 3, E = hr(i, er) + hr(a, lr) + o, L = hr(i, g) + hr(a, z) + o + 14 + 3 * B + hr(U, D) + (2 * U[16] + 3 * U[17] + 7 * U[18]);
+  if (G <= E && G <= L)
+    return Lr(r, v, n.subarray(u, u + s));
+  var Z, O, q, W;
+  if (rr(r, v, 1 + (L < E)), v += 2, L < E) {
+    Z = V(g, x, 0), O = g, q = V(z, c, 0), W = z;
+    var K = V(D, N, 0);
+    rr(r, v, A - 257), rr(r, v + 5, S - 1), rr(r, v + 10, B - 4), v += 14;
+    for (var l = 0; l < B; ++l)
+      rr(r, v + 3 * l, D[Tr[l]]);
+    v += 3 * B;
+    for (var H = [M, I], b = 0; b < 2; ++b)
+      for (var _ = H[b], l = 0; l < _.length; ++l) {
+        var j = _[l] & 31;
+        rr(r, v, K[j]), v += D[j], j > 15 && (rr(r, v, _[l] >>> 5 & 127), v += _[l] >>> 12);
       }
+  } else
+    Z = An, O = er, q = Tn, W = lr;
+  for (var l = 0; l < f; ++l)
+    if (e[l] > 255) {
+      var j = e[l] >>> 18 & 31;
+      vr(r, v, Z[j + 257]), v += O[j + 257], j > 7 && (rr(r, v, e[l] >>> 23 & 31), v += gr[j]);
+      var R = e[l] & 31;
+      vr(r, v, q[R]), v += W[R], R > 3 && (vr(r, v, e[l] >>> 5 & 8191), v += yr[R]);
+    } else
+      vr(r, v, Z[e[l]]), v += O[e[l]];
+  return vr(r, v, Z[256]), v + O[256];
+}, Sn = new pr([65540, 131080, 131088, 131104, 262176, 1048704, 1048832, 2114560, 2117632]), tr = new T(0), Cn = function(n, r, t, e, i, a) {
+  var o = n.length, f = new T(e + o + 5 * (1 + Math.ceil(o / 7e3)) + i), u = f.subarray(e, f.length - i), s = 0;
+  if (!r || o < 8)
+    for (var v = 0; v <= o; v += 65535) {
+      var h = v + 65535;
+      h >= o && (u[s >> 3] = a), s = Lr(u, s + 1, n.subarray(v, h));
     }
-  } else {
-    lm = flm, ll = flt, dm = fdm, dl = fdt;
-  }
-  for (var i = 0; i < li; ++i) {
-    if (syms[i] > 255) {
-      var len = syms[i] >>> 18 & 31;
-      wbits16(out, p, lm[len + 257]), p += ll[len + 257];
-      if (len > 7)
-        wbits(out, p, syms[i] >>> 23 & 31), p += fleb[len];
-      var dst = syms[i] & 31;
-      wbits16(out, p, dm[dst]), p += dl[dst];
-      if (dst > 3)
-        wbits16(out, p, syms[i] >>> 5 & 8191), p += fdeb[dst];
-    } else {
-      wbits16(out, p, lm[syms[i]]), p += ll[syms[i]];
-    }
-  }
-  wbits16(out, p, lm[256]);
-  return p + ll[256];
-};
-var deo = /* @__PURE__ */ new u32([65540, 131080, 131088, 131104, 262176, 1048704, 1048832, 2114560, 2117632]);
-var et = /* @__PURE__ */ new u8(0);
-var dflt = function(dat, lvl, plvl, pre, post, lst) {
-  var s = dat.length;
-  var o = new u8(pre + s + 5 * (1 + Math.ceil(s / 7e3)) + post);
-  var w = o.subarray(pre, o.length - post);
-  var pos = 0;
-  if (!lvl || s < 8) {
-    for (var i = 0; i <= s; i += 65535) {
-      var e = i + 65535;
-      if (e >= s) {
-        w[pos >> 3] = lst;
-      }
-      pos = wfblk(w, pos + 1, dat.subarray(i, e));
-    }
-  } else {
-    var opt = deo[lvl - 1];
-    var n = opt >>> 13, c = opt & 8191;
-    var msk_1 = (1 << plvl) - 1;
-    var prev = new u16(32768), head = new u16(msk_1 + 1);
-    var bs1_1 = Math.ceil(plvl / 3), bs2_1 = 2 * bs1_1;
-    var hsh = function(i2) {
-      return (dat[i2] ^ dat[i2 + 1] << bs1_1 ^ dat[i2 + 2] << bs2_1) & msk_1;
-    };
-    var syms = new u32(25e3);
-    var lf = new u16(288), df = new u16(32);
-    var lc_1 = 0, eb = 0, i = 0, li = 0, wi = 0, bs = 0;
-    for (; i < s; ++i) {
-      var hv = hsh(i);
-      var imod = i & 32767, pimod = head[hv];
-      prev[imod] = pimod;
-      head[hv] = imod;
-      if (wi <= i) {
-        var rem = s - i;
-        if ((lc_1 > 7e3 || li > 24576) && rem > 423) {
-          pos = wblk(dat, w, 0, syms, lf, df, eb, li, bs, i - bs, pos);
-          li = lc_1 = eb = 0, bs = i;
-          for (var j = 0; j < 286; ++j)
-            lf[j] = 0;
-          for (var j = 0; j < 30; ++j)
-            df[j] = 0;
+  else {
+    for (var g = Sn[r - 1], x = g >>> 13, m = g & 8191, z = (1 << t) - 1, c = new $(32768), y = new $(z + 1), M = Math.ceil(t / 3), A = 2 * M, w = function($r) {
+      return (n[$r] ^ n[$r + 1] << M ^ n[$r + 2] << A) & z;
+    }, I = new pr(25e3), S = new $(288), U = new $(32), l = 0, k = 0, v = 0, D = 0, N = 0, B = 0; v < o; ++v) {
+      var G = w(v), E = v & 32767, L = y[G];
+      if (c[E] = L, y[G] = E, N <= v) {
+        var Z = o - v;
+        if ((l > 7e3 || D > 24576) && Z > 423) {
+          s = Wr(n, u, 0, I, S, U, k, D, B, v - B, s), D = l = k = 0, B = v;
+          for (var O = 0; O < 286; ++O)
+            S[O] = 0;
+          for (var O = 0; O < 30; ++O)
+            U[O] = 0;
         }
-        var l = 2, d = 0, ch_1 = c, dif = imod - pimod & 32767;
-        if (rem > 2 && hv == hsh(i - dif)) {
-          var maxn = Math.min(n, rem) - 1;
-          var maxd = Math.min(32767, i);
-          var ml = Math.min(258, rem);
-          while (dif <= maxd && --ch_1 && imod != pimod) {
-            if (dat[i + l] == dat[i + l - dif]) {
-              var nl = 0;
-              for (; nl < ml && dat[i + nl] == dat[i + nl - dif]; ++nl)
+        var q = 2, W = 0, K = m, H = E - L & 32767;
+        if (Z > 2 && G == w(v - H))
+          for (var b = Math.min(x, Z) - 1, _ = Math.min(32767, v), j = Math.min(258, Z); H <= _ && --K && E != L; ) {
+            if (n[v + q] == n[v + q - H]) {
+              for (var R = 0; R < j && n[v + R] == n[v + R - H]; ++R)
                 ;
-              if (nl > l) {
-                l = nl, d = dif;
-                if (nl > maxn)
+              if (R > q) {
+                if (q = R, W = H, R > b)
                   break;
-                var mmd = Math.min(dif, nl - 2);
-                var md = 0;
-                for (var j = 0; j < mmd; ++j) {
-                  var ti = i - dif + j + 32768 & 32767;
-                  var pti = prev[ti];
-                  var cd = ti - pti + 32768 & 32767;
-                  if (cd > md)
-                    md = cd, pimod = ti;
+                for (var Fr = Math.min(H, R - 2), Mr = 0, O = 0; O < Fr; ++O) {
+                  var ur = v - H + O + 32768 & 32767, jn = c[ur], fn = ur - jn + 32768 & 32767;
+                  fn > Mr && (Mr = fn, L = ur);
                 }
               }
             }
-            imod = pimod, pimod = prev[imod];
-            dif += imod - pimod + 32768 & 32767;
+            E = L, L = c[E], H += E - L + 32768 & 32767;
           }
-        }
-        if (d) {
-          syms[li++] = 268435456 | revfl[l] << 18 | revfd[d];
-          var lin = revfl[l] & 31, din = revfd[d] & 31;
-          eb += fleb[lin] + fdeb[din];
-          ++lf[257 + lin];
-          ++df[din];
-          wi = i + l;
-          ++lc_1;
-        } else {
-          syms[li++] = dat[i];
-          ++lf[dat[i]];
-        }
+        if (W) {
+          I[D++] = 268435456 | Gr[q] << 18 | Hr[W];
+          var sn = Gr[q] & 31, un = Hr[W] & 31;
+          k += gr[sn] + yr[un], ++S[257 + sn], ++U[un], N = v + q, ++l;
+        } else
+          I[D++] = n[v], ++S[n[v]];
       }
     }
-    pos = wblk(dat, w, lst, syms, lf, df, eb, li, bs, i - bs, pos);
-    if (!lst && pos & 7)
-      pos = wfblk(w, pos + 1, et);
+    s = Wr(n, u, a, I, S, U, k, D, B, v - B, s), !a && s & 7 && (s = Lr(u, s + 1, tr));
   }
-  return slc(o, 0, pre + shft(pos) + post);
+  return X(f, 0, e + Dr(s) + i);
 };
-var adler = function() {
-  var a = 1, b = 0;
-  return {
-    p: function(d) {
-      var n = a, m = b;
-      var l = d.length | 0;
-      for (var i = 0; i != l; ) {
-        var e = Math.min(i + 2655, l);
-        for (; i < e; ++i)
-          m += n += d[i];
-        n = (n & 65535) + 15 * (n >> 16), m = (m & 65535) + 15 * (m >> 16);
-      }
-      a = n, b = m;
-    },
-    d: function() {
-      a %= 65521, b %= 65521;
-      return (a & 255) << 24 | a >>> 8 << 16 | (b & 255) << 8 | b >>> 8;
+(function() {
+  for (var n = new Int32Array(256), r = 0; r < 256; ++r) {
+    for (var t = r, e = 9; --e; )
+      t = (t & 1 && -306674912) ^ t >>> 1;
+    n[r] = t;
+  }
+  return n;
+})();
+var dr = function() {
+  var n = 1, r = 0;
+  return { p: function(t) {
+    for (var e = n, i = r, a = t.length | 0, o = 0; o != a; ) {
+      for (var f = Math.min(o + 2655, a); o < f; ++o)
+        i += e += t[o];
+      e = (e & 65535) + 15 * (e >> 16), i = (i & 65535) + 15 * (i >> 16);
     }
-  };
+    n = e, r = i;
+  }, d: function() {
+    return n %= 65521, r %= 65521, (n & 255) << 24 | n >>> 8 << 16 | (r & 255) << 8 | r >>> 8;
+  } };
+}, sr = function(n, r, t, e, i) {
+  return Cn(n, r.level == null ? 6 : r.level, r.mem == null ? Math.ceil(Math.max(8, Math.min(13, Math.log(n.length))) * 1.5) : 12 + r.mem, t, e, !i);
+}, F = function(n, r, t) {
+  for (; t; ++r)
+    n[r] = t, t >>>= 8;
+}, tn = function(n, r) {
+  var t = r.level, e = t == 0 ? 0 : t < 6 ? 1 : t == 9 ? 3 : 2;
+  n[0] = 120, n[1] = e << 6 | (e ? 32 - 2 * e : 1);
 };
-var dopt = function(dat, opt, pre, post, st) {
-  return dflt(dat, opt.level == null ? 6 : opt.level, opt.mem == null ? Math.ceil(Math.max(8, Math.min(13, Math.log(dat.length))) * 1.5) : 12 + opt.mem, pre, post, !st);
-};
-var wbytes = function(d, b, v) {
-  for (; v; ++b)
-    d[b] = v, v >>>= 8;
-};
-var zlh = function(c, o) {
-  var lv = o.level, fl2 = lv == 0 ? 0 : lv < 6 ? 1 : lv == 9 ? 3 : 2;
-  c[0] = 120, c[1] = fl2 << 6 | (fl2 ? 32 - 2 * fl2 : 1);
-};
-function zlibSync(data, opts) {
-  if (!opts)
-    opts = {};
-  var a = adler();
-  a.p(data);
-  var d = dopt(data, opts, 2, 4);
-  return zlh(d, opts), wbytes(d, d.length - 4, a.d()), d;
+function gn(n, r) {
+  r || (r = {});
+  var t = dr();
+  t.p(n);
+  var e = sr(n, r, 2, 4);
+  return tn(e, r), F(e, e.length - 4, t.d()), e;
 }
-var td = typeof TextDecoder != "undefined" && /* @__PURE__ */ new TextDecoder();
-var tds = 0;
+typeof TextEncoder < "u" && new TextEncoder();
+var Vr = typeof TextDecoder < "u" && new TextDecoder(), Nn = 0;
 try {
-  td.decode(et, { stream: true });
-  tds = 1;
-} catch (e) {
+  Vr.decode(tr, { stream: true }), Nn = 1;
+} catch {
 }
 const defaultConfig = {
   serverPath: "//kroki.io/"
@@ -480,13 +323,13 @@ function b64encode(str) {
   return btoa(str);
 }
 function main(element = null) {
-  var _a2, _b2, _c, _d, _e, _f, _g, _h;
+  var _a, _b, _c, _d, _e, _f, _g, _h;
   const blocks = _xpath(
     "//*[starts-with(text(),'//kroki ')]",
     element ?? document.body
   );
   for (const codeDiv of blocks) {
-    if ((_a2 = codeDiv.textContent) == null ? void 0 : _a2.startsWith("//kroki")) {
+    if ((_a = codeDiv.textContent) == null ? void 0 : _a.startsWith("//kroki")) {
       const lines = codeDiv.textContent.split("\n");
       const type = lines[0].replace("//kroki", "").trim();
       if (!(type == null ? void 0 : type.trim()))
@@ -499,7 +342,7 @@ function main(element = null) {
       div.style.cssText = "display: flex; flex-direction: row; place-content: center;";
       div.setAttribute("notion-kroki", "true");
       div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
-      const preCreatedNode = (_c = (_b2 = codeDiv.parentElement) == null ? void 0 : _b2.parentElement) == null ? void 0 : _c.querySelector("div[notion-kroki]");
+      const preCreatedNode = (_c = (_b = codeDiv.parentElement) == null ? void 0 : _b.parentElement) == null ? void 0 : _c.querySelector("div[notion-kroki]");
       if (preCreatedNode) {
         const preSvgUrl = (_d = preCreatedNode.firstElementChild) == null ? void 0 : _d.getAttribute(
           "data"
@@ -527,7 +370,7 @@ function plant(content, type, config) {
  ${content}`);
   const urlPrefix = `${(config == null ? void 0 : config.serverPath) + type}/svg/`;
   const data = textEncode(content);
-  const compressed = decode(zlibSync(data, { level: 9 }));
+  const compressed = decode(gn(data, { level: 9 }));
   const result = b64encode(compressed).replace(/\+/g, "-").replace(/\//g, "_");
   const svgUrl = urlPrefix + result;
   return svgUrl;
