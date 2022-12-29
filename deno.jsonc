@@ -10,10 +10,10 @@
       "deno.ns"
     ]
   },
+  "lock": true,
   "tasks": {
     "build": "deno task clean && deno task test-cov && deno task vite-build ",
     "vite-build": "deno run -A npm:vite build && deno run -A build-write-code.ts",
-    "build_npm": "deno task build && deno run -A build_npm.ts",
     "clean": "rm -rf dist/ coverage/",
     "fmt": "deno fmt",
     "test-cov": "deno test --coverage=coverage --no-check -A && deno coverage coverage --lcov --output=coverage/lcov.info"
