@@ -2,6 +2,6 @@
   "imports": {
     "deno_std/": "https://deno.land/std@0.170.0/",
     "https://deno.land/std@0.170.0/node/vm.ts": "./test/lib/std/node/vm.ts",
-    "jsdom": "https://esm.sh/jsdom@20.0.3?pin=102&deno-std=0.170.0&bundle"
+    "jsdom": "npm:jsdom@20"
   }
 }
