@@ -1,6 +1,6 @@
 import { delay } from "deno_std/async/delay.ts";
-// @deno-types="npm:@types/jsdom"
-import { JSDOM } from "jsdom";
+import { JSDOM } from "../deps/jsdom.ts";
+
 export function init() {
   const doc = new JSDOM("");
 

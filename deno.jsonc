@@ -16,7 +16,7 @@
     "vite-build": "deno run -A npm:vite build && deno run -A build-write-code.ts",
     "clean": "rm -rf dist/ coverage/",
     "fmt": "deno fmt",
-    "test-cov": "deno test --coverage=coverage --no-check -A && deno coverage coverage --lcov --output=coverage/lcov.info"
+    "test-cov": "deno test --coverage=coverage/json --no-check -A && deno coverage coverage/json --lcov --output=coverage/lcov.info"
   },
   "importMap": "import_map.json",
   "lint": {

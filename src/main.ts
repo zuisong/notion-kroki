@@ -1,5 +1,5 @@
 import { _debug, _xpath, debounce } from "./common/utils.ts";
-import { zlibSync } from "./deps.ts";
+import { zlibSync } from "./deps/fflate.ts";
 
 const defaultConfig: KrokiOption = {
   serverPath: "//kroki.io/",
