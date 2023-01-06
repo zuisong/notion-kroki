@@ -5,10 +5,6 @@ const defaultConfig: KrokiOption = {
   serverPath: "//kroki.io/",
 };
 
-function b64encode(str: string): string {
-  return btoa(str);
-}
-
 export function main(element: Node | null = null) {
   const blocks: HTMLElement[] = _xpath(
     "//*[starts-with(text(),'//kroki ')]",
@@ -62,8 +58,8 @@ function plant(content: string, type: string, config: KrokiOption) {
 
   const urlPrefix = `${config?.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
-  const compressed: string = decode(zlibSync(data, { level: 9 }));
-  const result: string = b64encode(compressed)
+  const compressed: string = strFromU8(zlibSync(data, { level: 9 }));
+  const result: string = btoa(compressed)
     .replace(/\+/g, "-")
     .replace(/\//g, "_");
   const svgUrl: string = urlPrefix + result;
@@ -91,10 +87,11 @@ function check(mutations: MutationRecord[], _observer: MutationObserver) {
   });
 }
 
-function decode(dat: Uint8Array) {
+function strFromU8(dat: Uint8Array) {
   let r = "";
-  for (let i = 0; i < dat.length; i += 16384) {
-    r += String.fromCharCode(...dat.subarray(i, i + 16384));
+  const s = 2 ** 16;
+  for (let i = 0; i < dat.length; i += s) {
+    r += String.fromCharCode(...dat.subarray(i, i + s));
   }
   return r;
 }

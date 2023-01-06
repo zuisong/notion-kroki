@@ -319,9 +319,6 @@ try {
 const defaultConfig = {
   serverPath: "//kroki.io/"
 };
-function b64encode(str) {
-  return btoa(str);
-}
 function main(element = null) {
   var _a, _b, _c, _d, _e, _f, _g, _h;
   const blocks = _xpath(
@@ -370,8 +367,8 @@ function plant(content, type, config) {
  ${content}`);
   const urlPrefix = `${(config == null ? void 0 : config.serverPath) + type}/svg/`;
   const data = textEncode(content);
-  const compressed = decode(gn(data, { level: 9 }));
-  const result = b64encode(compressed).replace(/\+/g, "-").replace(/\//g, "_");
+  const compressed = strFromU8(gn(data, { level: 9 }));
+  const result = btoa(compressed).replace(/\+/g, "-").replace(/\//g, "_");
   const svgUrl = urlPrefix + result;
   return svgUrl;
 }
@@ -388,10 +385,11 @@ function check(mutations, _observer) {
     render();
   });
 }
-function decode(dat) {
+function strFromU8(dat) {
   let r = "";
-  for (let i = 0; i < dat.length; i += 16384) {
-    r += String.fromCharCode(...dat.subarray(i, i + 16384));
+  const s = 2 ** 16;
+  for (let i = 0; i < dat.length; i += s) {
+    r += String.fromCharCode(...dat.subarray(i, i + s));
   }
   return r;
 }
