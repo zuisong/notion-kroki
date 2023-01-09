@@ -3,8 +3,8 @@ import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
 import { init, tearDown } from "./common/jdsom-env-init.ts";
 
 describe("base case", () => {
-  beforeEach(() => {
-    init();
+  beforeEach(async () => {
+    await init();
   });
 
   it("render docsify normal", async () => {

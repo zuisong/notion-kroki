@@ -1,8 +1,8 @@
 import { delay } from "deno_std/async/delay.ts";
 import { JSDOM } from "../deps/jsdom.ts";
-import * as fflate from "fflate";
 import type {} from "../../src/@types/types.d.ts";
-export function init() {
+import { fflateJs } from "../deps/fflate.ts";
+export async function init() {
   const doc = new JSDOM("");
 
   window.document = doc.window.document;
@@ -11,7 +11,7 @@ export function init() {
   window.XPathEvaluator = doc.window.XPathEvaluator;
   window.XPathResult = doc.window.XPathResult;
   window.MutationObserver = doc.window.MutationObserver;
-  window.fflate = fflate;
+  await import(fflateJs);
 }
 
 export async function tearDown() {

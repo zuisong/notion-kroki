@@ -5,8 +5,8 @@ import * as asserts from "deno_std/testing/asserts.ts";
 import { assert } from "./deps/chai.ts";
 
 describe("coverage other case", () => {
-  beforeEach(() => {
-    init();
+  beforeEach(async () => {
+    await init();
   });
 
   it("render skip error data", async () => {
