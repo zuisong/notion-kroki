@@ -1,6 +1,5 @@
 import { _debug, _xpath, debounce } from "./common/utils.ts";
-import { zlibSync } from "./deps/fflate.ts";
-
+import type { KrokiOption } from "./@types/types.d.ts";
 const defaultConfig: KrokiOption = {
   serverPath: "//kroki.io/",
 };
@@ -54,21 +53,19 @@ function textEncode(str: string) {
 
 function plant(content: string, type: string, config: KrokiOption) {
   _debug(`kroki render type: ${type}`);
-  _debug(`kroki render content: \n ${content}`);
+  _debug(`kroki render content:\n${content}`);
 
   const urlPrefix = `${config?.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
-  const compressed: string = strFromU8(zlibSync(data, { level: 9 }));
+  const compressed: string = strFromU8(
+    fflate.zlibSync(data, { level: 9 }),
+  );
   const result: string = btoa(compressed)
     .replace(/\+/g, "-")
     .replace(/\//g, "_");
   const svgUrl: string = urlPrefix + result;
 
   return svgUrl;
-}
-
-interface KrokiOption {
-  serverPath: string;
 }
 
 export function init_listener() {

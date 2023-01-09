@@ -2,6 +2,7 @@
   "imports": {
     "deno_std/": "https://deno.land/std@0.171.0/",
     "https://deno.land/std@0.171.0/node/vm.ts": "./test/lib/std/node/vm.ts",
-    "jsdom": "npm:jsdom@20"
+    "fflate": "https://esm.sh/fflate",
+    "jsdom": "npm:jsdom"
   }
 }

@@ -36,6 +36,17 @@
         "--inspect-brk"
       ],
       "attachSimplePort": 9229
-    }
+    },
+    {
+      "name": "Deno build", // manually created
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "deno",
+      "runtimeArgs": [
+         "run", "-A",   "--inspect-brk" ,"npm:vite", "build"
+      ],
+      "attachSimplePort": 9229
+    },
   ]
 }

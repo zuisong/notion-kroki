@@ -17,9 +17,8 @@ export function _xpath(xpath: string, node: Node): HTMLElement[] {
     null,
   );
   const xnodes: Node[] = [];
-  let xres: Node | null;
   while (true) {
-    xres = xresult.iterateNext();
+    const xres: Node | null = xresult.iterateNext();
     if (xres) {
       xnodes.push(xres);
     } else {
