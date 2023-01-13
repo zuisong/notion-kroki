@@ -1,7 +1,7 @@
 import { delay } from "deno_std/async/delay.ts";
-import { JSDOM } from "../deps/jsdom.ts";
-import type {} from "../../src/@types/types.d.ts";
-import { fflateJs } from "../deps/fflate.ts";
+import { JSDOM } from "$/test/deps/jsdom.ts";
+import type {} from "$/src/@types/types.d.ts";
+import { requiredLibs } from "$/src/userscript-meta.ts";
 export async function init() {
   const doc = new JSDOM("");
 
@@ -11,7 +11,8 @@ export async function init() {
   window.XPathEvaluator = doc.window.XPathEvaluator;
   window.XPathResult = doc.window.XPathResult;
   window.MutationObserver = doc.window.MutationObserver;
-  await import(fflateJs);
+
+  await Promise.all(requiredLibs.map((lib) => import(lib)));
 }
 
 export async function tearDown() {

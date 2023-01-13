@@ -3,6 +3,8 @@
     "deno_std/": "https://deno.land/std@0.171.0/",
     "https://deno.land/std@0.171.0/node/vm.ts": "./test/lib/std/node/vm.ts",
     "fflate": "https://esm.sh/fflate@0.7.4",
-    "jsdom": "npm:jsdom@21.0.0"
+    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@latest",
+    "jsdom": "npm:jsdom@21.0.0",
+    "$/": "./"
   }
 }

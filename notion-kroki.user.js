@@ -18,6 +18,7 @@
 // @description       Render notion code block as graph by kroki
 // ==/UserScript==
 "use strict";
+var __pow = Math.pow;
 const debounce = (fn, ms) => {
   let timeoutId;
   return function(...args) {
@@ -59,7 +60,7 @@ function main(element = null) {
   var _a, _b, _c, _d, _e, _f, _g, _h;
   const blocks = _xpath(
     "//*[starts-with(text(),'//kroki ')]",
-    element ?? document.body
+    element != null ? element : document.body
   );
   for (const codeDiv of blocks) {
     if ((_a = codeDiv.textContent) == null ? void 0 : _a.startsWith("//kroki")) {
@@ -82,7 +83,7 @@ function main(element = null) {
         );
         _debug(`preSvgUrl:${preSvgUrl}`);
         _debug(`svgUrl:${svgUrl}`);
-        if (preSvgUrl == svgUrl) {
+        if (preSvgUrl === svgUrl) {
           continue;
         } else {
           (_f = (_e = codeDiv.parentElement) == null ? void 0 : _e.parentElement) == null ? void 0 : _f.removeChild(
@@ -125,7 +126,7 @@ function check(mutations, _observer) {
 }
 function strFromU8(dat) {
   let r = "";
-  const s = 2 ** 16;
+  const s = __pow(2, 16);
   for (let i = 0; i < dat.length; i += s) {
     r += String.fromCharCode(...dat.subarray(i, i + s));
   }

@@ -1,7 +1,6 @@
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
 import { delay } from "deno_std/async/delay.ts";
 import { init, tearDown } from "./common/jdsom-env-init.ts";
-import * as asserts from "deno_std/testing/asserts.ts";
 import { assert } from "./deps/chai.ts";
 
 describe("coverage other case", () => {

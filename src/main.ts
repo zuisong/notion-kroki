@@ -33,7 +33,7 @@ export function main(element: Node | null = null) {
           );
         _debug(`preSvgUrl:${preSvgUrl}`);
         _debug(`svgUrl:${svgUrl}`);
-        if (preSvgUrl == svgUrl) {
+        if (preSvgUrl === svgUrl) {
           continue;
         } else {
           codeDiv.parentElement?.parentElement?.removeChild(
