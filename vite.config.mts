@@ -1,10 +1,12 @@
 import { defineConfig, PluginOption } from "npm:vite";
-import type {} from "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts";
+import type { } from "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts";
 import b, {
   BannerPluginOptions,
   ContentCallback,
 } from "npm:vite-plugin-banner";
 import { meta } from "$/src/userscript-meta.ts";
+import { importMaps } from "vite-deno-import-map-plugin";
+
 const banner = b as unknown as (
   pluginOptions: string | BannerPluginOptions | ContentCallback,
 ) => PluginOption;
@@ -22,9 +24,16 @@ export default defineConfig({
     target: "es6",
   },
 
-  plugins: [banner({
-    content: (_file) => {
-      return meta();
-    },
-  })],
+  plugins: [
+    importMaps(
+      () =>
+        JSON.parse(
+          Deno.readTextFileSync("./import_map.json"),
+        ),
+    ),
+    banner({
+      content: (_file) => {
+        return meta();
+      },
+    })],
 });

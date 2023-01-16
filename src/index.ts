@@ -1,4 +1,4 @@
-import { init_listener, main } from "./main.ts";
+import { init_listener, main } from "$/src/main.ts";
 
 main();
 init_listener();
