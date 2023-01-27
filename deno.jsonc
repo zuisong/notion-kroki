@@ -1,5 +1,14 @@
 {
   "$schema": "https://cdn.jsdelivr.net/gh/denoland/deno/cli/schemas/config-file.v1.json",
+  "imports": {
+    "deno_std/": "https://deno.land/std@0.174.0/",
+    "https://deno.land/std@0.174.0/node/vm.ts": "./test/lib/std/node/vm.ts",
+    "fflate": "https://esm.sh/fflate@0.7.4?pin=104",
+    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=104",
+    "vite-deno-import-map-plugin": "https://cdn.jsdelivr.net/gh/zuisong/vite-deno-import-map-plugin@0.1.0/vite-deno-import-map-plugin.ts",
+    "jsdom": "npm:jsdom@21.1.0",
+    "$/": "./"
+  },
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
@@ -19,7 +28,6 @@
     "test-cov": "deno test --coverage=coverage/json --no-check -A && deno coverage coverage/json --lcov --output=coverage/lcov.info",
     "html-report": "deno task clean && deno task test-cov && genhtml -o coverage/html coverage/lcov.info"
   },
-  "importMap": "import_map.json",
   "lint": {
     "files": {
       "include": [
