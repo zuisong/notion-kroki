@@ -1,6 +1,6 @@
 import { defineConfig, PluginOption } from "npm:vite";
 import JSON5 from "npm:json5";
-import type {} from "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts";
+import type {} from "@violentmonkey/types";
 import b, {
   BannerPluginOptions,
   ContentCallback,

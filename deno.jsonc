@@ -3,10 +3,11 @@
   "imports": {
     "deno_std/": "https://deno.land/std@0.174.0/",
     "https://deno.land/std@0.174.0/node/vm.ts": "./test/lib/std/node/vm.ts",
-    "fflate": "https://esm.sh/fflate@0.7.4?pin=104",
-    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=104",
+    "fflate": "https://esm.sh/fflate@0.7.4?pin=v106&target=es2021",
+    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=v106&target=es2021",
     "vite-deno-import-map-plugin": "https://cdn.jsdelivr.net/gh/zuisong/vite-deno-import-map-plugin@0.1.0/vite-deno-import-map-plugin.ts",
     "jsdom": "npm:jsdom@21.1.0",
+    "@violentmonkey/types": "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts",
     "$/": "./"
   },
   "compilerOptions": {

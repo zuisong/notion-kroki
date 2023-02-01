@@ -1,5 +1,6 @@
 import { _debug, _xpath, debounce } from "$/src/common/utils.ts";
 import type { KrokiOption } from "./@types/types.d.ts";
+import type {} from "@violentmonkey/types";
 const defaultConfig: KrokiOption = {
   serverPath: "//kroki.io/",
 };
