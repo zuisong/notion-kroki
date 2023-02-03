@@ -1,28 +1,18 @@
 {
   "version": "2",
   "remote": {
-    "https://cdn.jsdelivr.net/gh/zuisong/vite-deno-import-map-plugin@0.1.0/vite-deno-import-map-plugin.ts": "01d47b9cccd0ebd81363a33e31cc33694333e9c31baea7fcbaed249020ef0f10",
-    "https://deno.land/std@0.172.0/_util/asserts.ts": "178dfc49a464aee693a7e285567b3d0b555dc805ff490505a8aae34f9cfb1462",
-    "https://deno.land/std@0.172.0/_util/os.ts": "d932f56d41e4f6a6093d56044e29ce637f8dcc43c5a90af43504a889cf1775e3",
-    "https://deno.land/std@0.172.0/path/_constants.ts": "e49961f6f4f48039c0dfed3c3f93e963ca3d92791c9d478ac5b43183413136e0",
-    "https://deno.land/std@0.172.0/path/_interface.ts": "6471159dfbbc357e03882c2266d21ef9afdb1e4aa771b0545e90db58a0ba314b",
-    "https://deno.land/std@0.172.0/path/_util.ts": "86c2375a996c1931b2f2ac71fefd5ddf0cf0e579fa4ab12d3e4c552d4223b8d8",
-    "https://deno.land/std@0.172.0/path/common.ts": "ee7505ab01fd22de3963b64e46cff31f40de34f9f8de1fff6a1bd2fe79380000",
-    "https://deno.land/std@0.172.0/path/glob.ts": "d479e0a695621c94d3fd7fe7abd4f9499caf32a8de13f25073451c6ef420a4e1",
-    "https://deno.land/std@0.172.0/path/mod.ts": "4b83694ac500d7d31b0cdafc927080a53dc0c3027eb2895790fb155082b0d232",
-    "https://deno.land/std@0.172.0/path/posix.ts": "0874b341c2c6968ca38d323338b8b295ea1dae10fa872a768d812e2e7d634789",
-    "https://deno.land/std@0.172.0/path/separator.ts": "0fb679739d0d1d7bf45b68dacfb4ec7563597a902edbaf3c59b50d5bcadd93b1",
-    "https://deno.land/std@0.172.0/path/win32.ts": "672942919dd66ce1b8c224e77d3447e2ad8254eaff13fe6946420a9f78fa141e",
-    "https://deno.land/std@0.174.0/async/delay.ts": "73aa04cec034c84fc748c7be49bb15cac3dd43a57174bfdb7a4aec22c248f0dd",
-    "https://deno.land/std@0.174.0/fmt/colors.ts": "938c5d44d889fb82eff6c358bea8baa7e85950a16c9f6dae3ec3a7a729164471",
-    "https://deno.land/std@0.174.0/testing/_diff.ts": "1a3c044aedf77647d6cac86b798c6417603361b66b54c53331b312caeb447aea",
-    "https://deno.land/std@0.174.0/testing/_format.ts": "a69126e8a469009adf4cf2a50af889aca364c349797e63174884a52ff75cf4c7",
-    "https://deno.land/std@0.174.0/testing/_test_suite.ts": "30f018feeb3835f12ab198d8a518f9089b1bcb2e8c838a8b615ab10d5005465c",
-    "https://deno.land/std@0.174.0/testing/asserts.ts": "984ab0bfb3faeed92ffaa3a6b06536c66811185328c5dd146257c702c41b01ab",
-    "https://deno.land/std@0.174.0/testing/bdd.ts": "c5ca6d85940dbcc19b4d2bc3608d49ab65d81470aa91306d5efa4b0d5c945731",
-    "https://esm.sh/fflate@0.7.4?pin=v106&target=es2021": "398f27406b7582f568954dc70db0b54f6f40f7a88a68e6b240ef622fcb46194a",
+    "https://cdn.jsdelivr.net/gh/zuisong/vite-deno-import-map-plugin@0.2.0/vite-deno-import-map-plugin.ts": "ba18eafdcc884be2b52588da61892079076444bc12221c71dda0b53f72d40c0b",
+    "https://deno.land/std@0.176.0/async/delay.ts": "73aa04cec034c84fc748c7be49bb15cac3dd43a57174bfdb7a4aec22c248f0dd",
+    "https://deno.land/std@0.176.0/fmt/colors.ts": "938c5d44d889fb82eff6c358bea8baa7e85950a16c9f6dae3ec3a7a729164471",
+    "https://deno.land/std@0.176.0/node/path.ts": "1c6aa9101554136525b368e8280f0f78136d4071dd71ad3a70477f27d9e4dd91",
+    "https://deno.land/std@0.176.0/testing/_diff.ts": "1a3c044aedf77647d6cac86b798c6417603361b66b54c53331b312caeb447aea",
+    "https://deno.land/std@0.176.0/testing/_format.ts": "a69126e8a469009adf4cf2a50af889aca364c349797e63174884a52ff75cf4c7",
+    "https://deno.land/std@0.176.0/testing/_test_suite.ts": "30f018feeb3835f12ab198d8a518f9089b1bcb2e8c838a8b615ab10d5005465c",
+    "https://deno.land/std@0.176.0/testing/asserts.ts": "984ab0bfb3faeed92ffaa3a6b06536c66811185328c5dd146257c702c41b01ab",
+    "https://deno.land/std@0.176.0/testing/bdd.ts": "c5ca6d85940dbcc19b4d2bc3608d49ab65d81470aa91306d5efa4b0d5c945731",
+    "https://esm.sh/fflate@0.7.4?pin=v106&target=es2022": "5d450d1d73097560558ee07fc1c82a4bd0a738410b8e2a3dd13df83e7ebc55d4",
     "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=v106&target=es2021": "a0ea9dc9cecccef785fc2e6dc08ed96eb69a9aa603fed407edba581867030cdd",
-    "https://esm.sh/v106/fflate@0.7.4/es2021/fflate.js": "a0ddb8eaf40ca9f6e42485065a7dbca1b25624c37fabeb8246da1d7c2a488ab3",
+    "https://esm.sh/v106/fflate@0.7.4/es2022/fflate.js": "8bc4573ad0778e51cf2d92ac195505a9bc8022694999bafef968ac0226adbdba",
     "https://esm.sh/v106/fflate@0.7.4/lib/index.d.ts": "5c07cd5f4268cb8f81f256b1296d4621a04c527a01b9d25a141a8a82a4251fd7",
     "https://esm.sh/v106/userscript-metadata-generator@0.0.11/dist/esm/index.d.ts": "1d23006169dc8dcd738039faf4c1173a252e49b3d43fe1d17f0375224349dcea",
     "https://esm.sh/v106/userscript-metadata-generator@0.0.11/es2021/userscript-metadata-generator.development.bundle.js": "97b3ba9b04a9870701b8c42d3efb12e56cacc72ed427853ebc98d7297cd272e0",
@@ -36,7 +26,7 @@
       "chai": "chai@4.3.7",
       "jsdom@21.1.0": "jsdom@21.1.0",
       "json5": "json5@2.2.3",
-      "vite": "vite@4.0.4",
+      "vite": "vite@4.1.1",
       "vite-plugin-banner": "vite-plugin-banner@0.7.0"
     },
     "packages": {
@@ -514,8 +504,8 @@
           "supports-preserve-symlinks-flag": "supports-preserve-symlinks-flag@1.0.0"
         }
       },
-      "rollup@3.12.1": {
-        "integrity": "sha512-t9elERrz2i4UU9z7AwISj3CQcXP39cWxgRWLdf4Tm6aKm1eYrqHIgjzXBgb67GNY1sZckTFFi0oMozh3/S++Ig==",
+      "rollup@3.13.0": {
+        "integrity": "sha512-HJwQtrXAc0AmyDohTJ/2c+Bx/sWPScJLlAUJ1kuD7rAkCro8Cr2SnVB2gVYBiSLxpgD2kZ24jbyXtG++GumrYQ==",
         "dependencies": {
           "fsevents": "fsevents@2.3.2"
         }
@@ -586,14 +576,14 @@
         "integrity": "sha512-g0cm0wbrR6b6wR8FWtfD1RSDPacdumKEOAnneXv+NpJ9ez+j6rklRv6lMOO+aPf+Y6Zb8OzgIk0FXBZ6h+DeZQ==",
         "dependencies": {}
       },
-      "vite@4.0.4": {
-        "integrity": "sha512-xevPU7M8FU0i/80DMR+YhgrzR5KS2ORy1B4xcX/cXLsvnUWvfHuqMmVU6N0YiJ4JWGRJJsLCgjEzKjG9/GKoSw==",
+      "vite@4.1.1": {
+        "integrity": "sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==",
         "dependencies": {
           "esbuild": "esbuild@0.16.17",
           "fsevents": "fsevents@2.3.2",
           "postcss": "postcss@8.4.21",
           "resolve": "resolve@1.22.1",
-          "rollup": "rollup@3.12.1"
+          "rollup": "rollup@3.13.0"
         }
       },
       "w3c-xmlserializer@4.0.0": {
