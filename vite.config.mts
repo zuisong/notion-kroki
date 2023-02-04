@@ -1,19 +1,15 @@
-import { defineConfig, PluginOption } from "npm:vite";
+import { defineConfig } from "npm:vite";
 import JSON5 from "npm:json5";
 import type {} from "@violentmonkey/types";
-import b, {
-  BannerPluginOptions,
-  ContentCallback,
-} from "npm:vite-plugin-banner";
 import { importMaps } from "vite-deno-import-map-plugin";
 import metaGenerate, { Metadata } from "userscript-metadata-generator";
 import { requiredLibs } from "$/src/userscript-meta.ts";
 
-const banner = b as unknown as (
-  pluginOptions: string | BannerPluginOptions | ContentCallback,
-) => PluginOption;
 export default defineConfig({
-  esbuild: {},
+  esbuild: {
+    legalComments: "none",
+    banner: meta(),
+  },
   build: {
     lib: {
       entry: "./src/index.ts",
@@ -22,7 +18,7 @@ export default defineConfig({
       fileName: "notion-kroki",
     },
     minify: false,
-    sourcemap: true,
+    sourcemap: false,
     target: "es6",
   },
 
@@ -33,11 +29,6 @@ export default defineConfig({
           Deno.readTextFileSync("./deno.jsonc"),
         ),
     ),
-    banner({
-      content: (_file) => {
-        return meta();
-      },
-    }),
   ],
 });
 

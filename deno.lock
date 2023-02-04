@@ -26,8 +26,7 @@
       "chai": "chai@4.3.7",
       "jsdom@21.1.0": "jsdom@21.1.0",
       "json5": "json5@2.2.3",
-      "vite": "vite@4.1.1",
-      "vite-plugin-banner": "vite-plugin-banner@0.7.0"
+      "vite": "vite@4.1.1"
     },
     "packages": {
       "@esbuild/android-arm64@0.16.17": {
@@ -571,10 +570,6 @@
           "querystringify": "querystringify@2.2.0",
           "requires-port": "requires-port@1.0.0"
         }
-      },
-      "vite-plugin-banner@0.7.0": {
-        "integrity": "sha512-g0cm0wbrR6b6wR8FWtfD1RSDPacdumKEOAnneXv+NpJ9ez+j6rklRv6lMOO+aPf+Y6Zb8OzgIk0FXBZ6h+DeZQ==",
-        "dependencies": {}
       },
       "vite@4.1.1": {
         "integrity": "sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==",
