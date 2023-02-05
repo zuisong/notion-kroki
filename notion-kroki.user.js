@@ -17,9 +17,10 @@
 // @author            zuisong
 // @description       Render notion code block as graph by kroki
 // ==/UserScript==
-"use strict";
 var __pow = Math.pow;
-const debounce = (fn, ms) => {
+
+// src/common/utils.ts
+var debounce = (fn, ms) => {
   let timeoutId;
   return function(...args) {
     clearTimeout(timeoutId);
@@ -53,7 +54,9 @@ function _debug(...data) {
 function isDebugMode() {
   return !!localStorage.getItem("debug");
 }
-const defaultConfig = {
+
+// src/main.ts
+var defaultConfig = {
   serverPath: "//kroki.io/"
 };
 function main(element = null) {
@@ -117,7 +120,7 @@ function init_listener() {
     subtree: true
   });
 }
-const render = debounce(main, 100);
+var render = debounce(main, 100);
 function check(mutations, _observer) {
   _debug("mutations", mutations);
   mutations.forEach((mutation) => {
@@ -132,5 +135,7 @@ function strFromU8(dat) {
   }
   return r;
 }
+
+// src/index.ts
 main();
 init_listener();

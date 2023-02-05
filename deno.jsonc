@@ -22,9 +22,8 @@
   },
   "lock": true,
   "tasks": {
-    "build": "deno task clean && deno task test-cov && deno task vite-build ",
-    "vite-build": "deno run -A npm:vite build && cp dist/notion-kroki.js notion-kroki.user.js",
-    "esbuild": "deno run -A esbuild.config.ts",
+    "build": "deno task clean && deno task test-cov && deno task esbuild ",
+    "esbuild": "deno run -A esbuild.config.ts && cp dist/notion-kroki.js notion-kroki.user.js",
     "clean": "rm -rf dist/ coverage/",
     "fmt": "deno fmt",
     "test-cov": "deno test --coverage=coverage/json --no-check -A && deno coverage coverage/json --lcov --output=coverage/lcov.info",

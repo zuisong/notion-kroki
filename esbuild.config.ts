@@ -1,40 +1,46 @@
-import * as esbuild from "https://deno.land/x/esbuild@v0.16.17/mod.js";
-import { denoPlugin } from "https://deno.land/x/esbuild_deno_loader@0.6.0/mod.ts";
-import { meta } from "$/src/userscript-meta.ts";
-
-
-await esbuild.build(
-  {
-    plugins: [denoPlugin() as esbuild.Plugin],
+import * as esbuild from "https://deno.land/x/esbuild@v0.17.5/mod.js";
+import { BuildOptions } from "https://deno.land/x/esbuild@v0.17.5/mod.js";
+import JSON5 from "npm:json5";
+import { resolve } from "node:path";
+import { meta } from "$/build-common.ts";
+await esbuild.build({
+    plugins: [
+      importMapPlugin(
+        JSON5.parse(
+          Deno.readTextFileSync("./deno.jsonc"),
+        ),
+      ),
+    ],
+    banner: {
+      "js": meta(),
+    },
     entryPoints: { "notion-kroki": "./src/index.ts" },
     outdir: "dist",
     bundle: true,
     target: "es6",
+    minify: false,
+    logLevel: "info",
     format: "esm",
-  },
-);
+  } as BuildOptions);
 
 esbuild.stop();
 
-export async function build() {
-  async function writeCode() {
-    const targetFile = "notion-kroki.user.js";
-    try {
-      await Deno.remove(targetFile, { recursive: true });
-    } catch (_) {
-      // ignore error if file not exists
-    }
-    const code = await Deno.readTextFile("./dist/notion-kroki.js");
-
-    const result = `${meta()}
-
-${code}
-`;
-
-    await Deno.writeTextFile(targetFile, result);
-  }
-
-  await writeCode();
+function importMapPlugin(
+  importMap: {
+    imports: Record<string, string>;
+  },
+): esbuild.Plugin {
+  return {
+    name: importMapPlugin.name,
+    setup(build) {
+      build.onResolve({ filter: /^.*$/ }, (args) => {
+        for (const [pre, value] of Object.entries(importMap.imports)) {
+          if (args.path.startsWith(pre)) {
+            return { path: resolve(args.path.replace(pre, value)) };
+          }
+        }
+        return;
+      });
+    },
+  };
 }
-
-build();
