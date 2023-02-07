@@ -1,8 +1,8 @@
+import { meta } from "$/build-common.ts";
 import * as esbuild from "https://deno.land/x/esbuild@v0.17.5/mod.js";
 import { BuildOptions } from "https://deno.land/x/esbuild@v0.17.5/mod.js";
-import JSON5 from "npm:json5";
 import { resolve } from "node:path";
-import { meta } from "$/build-common.ts";
+import JSON5 from "npm:json5";
 await esbuild.build({
     plugins: [
       importMapPlugin(

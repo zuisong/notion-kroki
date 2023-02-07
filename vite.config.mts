@@ -1,7 +1,7 @@
-import { defineConfig } from "npm:vite";
-import JSON5 from "npm:json5";
-import { importMaps } from "vite-deno-import-map-plugin";
 import { meta } from "$/build-common.ts";
+import JSON5 from "npm:json5";
+import { defineConfig } from "npm:vite";
+import { importMaps } from "vite-deno-import-map-plugin";
 
 export default defineConfig({
   esbuild: {
