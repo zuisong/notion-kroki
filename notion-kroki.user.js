@@ -27,25 +27,6 @@ var debounce = (fn, ms) => {
     timeoutId = setTimeout(() => fn.apply(this, args), ms);
   };
 };
-function _xpath(xpath, node) {
-  const xresult = document.evaluate(
-    xpath,
-    node,
-    null,
-    XPathResult.ANY_TYPE,
-    null
-  );
-  const xnodes = [];
-  while (true) {
-    const xres = xresult.iterateNext();
-    if (xres) {
-      xnodes.push(xres);
-    } else {
-      break;
-    }
-  }
-  return xnodes;
-}
 function _debug(...data) {
   if (isDebugMode()) {
     console.log(...data);
@@ -61,10 +42,12 @@ var defaultConfig = {
 };
 function main(element = null) {
   var _a, _b, _c, _d, _e, _f, _g, _h;
-  const blocks = _xpath(
-    "//*[starts-with(text(),'//kroki ')]",
-    element != null ? element : document.body
-  );
+  const blocks = Array.from(
+    (element != null ? element : document.body).querySelectorAll("*")
+  ).filter((it) => {
+    var _a2;
+    return (_a2 = it == null ? void 0 : it.innerHTML) == null ? void 0 : _a2.startsWith("//kroki ");
+  });
   for (const codeDiv of blocks) {
     if ((_a = codeDiv.textContent) == null ? void 0 : _a.startsWith("//kroki")) {
       const lines = codeDiv.textContent.split("\n");

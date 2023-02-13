@@ -1,15 +1,16 @@
-import { _debug, _xpath, debounce } from "$/src/common/utils.ts";
+import { _debug, debounce } from "$/src/common/utils.ts";
 import type { KrokiOption } from "./@types/types.d.ts";
 import type {} from "@violentmonkey/types";
 const defaultConfig: KrokiOption = {
   serverPath: "//kroki.io/",
 };
 
-export function main(element: Node | null = null) {
-  const blocks: HTMLElement[] = _xpath(
-    "//*[starts-with(text(),'//kroki ')]",
-    element ?? document.body,
-  );
+export function main(element: HTMLElement | null = null) {
+  const blocks: HTMLElement[] = Array
+    .from(
+      (element ?? document.body).querySelectorAll("*"),
+    )
+    .filter((it) => it?.innerHTML?.startsWith("//kroki ")) as HTMLElement[];
   for (const codeDiv of blocks) {
     if (codeDiv.textContent?.startsWith("//kroki")) {
       const lines = codeDiv.textContent.split("\n");

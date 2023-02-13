@@ -8,26 +8,6 @@ export const debounce = (fn: Function, ms: number) => {
   };
 };
 
-export function _xpath(xpath: string, node: Node): HTMLElement[] {
-  const xresult: XPathResult = document.evaluate(
-    xpath,
-    node,
-    null,
-    XPathResult.ANY_TYPE,
-    null,
-  );
-  const xnodes: Node[] = [];
-  while (true) {
-    const xres: Node | null = xresult.iterateNext();
-    if (xres) {
-      xnodes.push(xres);
-    } else {
-      break;
-    }
-  }
-  return xnodes as HTMLElement[];
-}
-
 // deno-lint-ignore no-explicit-any
 export function _debug(...data: any[]): void {
   if (isDebugMode()) {

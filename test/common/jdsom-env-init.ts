@@ -8,8 +8,6 @@ export async function init() {
   window.document = doc.window.document;
   window.TextDecoder = undefined as any;
   window.HTMLElement = doc.window.HTMLElement;
-  window.XPathEvaluator = doc.window.XPathEvaluator;
-  window.XPathResult = doc.window.XPathResult;
   window.MutationObserver = doc.window.MutationObserver;
 
   await Promise.all(requiredLibs.map((lib) => import(lib)));

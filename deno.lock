@@ -26,7 +26,7 @@
   "npm": {
     "specifiers": {
       "@types/chai": "@types/chai@4.3.4",
-      "@types/jsdom": "@types/jsdom@20.0.1",
+      "@types/jsdom": "@types/jsdom@21.1.0",
       "chai": "chai@4.3.7",
       "jsdom@21.1.0": "jsdom@21.1.0",
       "json5": "json5@2.2.3"
@@ -40,16 +40,16 @@
         "integrity": "sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==",
         "dependencies": {}
       },
-      "@types/jsdom@20.0.1": {
-        "integrity": "sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==",
+      "@types/jsdom@21.1.0": {
+        "integrity": "sha512-leWreJOdnuIxq9Y70tBVm/bvTuh31DSlF/r4l7Cfi4uhVQqLHD0Q4v301GMisEMwwbMgF7ZKxuZ+Jbd4NcdmRw==",
         "dependencies": {
-          "@types/node": "@types/node@18.11.18",
+          "@types/node": "@types/node@18.13.0",
           "@types/tough-cookie": "@types/tough-cookie@4.0.2",
           "parse5": "parse5@7.1.2"
         }
       },
-      "@types/node@18.11.18": {
-        "integrity": "sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==",
+      "@types/node@18.13.0": {
+        "integrity": "sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==",
         "dependencies": {}
       },
       "@types/tough-cookie@4.0.2": {
