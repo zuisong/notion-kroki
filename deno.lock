@@ -263,7 +263,7 @@
           "whatwg-encoding": "whatwg-encoding@2.0.0",
           "whatwg-mimetype": "whatwg-mimetype@3.0.0",
           "whatwg-url": "whatwg-url@11.0.0",
-          "ws": "ws@8.12.0",
+          "ws": "ws@8.12.1",
           "xml-name-validator": "xml-name-validator@4.0.0"
         }
       },
@@ -428,8 +428,8 @@
         "integrity": "sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==",
         "dependencies": {}
       },
-      "ws@8.12.0": {
-        "integrity": "sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==",
+      "ws@8.12.1": {
+        "integrity": "sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==",
         "dependencies": {}
       },
       "xml-name-validator@4.0.0": {
