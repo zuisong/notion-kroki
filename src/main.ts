@@ -16,7 +16,7 @@ export function main(element: HTMLElement | null = null) {
       const lines = codeDiv.textContent.split("\n");
       const type = lines[0].replace("//kroki", "").trim();
       if (!type?.trim()) continue;
-      const data = lines.filter((_value, index) => index != 0).join("\n");
+      const data = lines.filter((_value, index) => index !== 0).join("\n");
       if (!data?.trim()) continue;
       const svgUrl = plant(data, type, defaultConfig);
       const div = document.createElement("div", undefined);

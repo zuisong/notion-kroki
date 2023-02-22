@@ -54,7 +54,7 @@ function main(element = null) {
       const type = lines[0].replace("//kroki", "").trim();
       if (!(type == null ? void 0 : type.trim()))
         continue;
-      const data = lines.filter((_value, index) => index != 0).join("\n");
+      const data = lines.filter((_value, index) => index !== 0).join("\n");
       if (!(data == null ? void 0 : data.trim()))
         continue;
       const svgUrl = plant(data, type, defaultConfig);

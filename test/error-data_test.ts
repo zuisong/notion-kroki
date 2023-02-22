@@ -1,7 +1,7 @@
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
 import { delay } from "deno_std/async/delay.ts";
-import { init, tearDown } from "./common/jdsom-env-init.ts";
-import { assert } from "./deps/chai.ts";
+import { init, tearDown } from "$/test/common/jdsom-env-init.ts";
+import { assert } from "$/test/deps/chai.ts";
 
 describe("coverage other case", () => {
   beforeEach(async () => {
@@ -28,7 +28,7 @@ describe("coverage other case", () => {
 `;
 
     const { main } = await import("../src/main.ts");
-    document.getElementById("kroki-code")!!.textContent = `//kroki `;
+    document.getElementById("kroki-code")!!.textContent = "//kroki ";
     main();
     await delay(300);
 
