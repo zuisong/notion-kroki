@@ -303,18 +303,18 @@
     "https://deno.land/x/denoflate@1.2.1/mod.ts": "f5628e44b80b3d80ed525afa2ba0f12408e3849db817d47a883b801f9ce69dd6",
     "https://deno.land/x/denoflate@1.2.1/pkg/denoflate.js": "b9f9ad9457d3f12f28b1fb35c555f57443427f74decb403113d67364e4f2caf4",
     "https://deno.land/x/denoflate@1.2.1/pkg/denoflate_bg.wasm.js": "d581956245407a2115a3d7e8d85a9641c032940a8e810acbd59ca86afd34d44d",
-    "https://deno.land/x/esbuild@v0.17.5/mod.d.ts": "dc279a3a46f084484453e617c0cabcd5b8bd1920c0e562e4ea02dfc828c8f968",
-    "https://deno.land/x/esbuild@v0.17.5/mod.js": "dc1fca58bbb66e7e87d2234d6518a718ef54019525c2523506cbb6aa619eaa98",
-    "https://esm.sh/fflate@0.7.4?pin=v106&target=es2022": "5d450d1d73097560558ee07fc1c82a4bd0a738410b8e2a3dd13df83e7ebc55d4",
-    "https://esm.sh/jsdom@21.1.0?no-check&deno-std=0.177.0&bundle": "81b28ba66df3caa3fe2735cd5f7310e1a4a36b855346db37abc9fffc88240299",
-    "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=v106&target=es2021": "a0ea9dc9cecccef785fc2e6dc08ed96eb69a9aa603fed407edba581867030cdd",
-    "https://esm.sh/v106/fflate@0.7.4/es2022/fflate.js": "8bc4573ad0778e51cf2d92ac195505a9bc8022694999bafef968ac0226adbdba",
-    "https://esm.sh/v106/fflate@0.7.4/lib/index.d.ts": "5c07cd5f4268cb8f81f256b1296d4621a04c527a01b9d25a141a8a82a4251fd7",
-    "https://esm.sh/v106/userscript-metadata-generator@0.0.11/dist/esm/index.d.ts": "1d23006169dc8dcd738039faf4c1173a252e49b3d43fe1d17f0375224349dcea",
-    "https://esm.sh/v106/userscript-metadata-generator@0.0.11/es2021/userscript-metadata-generator.development.bundle.js": "97b3ba9b04a9870701b8c42d3efb12e56cacc72ed427853ebc98d7297cd272e0",
-    "https://esm.sh/v107/canvas@2.11.0/deno/canvas.js": "f2387e2c56addb0fe76f5c1ddb64413ee9fbdf7c905093aed96738e3fd34df4d",
-    "https://esm.sh/v107/jsdom@21.1.0/deno/jsdom.bundle.js": "4a04ad89d6033e03daf4a30dcd94945fd329e25282e08ac9b104540b3399261c",
-    "https://esm.sh/v107/node_buffer.js": "445d389cb8c9f9fad5ff869ca2c2a863d178d410795ebd5f2f39d9a029156d56",
+    "https://deno.land/x/esbuild@v0.17.9/mod.d.ts": "dc279a3a46f084484453e617c0cabcd5b8bd1920c0e562e4ea02dfc828c8f968",
+    "https://deno.land/x/esbuild@v0.17.9/mod.js": "a27f62dbbddf25d7df2987c613f6fc85dfae142a8baeaf0d70e539935c8dc612",
+    "https://esm.sh/fflate@0.7.4?pin=v108&target=es2022": "d8055ff41c58245a0ea9652732020a79fad61560b05f1d2c8f2c00477ce5a9cd",
+    "https://esm.sh/jsdom@21.1.0?no-check&deno-std=0.177.0&bundle&pin=v108": "3226d4f92c15b253679823785c5fda62f762f5932a2e66ad32cc68a058a944e5",
+    "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=v108&target=es2021": "910e4eae0b3983ec2d7c08615db75e972d4b0b8641243c2c31900fc2065b4705",
+    "https://esm.sh/v108/canvas@2.11.0/deno/canvas.js": "f2387e2c56addb0fe76f5c1ddb64413ee9fbdf7c905093aed96738e3fd34df4d",
+    "https://esm.sh/v108/fflate@0.7.4/es2022/fflate.js": "0c5e998bb04dcb8ebf449a077981f14437fe748564bc6e6709e1ac6f33c034bb",
+    "https://esm.sh/v108/fflate@0.7.4/lib/index.d.ts": "5c07cd5f4268cb8f81f256b1296d4621a04c527a01b9d25a141a8a82a4251fd7",
+    "https://esm.sh/v108/jsdom@21.1.0/deno/jsdom.bundle.js": "a591b29fcb92fb2888feb0b5be129adf0b8136e154fd9011ee3821c21bd358ee",
+    "https://esm.sh/v108/node_buffer.js": "445d389cb8c9f9fad5ff869ca2c2a863d178d410795ebd5f2f39d9a029156d56",
+    "https://esm.sh/v108/userscript-metadata-generator@0.0.11/dist/esm/index.d.ts": "1d23006169dc8dcd738039faf4c1173a252e49b3d43fe1d17f0375224349dcea",
+    "https://esm.sh/v108/userscript-metadata-generator@0.0.11/es2021/userscript-metadata-generator.development.bundle.js": "6df54f694e82a549029e88feaa0b3b0b52399e3f0645c2063af6d8a1f376dc8d",
     "https://raw.githubusercontent.com/john-griffin/deno-dom-test/main/lib/std/node/vm.ts": "b161e669dec9411dcc563bd5bb7ed55fe2c417e4919e93b1d42fd7451a058a42",
     "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts": "5038d56f07c293bb38765ea14e84c540267f0252dd3feb64c007ac536280d46f",
     "https://unpkg.com/fflate@0.7.4/umd/index.js": "7c685a896da21cda061a56a614d63004fff5ca6b65eec63bf40cb275db4c6c1b"
@@ -334,13 +334,13 @@
       "@types/jsdom@21.1.0": {
         "integrity": "sha512-leWreJOdnuIxq9Y70tBVm/bvTuh31DSlF/r4l7Cfi4uhVQqLHD0Q4v301GMisEMwwbMgF7ZKxuZ+Jbd4NcdmRw==",
         "dependencies": {
-          "@types/node": "@types/node@18.14.0",
+          "@types/node": "@types/node@18.14.2",
           "@types/tough-cookie": "@types/tough-cookie@4.0.2",
           "parse5": "parse5@7.1.2"
         }
       },
-      "@types/node@18.14.0": {
-        "integrity": "sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==",
+      "@types/node@18.14.2": {
+        "integrity": "sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==",
         "dependencies": {}
       },
       "@types/tough-cookie@4.0.2": {
