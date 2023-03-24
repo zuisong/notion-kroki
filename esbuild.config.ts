@@ -1,6 +1,6 @@
 import { meta } from "$/build-common.ts";
-import * as esbuild from "https://deno.land/x/esbuild@v0.17.9/mod.js";
-import { BuildOptions } from "https://deno.land/x/esbuild@v0.17.9/mod.js";
+import * as esbuild from "esbuild";
+import { BuildOptions } from "esbuild";
 import { resolve } from "node:path";
 import JSON5 from "npm:json5";
 await esbuild.build({
