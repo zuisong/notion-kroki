@@ -69,16 +69,21 @@ describe("coverage other case", () => {
     document.getElementById("kroki-code")!!.textContent = `//kroki plantuml
 
 `;
+
+    await delay(300);
+    await import("../src/main.ts");
     await delay(300);
 
     const svgUrl = document.querySelector("div[notion-kroki]")
       ?.firstElementChild
       ?.getAttribute("data");
 
-    assert.equal(
-      svgUrl,
-      "//kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
-    );
+    if (globalThis.MutationObserver) {
+      assert.equal(
+        svgUrl,
+        "//kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
+      );
+    }
 
     await tearDown();
   });

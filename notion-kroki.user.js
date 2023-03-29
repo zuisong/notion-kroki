@@ -59,7 +59,10 @@ function main(element = null) {
         continue;
       const svgUrl = plant(data, type, defaultConfig);
       const div = document.createElement("div", void 0);
-      div.style.cssText = "display: flex; flex-direction: row; place-content: center;";
+      div.setAttribute(
+        "style",
+        "display: flex; flex-direction: row; place-content: center;"
+      );
       div.setAttribute("notion-kroki", "true");
       div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
       const preCreatedNode = (_c = (_b = codeDiv.parentElement) == null ? void 0 : _b.parentElement) == null ? void 0 : _c.querySelector("div[notion-kroki]");
@@ -98,10 +101,12 @@ ${content}`);
   return svgUrl;
 }
 function init_listener() {
-  new MutationObserver(check).observe(document, {
-    childList: true,
-    subtree: true
-  });
+  if (globalThis.MutationObserver) {
+    new MutationObserver(check).observe(document, {
+      childList: true,
+      subtree: true
+    });
+  }
 }
 var render = debounce(main, 100);
 function check(mutations, _observer) {
