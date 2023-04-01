@@ -1,7 +1,7 @@
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
 import { delay } from "deno_std/async/delay.ts";
 import { init, tearDown } from "$/test/common/jdsom-env-init.ts";
-import { assert } from "$/test/deps/chai.ts";
+import * as asserts from "deno_std/testing/asserts.ts";
 
 describe("coverage other case", () => {
   beforeEach(async () => {
@@ -79,7 +79,7 @@ describe("coverage other case", () => {
       ?.getAttribute("data");
 
     if (globalThis.MutationObserver) {
-      assert.equal(
+      asserts.assertEquals(
         svgUrl,
         "//kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
       );

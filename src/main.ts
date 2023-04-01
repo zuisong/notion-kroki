@@ -1,6 +1,6 @@
 import { _debug, debounce } from "$/src/common/utils.ts";
 import type { KrokiOption } from "./@types/types.d.ts";
-import type { } from "@violentmonkey/types";
+import type {} from "@violentmonkey/types";
 const defaultConfig: KrokiOption = {
   serverPath: "//kroki.io/",
 };
@@ -20,8 +20,10 @@ export function main(element: HTMLElement | null = null) {
       if (!data?.trim()) continue;
       const svgUrl = plant(data, type, defaultConfig);
       const div = document.createElement("div", undefined);
-      div.setAttribute("style",
-        "display: flex; flex-direction: row; place-content: center;");
+      div.setAttribute(
+        "style",
+        "display: flex; flex-direction: row; place-content: center;",
+      );
       div.setAttribute("notion-kroki", "true");
       div.innerHTML =
         `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;

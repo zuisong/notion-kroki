@@ -54,5 +54,11 @@ ${document.documentElement.outerHTML}
 
   console.log("render svgUrl ->", svgUrl);
 
+  await sleep(1000);
+
   await tearDown();
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
