@@ -1,6 +1,8 @@
 import { delay } from "deno_std/async/delay.ts";
 import type {} from "$/src/@types/types.d.ts";
 import { requiredLibs } from "$/src/userscript-meta.ts";
+import { DOMParser } from "deno-dom-wasm";
+
 export async function init() {
   const doc = new DOMParser().parseFromString(
     `
@@ -35,8 +37,3 @@ export async function tearDown() {
   }
   await delay(500);
 }
-
-import {
-  DOMParser,
-  Element,
-} from "https://deno.land/x/deno_dom@v0.1.37/deno-dom-wasm.ts";

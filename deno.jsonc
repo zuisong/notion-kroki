@@ -1,11 +1,13 @@
 {
   "$schema": "https://cdn.jsdelivr.net/gh/denoland/deno/cli/schemas/config-file.v1.json",
   "imports": {
-    "deno_std/": "https://deno.land/std@0.181.0/",
-    "esbuild":"https://deno.land/x/esbuild@v0.17.12/mod.js",
-    "fflate": "https://esm.sh/fflate@0.7.4?pin=v112&target=es2022",
-    "json5": "https://esm.sh/json5@2.2.3?pin=v112&target=es2022",
-    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=v112&target=es2021",
+    "deno_std/": "https://deno.land/std@0.182.0/",
+    "deno-dom-wasm": "https://deno.land/x/deno_dom@v0.1.37/deno-dom-wasm.ts",
+    "esbuild": "https://deno.land/x/esbuild@v0.17.15/mod.js",
+    "https://deno.land/x/esbuild/mod.d.ts": "https://deno.land/x/esbuild@v0.17.15/mod.d.ts",
+    "fflate": "https://esm.sh/fflate@0.7.4?pin=v113&target=es2022",
+    "json5": "https://esm.sh/json5@2.2.3?pin=v113&target=es2022",
+    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=v113&target=es2022",
     "@violentmonkey/types": "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts",
     "$/": "./"
   },

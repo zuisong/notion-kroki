@@ -20,13 +20,16 @@
 var __pow = Math.pow;
 
 // src/common/utils.ts
-var debounce = (fn, ms) => {
+function debounce(func, wait) {
   let timeoutId;
-  return function(...args) {
+  return function debounced(...args) {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+    timeoutId = setTimeout(() => {
+      timeoutId = void 0;
+      func(...args);
+    }, wait);
   };
-};
+}
 function _debug(...data) {
   if (isDebugMode()) {
     console.log(...data);

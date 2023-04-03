@@ -1,12 +1,20 @@
-// deno-lint-ignore ban-types
-export const debounce = (fn: Function, ms: number) => {
-  let timeoutId: ReturnType<typeof setTimeout>;
+export function debounce<
   // deno-lint-ignore no-explicit-any
-  return function (this: any, ...args: any[]) {
+  T extends (...args: any[]) => any,
+  P extends Parameters<T>,
+>(
+  func: T,
+  wait: number,
+): (...args: P) => void {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  return function debounced(...args: P): void {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+    timeoutId = setTimeout(() => {
+      timeoutId = undefined;
+      func(...args);
+    }, wait);
   };
-};
+}
 
 // deno-lint-ignore no-explicit-any
 export function _debug(...data: any[]): void {
