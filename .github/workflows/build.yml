@@ -13,11 +13,7 @@ jobs:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     strategy:
       matrix:
-        os: [
-            ubuntu-latest,
-            # windows-latest,
-            macOS-latest,
-          ]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
       - run: git config --global core.autocrlf false
@@ -26,9 +22,6 @@ jobs:
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
-
-      - name: Load .env file
-        uses: xom9ikk/dotenv@v2
 
       - name: Run build
         run: deno task build
