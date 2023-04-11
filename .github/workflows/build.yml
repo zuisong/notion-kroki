@@ -26,7 +26,5 @@ jobs:
       - name: Run build
         run: deno task build
 
-      - name: "codecov coverage"
+      - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
-        with:
-          files: coverage/lcov.info
