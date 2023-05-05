@@ -84,7 +84,7 @@ export function init_listener() {
 const render = debounce(main, 100);
 
 function check(mutations: MutationRecord[], _observer: MutationObserver) {
-  _debug("mutations", mutations);
+  // _debug("mutations", mutations);
   mutations.forEach((mutation) => {
     render();
   });

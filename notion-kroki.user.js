@@ -113,7 +113,6 @@ function init_listener() {
 }
 var render = debounce(main, 100);
 function check(mutations, _observer) {
-  _debug("mutations", mutations);
   mutations.forEach((mutation) => {
     render();
   });

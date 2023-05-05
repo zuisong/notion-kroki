@@ -1,6 +1,6 @@
 import * as asserts from "deno_std/testing/asserts.ts";
 import { beforeEach, describe, it } from "deno_std/testing/bdd.ts";
-import { init, tearDown } from "./common/jdsom-env-init.ts";
+import { init, tearDown } from "./common/dom-env-init.ts";
 
 describe("base case", () => {
   beforeEach(async () => {
