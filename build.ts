@@ -1,4 +1,4 @@
-import { bundle } from "https://deno.land/x/emit@0.23.1/mod.ts";
+import { bundle } from "https://bundle.deno.dev/https://deno.land/x/emit@0.23.1/mod.ts";
 import json5 from "json5";
 
 const { code } = await bundle(
@@ -7,11 +7,10 @@ const { code } = await bundle(
     importMap: json5.parse(Deno.readTextFileSync("./deno.jsonc")),
   },
 );
-//@deno-types="https://esm.sh/v124/@types/babel__standalone@^7/index.d.ts"
-import babel from "npm:@babel/standalone@^7";
+import {transform} from "babel__standalone";
 import { meta } from "./build-common.ts";
 
-const transformedCode = babel.transform(
+const transformedCode = transform(
   code,
   {
     filename: "result.js",
