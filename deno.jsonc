@@ -1,12 +1,10 @@
 {
   "$schema": "https://cdn.jsdelivr.net/gh/denoland/deno/cli/schemas/config-file.v1.json",
   "imports": {
-    "deno_std/": "https://deno.land/std@0.185.0/",
-    "esbuild": "https://deno.land/x/esbuild@v0.17.18/mod.js",
-    "https://deno.land/x/esbuild/mod.d.ts": "https://deno.land/x/esbuild@v0.17.18/mod.d.ts",
-    "fflate": "https://esm.sh/fflate@0.7.4?pin=v118&target=es2022",
-    "json5": "https://esm.sh/json5@2.2.3?pin=v118&target=es2022",
-    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=v118&target=es2022",
+    "deno_std/": "https://deno.land/std@0.190.0/",
+    "fflateType": "https://unpkg.com/fflate@0.8.0/lib/index.d.ts",
+    "json5": "https://esm.sh/json5@2.2.3?pin=124&target=es2022",
+    "userscript-metadata-generator": "https://esm.sh/userscript-metadata-generator@0.0.11?bundle&dev&pin=124&target=es2022",
     "@violentmonkey/types": "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts",
     "$/": "./"
   },
@@ -22,8 +20,8 @@
   },
   "lock": true,
   "tasks": {
-    "build": "deno task clean && deno task test-cov && deno task esbuild ",
-    "esbuild": "deno run -A esbuild.config.ts && cp dist/notion-kroki.js notion-kroki.user.js",
+    "build": "deno task clean && deno task test-cov && deno task bundle",
+    "bundle": "deno run -A build.ts",
     "clean": "rm -rf dist/ coverage/",
     "fmt": "deno fmt",
     "test-cov": "deno test --coverage=coverage/json --no-check -A && deno coverage coverage/json --lcov --output=coverage/lcov.info",
@@ -72,5 +70,5 @@
       "test/"
     ],
     "exclude": []
-  },
+  }
 }

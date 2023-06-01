@@ -12,95 +12,99 @@
 // @match             *://*.notion.site/*
 // @match             *://*.super.site/*
 // @supportURL        https://github.com/zuisong/notion-kroki/issues
-// @require           https://unpkg.com/fflate@0.7.4/umd/index.js
+// @require           https://unpkg.com/fflate@0.8.0/umd/index.js
 // @run-at            document-idle
 // @author            zuisong
 // @description       Render notion code block as graph by kroki
 // ==/UserScript==
-var __pow = Math.pow;
+"use strict";
 
-// src/common/utils.ts
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function debounce(func, wait) {
-  let timeoutId;
-  return function debounced(...args) {
+  var timeoutId;
+  return function debounced() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      timeoutId = void 0;
+      timeoutId = undefined;
       func(...args);
     }, wait);
   };
 }
-function _debug(...data) {
+function _debug() {
   if (isDebugMode()) {
-    console.log(...data);
+    console.log(...arguments);
   }
 }
 function isDebugMode() {
   return !!localStorage.getItem("debug");
 }
-
-// src/main.ts
 var defaultConfig = {
   serverPath: "//kroki.io/"
 };
-function main(element = null) {
-  var _a, _b, _c, _d, _e, _f, _g, _h;
-  const blocks = Array.from(
-    (element != null ? element : document.body).querySelectorAll("*")
-  ).filter((it) => {
-    var _a2;
-    return (_a2 = it == null ? void 0 : it.innerHTML) == null ? void 0 : _a2.startsWith("//kroki ");
+function main() {
+  var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var blocks = Array.from((element !== null && element !== void 0 ? element : document.body).querySelectorAll("*")).filter(it => {
+    var _it$innerHTML;
+    return it === null || it === void 0 ? void 0 : (_it$innerHTML = it.innerHTML) === null || _it$innerHTML === void 0 ? void 0 : _it$innerHTML.startsWith("//kroki ");
   });
-  for (const codeDiv of blocks) {
-    if ((_a = codeDiv.textContent) == null ? void 0 : _a.startsWith("//kroki")) {
-      const lines = codeDiv.textContent.split("\n");
-      const type = lines[0].replace("//kroki", "").trim();
-      if (!(type == null ? void 0 : type.trim()))
-        continue;
-      const data = lines.filter((_value, index) => index !== 0).join("\n");
-      if (!(data == null ? void 0 : data.trim()))
-        continue;
-      const svgUrl = plant(data, type, defaultConfig);
-      const div = document.createElement("div", void 0);
-      div.setAttribute(
-        "style",
-        "display: flex; flex-direction: row; place-content: center;"
-      );
-      div.setAttribute("notion-kroki", "true");
-      div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
-      const preCreatedNode = (_c = (_b = codeDiv.parentElement) == null ? void 0 : _b.parentElement) == null ? void 0 : _c.querySelector("div[notion-kroki]");
-      if (preCreatedNode) {
-        const preSvgUrl = (_d = preCreatedNode.firstElementChild) == null ? void 0 : _d.getAttribute(
-          "data"
-        );
-        _debug(`preSvgUrl:${preSvgUrl}`);
-        _debug(`svgUrl:${svgUrl}`);
-        if (preSvgUrl === svgUrl) {
-          continue;
-        } else {
-          (_f = (_e = codeDiv.parentElement) == null ? void 0 : _e.parentElement) == null ? void 0 : _f.removeChild(
-            preCreatedNode
-          );
+  var _iterator = _createForOfIteratorHelper(blocks),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var _codeDiv$textContent;
+      var codeDiv = _step.value;
+      if ((_codeDiv$textContent = codeDiv.textContent) !== null && _codeDiv$textContent !== void 0 && _codeDiv$textContent.startsWith("//kroki")) {
+        var _codeDiv$parentElemen, _codeDiv$parentElemen2, _codeDiv$parentElemen5, _codeDiv$parentElemen6;
+        var lines = codeDiv.textContent.split("\n");
+        var type = lines[0].replace("//kroki", "").trim();
+        if (!(type !== null && type !== void 0 && type.trim())) continue;
+        var data = lines.filter((_value, index) => index !== 0).join("\n");
+        if (!(data !== null && data !== void 0 && data.trim())) continue;
+        var svgUrl = plant(data, type, defaultConfig);
+        var div = document.createElement("div", undefined);
+        div.setAttribute("style", "display: flex; flex-direction: row; place-content: center;");
+        div.setAttribute("notion-kroki", "true");
+        div.innerHTML = "<object type=\"image/svg+xml\" style=\"max-width: 100%;\" data=\"".concat(svgUrl, "\" />");
+        var preCreatedNode = (_codeDiv$parentElemen = codeDiv.parentElement) === null || _codeDiv$parentElemen === void 0 ? void 0 : (_codeDiv$parentElemen2 = _codeDiv$parentElemen.parentElement) === null || _codeDiv$parentElemen2 === void 0 ? void 0 : _codeDiv$parentElemen2.querySelector("div[notion-kroki]");
+        if (preCreatedNode) {
+          var _preCreatedNode$first;
+          var preSvgUrl = (_preCreatedNode$first = preCreatedNode.firstElementChild) === null || _preCreatedNode$first === void 0 ? void 0 : _preCreatedNode$first.getAttribute("data");
+          _debug("preSvgUrl:".concat(preSvgUrl));
+          _debug("svgUrl:".concat(svgUrl));
+          if (preSvgUrl === svgUrl) {
+            continue;
+          } else {
+            var _codeDiv$parentElemen3, _codeDiv$parentElemen4;
+            (_codeDiv$parentElemen3 = codeDiv.parentElement) === null || _codeDiv$parentElemen3 === void 0 ? void 0 : (_codeDiv$parentElemen4 = _codeDiv$parentElemen3.parentElement) === null || _codeDiv$parentElemen4 === void 0 ? void 0 : _codeDiv$parentElemen4.removeChild(preCreatedNode);
+          }
         }
+        (_codeDiv$parentElemen5 = codeDiv.parentElement) === null || _codeDiv$parentElemen5 === void 0 ? void 0 : (_codeDiv$parentElemen6 = _codeDiv$parentElemen5.parentElement) === null || _codeDiv$parentElemen6 === void 0 ? void 0 : _codeDiv$parentElemen6.appendChild(div);
       }
-      (_h = (_g = codeDiv.parentElement) == null ? void 0 : _g.parentElement) == null ? void 0 : _h.appendChild(div);
     }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
   }
 }
 function textEncode(str) {
   return new TextEncoder().encode(str);
 }
 function plant(content, type, config) {
-  _debug(`kroki render type: ${type}`);
-  _debug(`kroki render content:
-${content}`);
-  const urlPrefix = `${(config == null ? void 0 : config.serverPath) + type}/svg/`;
-  const data = textEncode(content);
-  const compressed = strFromU8(
-    fflate.zlibSync(data, { level: 9 })
-  );
-  const result = btoa(compressed).replace(/\+/g, "-").replace(/\//g, "_");
-  const svgUrl = urlPrefix + result;
+  _debug("kroki render type: ".concat(type));
+  _debug("kroki render content:\n".concat(content));
+  var urlPrefix = "".concat((config === null || config === void 0 ? void 0 : config.serverPath) + type, "/svg/");
+  var data = textEncode(content);
+  var compressed = strFromU8(fflate.zlibSync(data, {
+    level: 9
+  }));
+  var result = btoa(compressed).replace(/\+/g, "-").replace(/\//g, "_");
+  var svgUrl = urlPrefix + result;
   return svgUrl;
 }
 function init_listener() {
@@ -113,19 +117,17 @@ function init_listener() {
 }
 var render = debounce(main, 100);
 function check(mutations, _observer) {
-  mutations.forEach((mutation) => {
+  mutations.forEach(mutation => {
     render();
   });
 }
 function strFromU8(dat) {
-  let r = "";
-  const s = __pow(2, 16);
-  for (let i = 0; i < dat.length; i += s) {
+  var r = "";
+  var s = Math.pow(2, 16);
+  for (var i = 0; i < dat.length; i += s) {
     r += String.fromCharCode(...dat.subarray(i, i + s));
   }
   return r;
 }
-
-// src/index.ts
 main();
 init_listener();
