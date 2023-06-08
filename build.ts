@@ -16,7 +16,7 @@ const transformedCode = transform(
     filename: "result.js",
     presets: ["env"],
     targets: [
-      "since 2017"
+      "since 2018"
     ],
   },
 ).code ?? "";
