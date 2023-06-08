@@ -1,25 +1,24 @@
-import { bundle } from "https://bundle.deno.dev/https://deno.land/x/emit@0.23.1/mod.ts";
-import json5 from "json5";
-
+import { bundle } from "https://bundle.deno.dev/https://deno.land/x/emit@0.24.0/mod.ts";
+import * as JSONC from "deno_std/jsonc/mod.ts"
 const { code } = await bundle(
   new URL("./src/index.ts", import.meta.url),
   {
-    importMap: json5.parse(Deno.readTextFileSync("./deno.jsonc")),
+    importMap: JSONC.parse(Deno.readTextFileSync("./deno.jsonc")),
   },
 );
-import {transform} from "babel__standalone";
 import { meta } from "./build-common.ts";
-
-const transformedCode = transform(
-  code,
-  {
-    filename: "result.js",
-    presets: ["env"],
-    targets: [
-      "since 2018"
-    ],
+import { transformSync } from "npm:@swc/wasm";
+const transformedCode =   transformSync(code, {
+  minify: false,
+  env: {
+    targets: {
+      chrome: "65",
+      firefox: "65",
+      safari :"13",
+    },
   },
-).code ?? "";
+}).code;
+
 
 Deno.writeTextFileSync(
   "./notion-kroki.user.js",
