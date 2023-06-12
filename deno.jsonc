@@ -1,7 +1,7 @@
 {
   "$schema": "https://github.com/denoland/deno/raw/main/cli/schemas/config-file.v1.json",
   "imports": {
-    "deno_std/": "https://deno.land/std@0.190.0/",
+    "deno_std/": "https://deno.land/std@0.191.0/",
     "fflateType": "https://unpkg.com/fflate@0.8.0/lib/index.d.ts",
     "userscript-metadata-generator": "https://esm.sh/v125/userscript-metadata-generator@0.2.3",
     "@violentmonkey/types": "https://unpkg.com/@violentmonkey/types@0.1.5/index.d.ts",
