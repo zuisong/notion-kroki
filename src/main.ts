@@ -80,9 +80,7 @@ const render = debounce(main, 100);
 
 function check(mutations: MutationRecord[], _observer: MutationObserver) {
   // _debug("mutations", mutations);
-  mutations.forEach((mutation) => {
-    render();
-  });
+  render();
 }
 
 function strFromU8(dat: Uint8Array) {

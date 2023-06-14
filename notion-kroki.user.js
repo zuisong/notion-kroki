@@ -98,9 +98,7 @@ function init_listener() {
 }
 const render = debounce(main, 100);
 function check(mutations, _observer) {
-    mutations.forEach((mutation)=>{
-        render();
-    });
+    render();
 }
 function strFromU8(dat) {
     let r = "";
