@@ -43,7 +43,7 @@ ${document.documentElement.outerHTML}
 
   asserts.assertEquals(
     svgUrl,
-    "//kroki.io/plantuml/svg/eNpTgINEXbskLhgHACmYA3k=",
+    "https://kroki.io/plantuml/svg/eNpTgINEXbskLhgHACmYA3k=",
   );
 
   console.log("render svgUrl ->", svgUrl);

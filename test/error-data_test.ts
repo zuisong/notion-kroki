@@ -75,7 +75,7 @@ it(baseTest, "change content auto render", async () => {
   if (globalThis.MutationObserver) {
     asserts.assertEquals(
       svgUrl,
-      "//kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
+      "https://kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
     );
   }
 });

@@ -6,7 +6,7 @@
 // @source            https://github.com/zuisong/notion-kroki
 // @contributionURL   https://github.com/zuisong/notion-kroki
 // @grant             none
-// @version           1.2.0
+// @version           1.3.0
 // @license           MIT
 // @match             *://www.notion.so/*
 // @match             *://*.notion.site/*
@@ -42,11 +42,11 @@ function isDebugMode() {
     return !!localStorage.getItem("debug");
 }
 const defaultConfig = {
-    serverPath: "//kroki.io/"
+    serverPath: "https://kroki.io/"
 };
 function main() {
     let element = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
-    const blocks = Array.from((element || document.body).querySelectorAll("*")).filter((it)=>it.textContent.startsWith("//kroki "));
+    const blocks = Array.from((element || document.body).querySelectorAll("*")).filter((it)=>it.innerHTML.startsWith("//kroki "));
     for (const codeDiv of blocks){
         const lines = codeDiv.textContent.split("\n");
         const type = lines[0].replace("//kroki", "").trim();

@@ -2,13 +2,13 @@
 import { _debug, debounce } from "$/src/common/utils.ts";
 import type { KrokiOption } from "./@types/types.d.ts";
 const defaultConfig: KrokiOption = {
-  serverPath: "//kroki.io/",
+  serverPath: "https://kroki.io/",
 };
 
 export function main(element: HTMLElement | null = null) {
   const blocks: HTMLElement[] = Array
     .from((element || document.body).querySelectorAll("*"))
-    .filter((it) => it.textContent!!.startsWith("//kroki ")) as HTMLElement[];
+    .filter((it) => it.innerHTML!!.startsWith("//kroki ")) as HTMLElement[];
   for (const codeDiv of blocks) {
     const lines = codeDiv.textContent!!.split("\n");
     const type = lines[0].replace("//kroki", "").trim();
