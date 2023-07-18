@@ -1,13 +1,12 @@
 export function debounce<
-  // deno-lint-ignore no-explicit-any
-  T extends (...args: any[]) => any,
+  T extends (...args: Parameters<typeof console.log>) => void,
   P extends Parameters<T>,
 >(
   func: T,
   wait: number,
 ): (...args: P) => void {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
-  return function debounced(...args: P): void {
+  return (...args: P) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       timeoutId = undefined;
@@ -16,8 +15,7 @@ export function debounce<
   };
 }
 
-// deno-lint-ignore no-explicit-any
-export function _debug(...data: any[]): void {
+export function _debug(...data: Parameters<typeof console.log>): void {
   if (isDebugMode()) {
     console.log(...data);
   }

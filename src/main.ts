@@ -1,4 +1,3 @@
-// deno-lint-ignore-file no-extra-non-null-assertion
 import { _debug, debounce } from "$/src/common/utils.ts";
 import type { KrokiOption } from "./@types/types.d.ts";
 const defaultConfig: KrokiOption = {
@@ -8,9 +7,9 @@ const defaultConfig: KrokiOption = {
 export function main(element: HTMLElement | null = null) {
   const blocks: HTMLElement[] = Array
     .from((element || document.body).querySelectorAll("*"))
-    .filter((it) => it.innerHTML!!.startsWith("//kroki ")) as HTMLElement[];
+    .filter((it) => it.innerHTML!.startsWith("//kroki ")) as HTMLElement[];
   for (const codeDiv of blocks) {
-    const lines = codeDiv.textContent!!.split("\n");
+    const lines = codeDiv.textContent!.split("\n");
     const type = lines[0].replace("//kroki", "").trim();
     if (!type.trim()) continue;
     const data = lines.filter((_value, index) => index !== 0).join("\n");
@@ -25,12 +24,12 @@ export function main(element: HTMLElement | null = null) {
     div.innerHTML =
       `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
 
-    const parentElement = codeDiv.parentElement!!.parentElement!!;
+    const parentElement = codeDiv.parentElement!.parentElement!;
     const preCreatedNode = parentElement.querySelector(
       "div[notion-kroki]",
     );
     if (preCreatedNode) {
-      const preSvgUrl = preCreatedNode.firstElementChild!!.getAttribute(
+      const preSvgUrl = preCreatedNode.firstElementChild!.getAttribute(
         "data",
       );
       _debug(`preSvgUrl:${preSvgUrl}`);
@@ -54,7 +53,7 @@ function plant(content: string, type: string, config: KrokiOption) {
   _debug(`kroki render type: ${type}`);
   _debug(`kroki render content:\n${content}`);
 
-  const urlPrefix = `${config!!.serverPath + type}/svg/`;
+  const urlPrefix = `${config!.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
   const compressed: string = strFromU8(
     fflate.zlibSync(data, { level: 9 }),
