@@ -7,7 +7,7 @@ const defaultConfig: KrokiOption = {
 export function main(element: HTMLElement | null = null) {
   const blocks: HTMLElement[] = Array
     .from((element || document.body).querySelectorAll("*"))
-    .filter((it) => it.innerHTML!.startsWith("//kroki ")) as HTMLElement[];
+    .filter((it) => it.innerHTML.trim().startsWith("//kroki ")) as HTMLElement[];
   for (const codeDiv of blocks) {
     const lines = codeDiv.textContent!.split("\n");
     const type = lines[0].replace("//kroki", "").trim();

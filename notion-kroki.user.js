@@ -46,7 +46,7 @@ const defaultConfig = {
 };
 function main() {
     let element = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
-    const blocks = Array.from((element || document.body).querySelectorAll("*")).filter((it)=>it.innerHTML.startsWith("//kroki "));
+    const blocks = Array.from((element || document.body).querySelectorAll("*")).filter((it)=>it.innerHTML.trim().startsWith("//kroki "));
     for (const codeDiv of blocks){
         const lines = codeDiv.textContent.split("\n");
         const type = lines[0].replace("//kroki", "").trim();
