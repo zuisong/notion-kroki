@@ -1,9 +1,12 @@
-import { userscriptMetadataGenerator, Metadata } from "userscript-metadata-generator";
+import {
+  Metadata,
+  userscriptMetadataGenerator,
+} from "userscript-metadata-generator";
 import { requiredLibs } from "$/src/userscript-meta.ts";
 
 export function meta() {
   const VERSION = JSON.parse(Deno.readTextFileSync("./package.json")).version;
-  const metadata: Metadata  = {
+  const metadata: Metadata = {
     name: "notion-kroki",
     namespace: "https://github.com/zuisong/notion-kroki",
     homepage: "https://github.com/zuisong/notion-kroki",

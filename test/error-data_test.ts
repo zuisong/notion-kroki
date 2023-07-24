@@ -1,7 +1,7 @@
 import { delay } from "deno_std/async/delay.ts";
 import { it } from "deno_std/testing/bdd.ts";
 import { baseTest } from "$/test/common/base-test.ts";
-import * as asserts from "deno_std/testing/asserts.ts";
+import * as asserts from "deno_std/assert/mod.ts";
 
 it(baseTest, "render skip error data", async () => {
   localStorage.setItem("debug", "1");
@@ -12,7 +12,7 @@ it(baseTest, "render skip error data", async () => {
   <div>
     <div>
       <div>
-        <p id="kroki-code">//kroki plantuml
+        <p id="kroki-code">//kroki 
           a->c
         </p>
       </div>
@@ -23,11 +23,12 @@ it(baseTest, "render skip error data", async () => {
 `;
 
   const { main } = await import("../src/main.ts");
-  document.getElementById("kroki-code")!!.textContent = "//kroki ";
+  main();
+  document.getElementById("kroki-code")!.textContent = "//kroki ";
   main();
   await delay(300);
 
-  document.getElementById("kroki-code")!!.textContent = `//kroki plantuml
+  document.getElementById("kroki-code")!.textContent = `//kroki plantuml
 
 `;
   main();
@@ -56,11 +57,11 @@ it(baseTest, "change content auto render", async () => {
   main();
   init_listener();
   await delay(300);
-  document.getElementById("kroki-code")!!.textContent = `//kroki plantuml
+  document.getElementById("kroki-code")!.textContent = `//kroki plantuml
     a->b
     `;
   await delay(300);
-  document.getElementById("kroki-code")!!.textContent = `//kroki plantuml
+  document.getElementById("kroki-code")!.textContent = `//kroki plantuml
 
 `;
 
@@ -73,7 +74,7 @@ it(baseTest, "change content auto render", async () => {
     ?.getAttribute("data");
 
   if (globalThis.MutationObserver) {
-    asserts.assertEquals(
+    asserts.equal(
       svgUrl,
       "https://kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
     );

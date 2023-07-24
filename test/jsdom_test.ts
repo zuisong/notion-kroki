@@ -1,4 +1,4 @@
-import * as asserts from "deno_std/testing/asserts.ts";
+import * as asserts from "deno_std/assert/mod.ts";
 import { it } from "deno_std/testing/bdd.ts";
 import { baseTest } from "$/test/common/base-test.ts";
 
@@ -31,7 +31,7 @@ ${document.documentElement.outerHTML}
 
   await import("../src/index.ts");
 
-  document.getElementById("change")!!.textContent = "changed";
+  document.getElementById("change")!.textContent = "changed";
 
   console.log(`
 rendered html is  ------
@@ -41,7 +41,7 @@ ${document.documentElement.outerHTML}
   const svgUrl = document.querySelector("div[notion-kroki]")?.firstElementChild
     ?.getAttribute("data");
 
-  asserts.assertEquals(
+  asserts.equal(
     svgUrl,
     "https://kroki.io/plantuml/svg/eNpTgINEXbskLhgHACmYA3k=",
   );

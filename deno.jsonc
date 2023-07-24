@@ -1,6 +1,6 @@
 {
   "imports": {
-    "deno_std/": "https://deno.land/std@0.194.0/",
+    "deno_std/": "https://deno.land/std@0.195.0/",
     "fflateType": "https://unpkg.com/fflate@0.8.0/lib/index.d.ts",
     "userscript-metadata-generator": "https://raw.githubusercontent.com/trim21/userscript-metadata-generator/v0.2.4/src/index.ts",
     "$/": "./"
@@ -27,8 +27,9 @@
   "lint": {
     "include": [
       "src/",
-      "build.ts",
-      "dev_deps.ts"
+      "test/",
+      "*.ts",
+      "*.js*"
     ],
     "rules": {
       "tags": [
@@ -44,7 +45,10 @@
   },
   "fmt": {
     "include": [
-      "*/**/*.ts",
+      "src/",
+      "test/",
+      "*.ts",
+      "*.js*",
       "*.json*",
       "README.md"
     ]

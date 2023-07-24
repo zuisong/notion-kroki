@@ -1,5 +1,5 @@
+//@deno-types="https://deno.land/x/emit@0.24.0/mod.ts"
 import { bundle } from "https://bundle.deno.dev/https://deno.land/x/emit@0.24.0/mod.ts";
-// import { bundle } from "https://deno.land/x/emit@0.24.0/mod.ts"
 import * as JSONC from "deno_std/jsonc/mod.ts";
 const { code } = await bundle(
   new URL("./src/index.ts", import.meta.url),
