@@ -1,6 +1,11 @@
 import { rollup, type RollupOptions } from "esm.sh/rollup@3.26.3?bundle";
 import { transform } from "npm:@swc/wasm@1.3.70";
 import { meta } from "$/build-common.ts";
+
+import * as JSONC from "deno_std/jsonc/mod.ts";
+import { importMapResolve } from "$/rollup-import-maps-plugin.ts";
+const { imports, scopes } = JSONC.parse(Deno.readTextFileSync("./deno.jsonc"));
+
 const config: RollupOptions = {
   input: ["./src/index.ts"],
   output: {
@@ -10,6 +15,9 @@ const config: RollupOptions = {
     banner: meta(),
   },
   plugins: [
+    importMapResolve({
+      importMap: { imports, scopes },
+    }),
     {
       name: "swc",
       transform: (code) =>

@@ -6,6 +6,7 @@
     "userscript-metadata-generator": "https://raw.githubusercontent.com/trim21/userscript-metadata-generator/v0.2.4/src/index.ts",
     "$/": "./"
   },
+  "scopes": {},
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
