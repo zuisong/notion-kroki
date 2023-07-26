@@ -2,7 +2,7 @@ import {
   Metadata,
   userscriptMetadataGenerator,
 } from "userscript-metadata-generator";
-import { requiredLibs } from "$/src/userscript-meta.ts";
+import { requiredLibs } from "./src/userscript-meta.ts";
 
 export function meta() {
   const VERSION = JSON.parse(Deno.readTextFileSync("./package.json")).version;

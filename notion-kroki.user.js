@@ -41,6 +41,7 @@ function _debug() {
 function isDebugMode() {
     return !!localStorage.getItem("debug");
 }
+
 const defaultConfig = {
     serverPath: "https://kroki.io/"
 };
@@ -57,13 +58,13 @@ function main() {
         const div = document.createElement("div", undefined);
         div.setAttribute("style", "display: flex; flex-direction: row; place-content: center;");
         div.setAttribute("notion-kroki", "true");
-        div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
+        div.innerHTML = '<object type="image/svg+xml" style="max-width: 100%;" data="'.concat(svgUrl, '" />');
         const parentElement = codeDiv.parentElement.parentElement;
         const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
         if (preCreatedNode) {
             const preSvgUrl = preCreatedNode.firstElementChild.getAttribute("data");
-            _debug(`preSvgUrl:${preSvgUrl}`);
-            _debug(`svgUrl:${svgUrl}`);
+            _debug("preSvgUrl:".concat(preSvgUrl));
+            _debug("svgUrl:".concat(svgUrl));
             if (preSvgUrl === svgUrl) {
                 continue;
             } else {
@@ -77,9 +78,9 @@ function textEncode(str) {
     return new TextEncoder().encode(str);
 }
 function plant(content, type, config) {
-    _debug(`kroki render type: ${type}`);
-    _debug(`kroki render content:\n${content}`);
-    const urlPrefix = `${config.serverPath + type}/svg/`;
+    _debug("kroki render type: ".concat(type));
+    _debug("kroki render content:\n".concat(content));
+    const urlPrefix = "".concat(config.serverPath + type, "/svg/");
     const data = textEncode(content);
     const compressed = strFromU8(fflate.zlibSync(data, {
         level: 9
@@ -98,6 +99,7 @@ function init_listener() {
 }
 const render = debounce(main, 100);
 function check(mutations, _observer) {
+    // _debug("mutations", mutations);
     render();
 }
 function strFromU8(dat) {
@@ -108,6 +110,6 @@ function strFromU8(dat) {
     }
     return r;
 }
+
 main();
 init_listener();
-
