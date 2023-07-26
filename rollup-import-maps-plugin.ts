@@ -1,11 +1,11 @@
 import path from "node:path";
 import { fileURLToPath, pathToFileURL, URL } from "node:url";
-import {
-  type ImportMap,
+
+import { importMapsResolve, rollup } from "$/deps.ts";
+const {
   parse,
   resolve,
-} from "esm.sh/@import-maps/resolve@2.0.0";
-import { type Plugin } from "esm.sh/rollup@3.26.3?bundle";
+} = importMapsResolve;
 interface ImportMapResolveOptions {
   /**
    * Base URL used when resolving any relative-URL-like address in the import map. The "address" is
@@ -17,7 +17,7 @@ interface ImportMapResolveOptions {
    */
   baseUrl?: string | URL;
 
-  importMap: ImportMap;
+  importMap: importMapsResolve.ImportMap;
 }
 
 /**
@@ -80,5 +80,5 @@ export const importMapResolve = (options: ImportMapResolveOptions) => {
         ? { id: fileURLToPath(resolvedImport!.href), external: false }
         : null;
     },
-  } satisfies Plugin;
+  } satisfies rollup.Plugin;
 };

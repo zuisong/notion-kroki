@@ -1,12 +1,11 @@
-import { rollup, type RollupOptions } from "esm.sh/rollup@3.26.3?bundle";
-import { transform } from "npm:@swc/wasm@1.3.70";
+import { rollup, swc } from "$/deps.ts";
 import { meta } from "$/build-common.ts";
 
 import * as JSONC from "deno_std/jsonc/mod.ts";
 import { importMapResolve } from "$/rollup-import-maps-plugin.ts";
 const { imports, scopes } = JSONC.parse(Deno.readTextFileSync("./deno.jsonc"));
 
-const config: RollupOptions = {
+const config: rollup.RollupOptions = {
   input: ["./src/index.ts"],
   output: {
     sourcemap: false,
@@ -21,7 +20,7 @@ const config: RollupOptions = {
     {
       name: "swc",
       transform: (code) =>
-        transform(code, {
+        swc.transform(code, {
           jsc: {
             parser: {
               syntax: "typescript",
@@ -37,6 +36,6 @@ const config: RollupOptions = {
   ],
 };
 
-const bundle = await rollup(config);
+const bundle = await rollup.rollup(config);
 const output = config.output!;
 await bundle.write(Array.isArray(output) ? output[0] : output);
