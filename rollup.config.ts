@@ -16,7 +16,7 @@ const config: rollup.RollupOptions = {
   plugins: [
     importMapResolve({
       importMap: { imports, scopes },
-    }),
+    }) satisfies rollup.Plugin,
     {
       name: "swc",
       transform: (code) =>

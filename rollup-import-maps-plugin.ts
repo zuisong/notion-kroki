@@ -1,7 +1,6 @@
 import path from "node:path";
 import { fileURLToPath, pathToFileURL, URL } from "node:url";
-
-import { importMapsResolve, rollup } from "$/deps.ts";
+import * as importMapsResolve from "esm.sh/@import-maps/resolve@2.0.0";
 const {
   parse,
   resolve,
@@ -63,7 +62,7 @@ export const importMapResolve = (options: ImportMapResolveOptions) => {
   return {
     name: "import-map-resolve",
 
-    resolveId(source, importer) {
+    resolveId(source: string, importer: string | undefined) {
       // It seems the "script URL" the resolve function expects is supposed to be the URL of the
       // script/module that is importing the source module currently being considered for remapping.
       //
@@ -80,5 +79,5 @@ export const importMapResolve = (options: ImportMapResolveOptions) => {
         ? { id: fileURLToPath(resolvedImport!.href), external: false }
         : null;
     },
-  } satisfies rollup.Plugin;
+  };
 };
