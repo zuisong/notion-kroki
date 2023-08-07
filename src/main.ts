@@ -5,11 +5,9 @@ const defaultConfig: KrokiOption = {
 };
 
 export function main(element: HTMLElement | null = null) {
-  const blocks: HTMLElement[] = Array
-    .from((element || document.body).querySelectorAll("*"))
-    .filter((it) =>
-      it.innerHTML.trim().startsWith("//kroki ")
-    ) as HTMLElement[];
+  const blocks: HTMLElement[] = Array.from(
+    (element || document.body).querySelectorAll("*"),
+  ).filter((it) => it.innerHTML.trim().startsWith("//kroki ")) as HTMLElement[];
   for (const codeDiv of blocks) {
     const lines = codeDiv.textContent!.split("\n");
     const type = lines[0].replace("//kroki", "").trim();
@@ -27,13 +25,9 @@ export function main(element: HTMLElement | null = null) {
       `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
 
     const parentElement = codeDiv.parentElement!.parentElement!;
-    const preCreatedNode = parentElement.querySelector(
-      "div[notion-kroki]",
-    );
+    const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
     if (preCreatedNode) {
-      const preSvgUrl = preCreatedNode.firstElementChild!.getAttribute(
-        "data",
-      );
+      const preSvgUrl = preCreatedNode.firstElementChild!.getAttribute("data");
       _debug(`preSvgUrl:${preSvgUrl}`);
       _debug(`svgUrl:${svgUrl}`);
       if (preSvgUrl === svgUrl) {
@@ -57,9 +51,7 @@ function plant(content: string, type: string, config: KrokiOption) {
 
   const urlPrefix = `${config!.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
-  const compressed: string = strFromU8(
-    fflate.zlibSync(data, { level: 9 }),
-  );
+  const compressed: string = strFromU8(fflate.zlibSync(data, { level: 9 }));
   const result: string = btoa(compressed)
     .replace(/\+/g, "-")
     .replace(/\//g, "_");
@@ -69,7 +61,7 @@ function plant(content: string, type: string, config: KrokiOption) {
 }
 
 export function init_listener() {
-  if (globalThis.MutationObserver) {
+  if (typeof MutationObserver !== typeof undefined) {
     new MutationObserver(check).observe(document, {
       childList: true,
       subtree: true,

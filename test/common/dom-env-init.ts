@@ -1,8 +1,7 @@
 import { delay } from "deno_std/async/delay.ts";
 import { requiredLibs } from "$/src/userscript-meta.ts";
 import { happyDom } from "$/deps.ts";
-
-type Any = Parameters<typeof console.log>[0];
+import { Any } from "$/test/utils.ts";
 
 export async function init() {
   const win = new happyDom.GlobalWindow();

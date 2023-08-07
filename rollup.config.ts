@@ -1,9 +1,11 @@
 import { rollup, swc } from "$/deps.ts";
 import { meta } from "$/build-common.ts";
-
 import * as JSONC from "deno_std/jsonc/mod.ts";
 import { importMapResolve } from "$/rollup-import-maps-plugin.ts";
-const { imports, scopes } = JSONC.parse(Deno.readTextFileSync("./deno.jsonc"));
+import { Any } from "$/test/utils.ts";
+const { imports, scopes } = JSONC.parse(
+  Deno.readTextFileSync("./deno.jsonc"),
+) as Any;
 
 const config: rollup.RollupOptions = {
   input: ["./src/index.ts"],
@@ -14,13 +16,10 @@ const config: rollup.RollupOptions = {
     banner: meta(),
   },
   plugins: [
-    importMapResolve({
-      importMap: { imports, scopes },
-    }) satisfies rollup.Plugin,
     {
       name: "swc",
-      transform: (code) =>
-        swc.transform(code, {
+      transform: async (code) => {
+        const res = await swc.transform(code, {
           jsc: {
             parser: {
               syntax: "typescript",
@@ -28,11 +27,17 @@ const config: rollup.RollupOptions = {
             },
           },
           env: {
+            // mode: "usage",
             targets: ["supports es6-module-dynamic-import"],
           },
           sourceMaps: true,
-        }),
+        });
+        return res;
+      },
     },
+    importMapResolve({
+      importMap: { imports, scopes },
+    }) satisfies rollup.Plugin,
   ],
 };
 

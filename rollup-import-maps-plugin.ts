@@ -1,10 +1,7 @@
 import path from "node:path";
 import { fileURLToPath, pathToFileURL, URL } from "node:url";
 import * as importMapsResolve from "esm.sh/@import-maps/resolve@2.0.0";
-const {
-  parse,
-  resolve,
-} = importMapsResolve;
+const { parse, resolve } = importMapsResolve;
 interface ImportMapResolveOptions {
   /**
    * Base URL used when resolving any relative-URL-like address in the import map. The "address" is

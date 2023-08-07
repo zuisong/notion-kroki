@@ -16,11 +16,7 @@ export function meta() {
     grant: ["none"],
     version: VERSION,
     license: "MIT",
-    match: [
-      "*://www.notion.so/*",
-      "*://*.notion.site/*",
-      "*://*.super.site/*",
-    ],
+    match: ["*://www.notion.so/*", "*://*.notion.site/*", "*://*.super.site/*"],
     supportURL: "https://github.com/zuisong/notion-kroki/issues",
     require: requiredLibs,
     "run-at": "document-idle",

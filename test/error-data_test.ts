@@ -1,7 +1,7 @@
 import { delay } from "deno_std/async/delay.ts";
 import { it } from "deno_std/testing/bdd.ts";
 import { baseTest } from "$/test/common/base-test.ts";
-import * as asserts from "deno_std/assert/mod.ts";
+import { assertEquals } from "deno_std/assert/assert_equals.ts";
 
 it(baseTest, "render skip error data", async () => {
   localStorage.setItem("debug", "1");
@@ -69,12 +69,12 @@ it(baseTest, "change content auto render", async () => {
   await import("../src/main.ts");
   await delay(300);
 
-  const svgUrl = document.querySelector("div[notion-kroki]")
-    ?.firstElementChild
-    ?.getAttribute("data");
+  const svgUrl = document
+    .querySelector("div[notion-kroki]")
+    ?.firstElementChild?.getAttribute("data");
 
   if (globalThis.MutationObserver) {
-    asserts.equal(
+    assertEquals(
       svgUrl,
       "https://kroki.io/plantuml/svg/eNpTAIJEXbskLhADABAOAjk=",
     );

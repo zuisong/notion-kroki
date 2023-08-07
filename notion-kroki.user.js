@@ -90,7 +90,7 @@ function plant(content, type, config) {
     return svgUrl;
 }
 function init_listener() {
-    if (globalThis.MutationObserver) {
+    if (typeof MutationObserver !== typeof undefined) {
         new MutationObserver(check).observe(document, {
             childList: true,
             subtree: true
