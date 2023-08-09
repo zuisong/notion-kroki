@@ -1,7 +1,9 @@
-import path from "node:path";
-import { fileURLToPath, pathToFileURL, URL } from "node:url";
-import * as importMapsResolve from "esm.sh/@import-maps/resolve@2.0.0";
-const { parse, resolve } = importMapsResolve;
+import {
+  fromFileUrl,
+  isAbsolute,
+  toFileUrl,
+} from "deno_std/path/mod.ts";
+import { ImportMap, parse, resolve } from "esm.sh/@import-maps/resolve@2.0.0";
 interface ImportMapResolveOptions {
   /**
    * Base URL used when resolving any relative-URL-like address in the import map. The "address" is
@@ -13,7 +15,7 @@ interface ImportMapResolveOptions {
    */
   baseUrl?: string | URL;
 
-  importMap: importMapsResolve.ImportMap;
+  importMap: ImportMap;
 }
 
 /**
@@ -30,8 +32,8 @@ function convertToUrl(pathOrUrl: string) {
   // be parsed as a URL first. If the given value is an absolute Windows path, then new URL(baseUrl)
   // succeeds with a URL that has a protocol equal to the Windows drive letter, which is not what we
   // want.
-  if (path.isAbsolute(pathOrUrl)) {
-    return pathToFileURL(pathOrUrl);
+  if (isAbsolute(pathOrUrl)) {
+    return toFileUrl(pathOrUrl);
   }
 
   // Next see if the given value is a valid URL. If so, use it as is.
@@ -40,7 +42,7 @@ function convertToUrl(pathOrUrl: string) {
   } catch {
     // Assume it's some sort of relative file system path. pathToFileURL will automatically resolve
     // it absolutely for us.
-    return pathToFileURL(pathOrUrl);
+    return new URL(import.meta.resolve(pathOrUrl));
   }
 }
 
@@ -73,7 +75,7 @@ export const importMapResolve = (options: ImportMapResolveOptions) => {
       // console.log('source', source, 'importer', importer, 'resolvedImport', resolvedImport?.href, 'matched', matched);
 
       return matched
-        ? { id: fileURLToPath(resolvedImport!.href), external: false }
+        ? { id: fromFileUrl(resolvedImport!.href), external: false }
         : null;
     },
   };
