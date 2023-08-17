@@ -1,9 +1,7 @@
-import {
-  fromFileUrl,
-  isAbsolute,
-  toFileUrl,
-} from "deno_std/path/mod.ts";
 import { ImportMap, parse, resolve } from "esm.sh/@import-maps/resolve@2.0.0";
+import { isAbsolute } from "deno_std/path/is_absolute.ts";
+import { toFileUrl } from "deno_std/path/to_file_url.ts";
+import { fromFileUrl } from "deno_std/path/from_file_url.ts";
 interface ImportMapResolveOptions {
   /**
    * Base URL used when resolving any relative-URL-like address in the import map. The "address" is
