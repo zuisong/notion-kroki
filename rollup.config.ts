@@ -1,4 +1,4 @@
-import { rollup, swc } from "$/deps.ts";
+import { esbuild, rollup } from "$/deps.ts";
 import { meta } from "$/build-common.ts";
 import * as JSONC from "deno_std/jsonc/mod.ts";
 import { importMapResolve } from "$/rollup-import-maps-plugin.ts";
@@ -17,22 +17,17 @@ const config: rollup.RollupOptions = {
   },
   plugins: [
     {
-      name: "swc",
-      transform: async (code) => {
-        const res = await swc.transform(code, {
-          jsc: {
-            parser: {
-              syntax: "typescript",
-              decorators: true,
-            },
-          },
-          env: {
-            // mode: "usage",
-            targets: ["supports es6-module-dynamic-import"],
-          },
-          sourceMaps: true,
+      name: "esbuild",
+      transform(code, id) {
+        return esbuild.transform<esbuild.TransformOptions>(code, {
+          sourcefile: id,
+          loader: "ts",
+          format: "esm",
+          treeShaking: true,
+          target: "es6",
+          sourcemap: true,
+          minify: false,
         });
-        return res;
       },
     },
     importMapResolve({

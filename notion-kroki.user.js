@@ -18,97 +18,96 @@
 // @description       Render notion code block as graph by kroki
 // ==/UserScript==
 function debounce(func, wait) {
-    let timeoutId;
-    return function() {
-        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
-            args[_key] = arguments[_key];
-        }
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(()=>{
-            timeoutId = undefined;
-            func(...args);
-        }, wait);
-    };
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      timeoutId = void 0;
+      func(...args);
+    }, wait);
+  };
 }
-function _debug() {
-    for(var _len = arguments.length, data = new Array(_len), _key = 0; _key < _len; _key++){
-        data[_key] = arguments[_key];
-    }
-    if (isDebugMode()) {
-        console.log(...data);
-    }
+function _debug(...data) {
+  if (isDebugMode()) {
+    console.log(...data);
+  }
 }
 function isDebugMode() {
-    return !!localStorage.getItem("debug");
+  return !!localStorage.getItem("debug");
 }
 
+var __pow = Math.pow;
 const defaultConfig = {
-    serverPath: "https://kroki.io/"
+  serverPath: "https://kroki.io/"
 };
-function main() {
-    let element = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
-    const blocks = Array.from((element || document.body).querySelectorAll("*")).filter((it)=>it.innerHTML.trim().startsWith("//kroki "));
-    for (const codeDiv of blocks){
-        const lines = codeDiv.textContent.split("\n");
-        const type = lines[0].replace("//kroki", "").trim();
-        if (!type.trim()) continue;
-        const data = lines.filter((_value, index)=>index !== 0).join("\n");
-        if (!data.trim()) continue;
-        const svgUrl = plant(data, type, defaultConfig);
-        const div = document.createElement("div", undefined);
-        div.setAttribute("style", "display: flex; flex-direction: row; place-content: center;");
-        div.setAttribute("notion-kroki", "true");
-        div.innerHTML = '<object type="image/svg+xml" style="max-width: 100%;" data="'.concat(svgUrl, '" />');
-        const parentElement = codeDiv.parentElement.parentElement;
-        const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
-        if (preCreatedNode) {
-            const preSvgUrl = preCreatedNode.firstElementChild.getAttribute("data");
-            _debug("preSvgUrl:".concat(preSvgUrl));
-            _debug("svgUrl:".concat(svgUrl));
-            if (preSvgUrl === svgUrl) {
-                continue;
-            } else {
-                parentElement.removeChild(preCreatedNode);
-            }
-        }
-        parentElement.appendChild(div);
+function main(element = null) {
+  const blocks = Array.from(
+    (element || document.body).querySelectorAll("*")
+  ).filter((it) => it.innerHTML.trim().startsWith("//kroki "));
+  for (const codeDiv of blocks) {
+    const lines = codeDiv.textContent.split("\n");
+    const type = lines[0].replace("//kroki", "").trim();
+    if (!type.trim())
+      continue;
+    const data = lines.filter((_value, index) => index !== 0).join("\n");
+    if (!data.trim())
+      continue;
+    const svgUrl = plant(data, type, defaultConfig);
+    const div = document.createElement("div", void 0);
+    div.setAttribute(
+      "style",
+      "display: flex; flex-direction: row; place-content: center;"
+    );
+    div.setAttribute("notion-kroki", "true");
+    div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
+    const parentElement = codeDiv.parentElement.parentElement;
+    const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
+    if (preCreatedNode) {
+      const preSvgUrl = preCreatedNode.firstElementChild.getAttribute("data");
+      _debug(`preSvgUrl:${preSvgUrl}`);
+      _debug(`svgUrl:${svgUrl}`);
+      if (preSvgUrl === svgUrl) {
+        continue;
+      } else {
+        parentElement.removeChild(preCreatedNode);
+      }
     }
+    parentElement.appendChild(div);
+  }
 }
 function textEncode(str) {
-    return new TextEncoder().encode(str);
+  return new TextEncoder().encode(str);
 }
 function plant(content, type, config) {
-    _debug("kroki render type: ".concat(type));
-    _debug("kroki render content:\n".concat(content));
-    const urlPrefix = "".concat(config.serverPath + type, "/svg/");
-    const data = textEncode(content);
-    const compressed = strFromU8(fflate.zlibSync(data, {
-        level: 9
-    }));
-    const result = btoa(compressed).replace(/\+/g, "-").replace(/\//g, "_");
-    const svgUrl = urlPrefix + result;
-    return svgUrl;
+  _debug(`kroki render type: ${type}`);
+  _debug(`kroki render content:
+${content}`);
+  const urlPrefix = `${config.serverPath + type}/svg/`;
+  const data = textEncode(content);
+  const compressed = strFromU8(fflate.zlibSync(data, { level: 9 }));
+  const result = btoa(compressed).replace(/\+/g, "-").replace(/\//g, "_");
+  const svgUrl = urlPrefix + result;
+  return svgUrl;
 }
 function init_listener() {
-    if (typeof MutationObserver !== typeof undefined) {
-        new MutationObserver(check).observe(document, {
-            childList: true,
-            subtree: true
-        });
-    }
+  if (typeof MutationObserver !== "undefined") {
+    new MutationObserver(check).observe(document, {
+      childList: true,
+      subtree: true
+    });
+  }
 }
 const render = debounce(main, 100);
 function check(mutations, _observer) {
-    // _debug("mutations", mutations);
-    render();
+  render();
 }
 function strFromU8(dat) {
-    let r = "";
-    const s = 2 ** 15;
-    for(let i = 0; i < dat.length; i += s){
-        r += String.fromCharCode(...dat.subarray(i, i + s));
-    }
-    return r;
+  let r = "";
+  const s = __pow(2, 15);
+  for (let i = 0; i < dat.length; i += s) {
+    r += String.fromCharCode(...dat.subarray(i, i + s));
+  }
+  return r;
 }
 
 main();

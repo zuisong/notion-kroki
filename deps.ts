@@ -1,5 +1,5 @@
-import * as rollup from "npm:rollup@3.28.0";
-import * as swc from "npm:@swc/wasm";
-import * as happyDom from "npm:happy-dom@10.10.2";
+import * as rollup from "npm:rollup";
+import * as esbuild from "npm:esbuild-wasm";
+import * as happyDom from "npm:happy-dom";
 
-export { happyDom, rollup, swc };
+export { esbuild, happyDom, rollup };

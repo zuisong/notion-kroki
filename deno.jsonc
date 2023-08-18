@@ -17,7 +17,8 @@
       "deno.ns"
     ]
   },
-  "lock": true,
+  "lock": false,
+  "nodeModulesDir": false,
   "tasks": {
     "build": "deno task clean && deno task test-cov && deno task bundle",
     "bundle": "deno run -A rollup.config.ts",
