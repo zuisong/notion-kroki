@@ -1,4 +1,4 @@
-import * as fflateAlias from "fflateType";
+import * as fflateAlias from "fflate";
 declare global {
   interface Window {
     fflate: typeof fflateAlias;

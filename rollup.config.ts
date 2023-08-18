@@ -37,8 +37,8 @@ const config: rollup.RollupOptions = {
     },
     importMapResolve({
       importMap: { imports, scopes },
-    }) satisfies rollup.Plugin,
-  ],
+    }),
+  ] satisfies rollup.Plugin[],
 };
 
 const bundle = await rollup.rollup(config);
