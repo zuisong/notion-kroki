@@ -10,7 +10,7 @@ const { imports, scopes } = JSONC.parse(
 const config: rollup.RollupOptions = {
   input: ["./src/index.ts"],
   output: {
-    sourcemap: false,
+    sourcemap: true,
     file: "notion-kroki.user.js",
     format: "module",
     banner: meta(),
