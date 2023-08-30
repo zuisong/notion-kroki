@@ -53,7 +53,7 @@ function main(element = null) {
     if (!data.trim())
       continue;
     const svgUrl = plant(data, type, defaultConfig);
-    const div = document.createElement("div", void 0);
+    const div = document.createElement("div");
     div.setAttribute(
       "style",
       "display: flex; flex-direction: row; place-content: center;"

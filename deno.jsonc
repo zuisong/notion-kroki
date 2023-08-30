@@ -3,8 +3,7 @@
     "deno_std/": "https://deno.land/std@0.198.0/",
     "esm.sh/": "https://esm.sh/v131/",
     "fflate": "npm:fflate@0.8.0",
-    "userscript-metadata-generator": "https://raw.githubusercontent.com/trim21/userscript-metadata-generator/v0.2.4/src/index.ts",
-    "$/": "./"
+    "userscript-metadata-generator": "https://raw.githubusercontent.com/trim21/userscript-metadata-generator/v0.2.4/src/index.ts"
   },
   "scopes": {},
   "compilerOptions": {

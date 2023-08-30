@@ -1,5 +1,5 @@
 import { it } from "deno_std/testing/bdd.ts";
-import { baseTest } from "$/test/common/base-test.ts";
+import { baseTest } from "./common/base-test.ts";
 import { assertEquals } from "deno_std/assert/assert_equals.ts";
 
 it(baseTest, "render docsify normal", async () => {

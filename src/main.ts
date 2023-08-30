@@ -1,4 +1,4 @@
-import { _debug, debounce } from "$/src/common/utils.ts";
+import { _debug, debounce } from "./common/utils.ts";
 import type { KrokiOption } from "./@types/types.d.ts";
 const defaultConfig: KrokiOption = {
   serverPath: "https://kroki.io/",
@@ -15,7 +15,7 @@ export function main(element: HTMLElement | null = null) {
     const data = lines.filter((_value, index) => index !== 0).join("\n");
     if (!data.trim()) continue;
     const svgUrl = plant(data, type, defaultConfig);
-    const div = document.createElement("div", undefined);
+    const div = document.createElement("div");
     div.setAttribute(
       "style",
       "display: flex; flex-direction: row; place-content: center;",

@@ -1,8 +1,8 @@
-import { esbuild, rollup } from "$/deps.ts";
-import { meta } from "$/build-common.ts";
+import { esbuild, rollup } from "./deps.ts";
+import { meta } from "./build-common.ts";
 import * as JSONC from "deno_std/jsonc/mod.ts";
-import { importMapResolve } from "$/rollup-import-maps-plugin.ts";
-import { Any } from "$/test/utils.ts";
+import { importMapResolve } from "./rollup-import-maps-plugin.ts";
+import { Any } from "./test/utils.ts";
 const { imports, scopes } = JSONC.parse(
   Deno.readTextFileSync("./deno.jsonc"),
 ) as Any;
