@@ -4,7 +4,7 @@ import {
 } from "userscript-metadata-generator";
 import { requiredLibs } from "./src/userscript-meta.ts";
 
-export function meta() {
+export function meta(): string {
   const VERSION = JSON.parse(Deno.readTextFileSync("./package.json")).version;
   const metadata: Metadata = {
     name: "notion-kroki",

@@ -1,7 +1,7 @@
+import { assertEquals } from "deno_std/assert/assert_equals.ts";
 import { delay } from "deno_std/async/delay.ts";
 import { it } from "deno_std/testing/bdd.ts";
 import { baseTest } from "./common/base-test.ts";
-import { assertEquals } from "deno_std/assert/assert_equals.ts";
 
 it(baseTest, "render skip error data", async () => {
   // language=HTML

@@ -1,6 +1,6 @@
 import { delay } from "deno_std/async/delay.ts";
-import { requiredLibs } from "../../src/userscript-meta.ts";
 import { happyDom } from "../../deps.ts";
+import { requiredLibs } from "../../src/userscript-meta.ts";
 import { Any } from "../utils.ts";
 
 export async function init() {
