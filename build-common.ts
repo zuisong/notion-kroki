@@ -3,9 +3,8 @@ import {
   userscriptMetadataGenerator,
 } from "userscript-metadata-generator";
 import { requiredLibs } from "./src/userscript-meta.ts";
-
+import packageJson from "./package.json" assert { type: "json" };
 export function meta(): string {
-  const VERSION = JSON.parse(Deno.readTextFileSync("./package.json")).version;
   const metadata: Metadata = {
     name: "notion-kroki",
     namespace: "https://github.com/zuisong/notion-kroki",
@@ -14,7 +13,7 @@ export function meta(): string {
     source: "https://github.com/zuisong/notion-kroki",
     contributionURL: "https://github.com/zuisong/notion-kroki",
     grant: ["none"],
-    version: VERSION,
+    version: packageJson.version,
     license: "MIT",
     match: ["*://www.notion.so/*", "*://*.notion.site/*", "*://*.super.site/*"],
     supportURL: "https://github.com/zuisong/notion-kroki/issues",

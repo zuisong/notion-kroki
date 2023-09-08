@@ -49,7 +49,7 @@ function plant(content: string, type: string, config: KrokiOption) {
   _debug(`kroki render type: ${type}`);
   _debug(`kroki render content:\n${content}`);
 
-  const urlPrefix = `${config!.serverPath + type}/svg/`;
+  const urlPrefix = `${config.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
   const compressed: string = strFromU8(fflate.zlibSync(data, { level: 9 }));
   const result: string = btoa(compressed)
