@@ -1,6 +1,6 @@
 import { meta } from "./build-common.ts";
 import { esbuild, rollup } from "./deps.ts";
-import denoResolve from "./rollup-plugin-deno-resolve.ts";
+import denoResolve from "https://gist.github.com/zuisong/5b4ac483d9efcb01fa29389bc19fc7f5/raw/rollup-deno-plugin.ts";
 
 const config: rollup.RollupOptions & { output: rollup.OutputOptions } = {
   input: ["./src/index.ts"],
@@ -11,7 +11,7 @@ const config: rollup.RollupOptions & { output: rollup.OutputOptions } = {
     banner: meta(),
   },
   plugins: [
-    denoResolve(),
+    denoResolve(import.meta.url),
     {
       name: "esbuild",
       transform(code, id) {
