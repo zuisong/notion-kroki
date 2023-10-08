@@ -1,4 +1,4 @@
-import type { KrokiOption } from "./@types/types.d.ts";
+import type { KrokiOption } from "./@types/types.ts";
 import { _debug, debounce } from "./common/utils.ts";
 const defaultConfig: KrokiOption = {
   serverPath: "https://kroki.io/",

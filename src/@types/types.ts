@@ -7,6 +7,6 @@ declare global {
   const fflate: typeof fflateAlias;
 }
 
-interface KrokiOption {
+export declare interface KrokiOption {
   serverPath: string;
 }
