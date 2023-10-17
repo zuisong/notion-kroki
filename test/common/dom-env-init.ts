@@ -1,4 +1,3 @@
-import { requiredLibs } from "../../src/userscript-meta.ts";
 import { Any, sleep } from "../utils.ts";
 
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
@@ -10,7 +9,6 @@ export async function init() {
   GlobalRegistrator.register();
   document.body.innerHTML = '<div class="container"></div>';
   globalThis.TextDecoder = undefined as Any;
-  await Promise.all(requiredLibs.map((lib) => import(lib)));
   await sleep(1);
 }
 
