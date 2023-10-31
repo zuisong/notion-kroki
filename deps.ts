@@ -1,4 +1,3 @@
-import * as esbuild from "esbuild";
-import * as rollup from "esm.sh/rollup@3.29.4";
+import * as rollup from "esm.sh/rollup@3.29.4?bundle";
 export { default as resolveUri } from "esm.sh/@jridgewell/resolve-uri@3.1.1";
-export { esbuild, rollup };
+export { rollup };

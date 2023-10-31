@@ -2,7 +2,6 @@
   "imports": {
     "deno_std/": "https://deno.land/std@0.202.0/",
     "esm.sh/": "https://esm.sh/v133/",
-    "esbuild": "npm:esbuild-wasm",
     "@happy-dom/global-registrator": "npm:@happy-dom/global-registrator",
     "userscript-metadata-generator": "https://raw.githubusercontent.com/trim21/userscript-metadata-generator/v0.2.4/src/index.ts"
   },

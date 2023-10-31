@@ -1,8 +1,10 @@
 import { meta } from "./build-common.ts";
-import { esbuild, rollup } from "./deps.ts";
+import { rollup } from "./deps.ts";
 import denoResolve from "./rollup-deno-plugin.ts";
+import * as babel from "esm.sh/@babel/standalone?bundle";
+import * as terser from "esm.sh/terser?bundle";
 
-const config: rollup.RollupOptions & { output: rollup.OutputOptions } = {
+const config: rollup.RollupInoutOptions & { output: rollup.OutputOptions } = {
   input: ["./src/index.ts"],
   output: {
     sourcemap: true,
@@ -14,22 +16,30 @@ const config: rollup.RollupOptions & { output: rollup.OutputOptions } = {
     denoResolve(import.meta.url),
     {
       name: "esbuild",
-      transform(code, id) {
-        return esbuild.transform<esbuild.TransformOptions>(code, {
-          sourcefile: id,
-          loader: "ts",
-          format: "esm",
-          treeShaking: true,
-          target: "es6",
-          sourcemap: true,
-          minify: true,
-          lineLimit: 150,
+      transform(rawCode, fileName) {
+        const { code, map } = babel.transform(rawCode, {
+          filename: fileName,
+          presets: ["typescript"],
+          sourceMaps: true,
+          targets: ["chrome >=70"],
         });
+        return { code: code ?? rawCode, map };
+      },
+    },
+    {
+      name: "terser",
+      async renderChunk(code) {
+        const res = await terser.minify(code, {
+          module: true,
+          compress: true,
+          sourceMap: true,
+          mangle: true,
+        });
+        return { code: res.code as string, map: res.map as string };
       },
     },
   ] satisfies rollup.Plugin[],
 };
 
 const bundle = await rollup.rollup(config);
-const output = config.output;
-await bundle.write(Array.isArray(output) ? output[0] : output);
+await bundle.write(config.output);
