@@ -57,7 +57,7 @@ class DenoResolve {
   private async info(nameStr: string, cwd?: string) {
     const p = new Deno.Command(Deno.execPath(), {
       args: ["info", nameStr, "--json"],
-      cwd: cwd,
+      cwd,
     });
     const output = await p.output();
     if (!output.success) {
