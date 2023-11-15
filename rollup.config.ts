@@ -1,7 +1,7 @@
 import { meta } from "./build-common.ts";
 import { rollup } from "./deps.ts";
 import denoResolve from "./rollup-deno-plugin.ts";
-import * as babel from "esm.sh/@babel/standalone@7.23.2?bundle";
+import * as babel from "esm.sh/@babel/standalone@7.23.3?bundle";
 import * as terser from "esm.sh/terser@5.23.0?bundle";
 
 const config: rollup.InputOptions & { output: rollup.OutputOptions } = {
@@ -15,7 +15,7 @@ const config: rollup.InputOptions & { output: rollup.OutputOptions } = {
   plugins: [
     denoResolve(import.meta.url),
     {
-      name: "esbuild",
+      name: "babel",
       transform(rawCode, fileName) {
         const { code, map } = babel.transform(rawCode, {
           filename: fileName,

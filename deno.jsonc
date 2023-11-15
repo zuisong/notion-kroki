@@ -1,9 +1,8 @@
 {
   "imports": {
-    "deno_std/": "https://deno.land/std@0.205.0/",
-    "esm.sh/": "https://esm.sh/v133/",
-    "@happy-dom/global-registrator": "npm:@happy-dom/global-registrator",
-    "userscript-metadata-generator": "https://raw.githubusercontent.com/trim21/userscript-metadata-generator/v0.2.4/src/index.ts"
+    "deno_std/": "https://deno.land/std@0.206.0/",
+    "esm.sh/": "https://esm.sh/v134/",
+    "@happy-dom/global-registrator": "npm:@happy-dom/global-registrator"
   },
   "scopes": {},
   "compilerOptions": {

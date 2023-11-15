@@ -1,8 +1,8 @@
 import {
   Metadata,
   userscriptMetadataGenerator,
-} from "userscript-metadata-generator";
-import packageJson from "./package.json" assert { type: "json" };
+} from "esm.sh/userscript-metadata-generator@0.2.4";
+import packageJson from "./package.json" with { type: "json" };
 export function meta(): string {
   const metadata: Metadata = {
     name: "notion-kroki",
