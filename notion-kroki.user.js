@@ -1,3 +1,476 @@
+// ==UserScript==
+// @name              notion-kroki
+// @namespace         https://github.com/zuisong/notion-kroki
+// @homepage          https://github.com/zuisong/notion-kroki
+// @homepageURL       https://github.com/zuisong/notion-kroki
+// @source            https://github.com/zuisong/notion-kroki
+// @contributionURL   https://github.com/zuisong/notion-kroki
+// @grant             none
+// @version           1.3.0
 // @license           MIT
-function r(...r){localStorage.getItem("debug")&&console.log(...r)}var e=Uint8Array,n=Uint16Array,t=Int32Array,o=new e([0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0,0,0,0]),a=new e([0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,0,0]),f=new e([16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15]),i=function(r,e){for(var o=new n(31),a=0;a<31;++a)o[a]=e+=1<<r[a-1];var f=new t(o[30]);for(a=1;a<30;++a)for(var i=o[a];i<o[a+1];++i)f[i]=i-o[a]<<5|a;return{b:o,r:f}},l=i(o,2),u=l.b,c=l.r;u[28]=258,c[258]=28;var v=i(a,0).r,s=new n(32768);for(m=0;m<32768;++m)h=(61680&(h=(52428&(h=(43690&m)>>1|(21845&m)<<1))>>2|(13107&h)<<2))>>4|(3855&h)<<4,s[m]=((65280&h)>>8|(255&h)<<8)>>1;var h,d=function(r,e,t){for(var o=r.length,a=0,f=new n(e);a<o;++a)r[a]&&++f[r[a]-1];var i,l=new n(e);for(a=1;a<e;++a)l[a]=l[a-1]+f[a-1]<<1;if(t){i=new n(1<<e);var u=15-e;for(a=0;a<o;++a)if(r[a])for(var c=a<<4|r[a],v=e-r[a],h=l[r[a]-1]++<<v,d=h|(1<<v)-1;h<=d;++h)i[s[h]>>u]=c}else for(i=new n(o),a=0;a<o;++a)r[a]&&(i[a]=s[l[r[a]-1]++]>>15-r[a]);return i},w=new e(288);for(m=0;m<144;++m)w[m]=8;for(m=144;m<256;++m)w[m]=9;for(m=256;m<280;++m)w[m]=7;for(m=280;m<288;++m)w[m]=8;var g=new e(32);for(m=0;m<32;++m)g[m]=5;var m,y=d(w,9,0);d(w,9,1);var p=d(g,5,0);d(g,5,1);var b=function(r){return(r+7)/8|0},M=function(r,e,n){n<<=7&e;var t=e/8|0;r[t]|=n,r[t+1]|=n>>8},k=function(r,e,n){n<<=7&e;var t=e/8|0;r[t]|=n,r[t+1]|=n>>8,r[t+2]|=n>>16},x=function(r,t){for(var o=[],a=0;a<r.length;++a)r[a]&&o.push({s:a,f:r[a]});var f=o.length,i=o.slice();if(!f)return{t:U,l:0};if(1==f){var l=new e(o[0].s+1);return l[o[0].s]=1,{t:l,l:1}}o.sort((function(r,e){return r.f-e.f})),o.push({s:-1,f:25001});var u=o[0],c=o[1],v=0,s=1,h=2;for(o[0]={s:-1,f:u.f+c.f,l:u,r:c};s!=f-1;)u=o[o[v].f<o[h].f?v++:h++],c=o[v!=s&&o[v].f<o[h].f?v++:h++],o[s++]={s:-1,f:u.f+c.f,l:u,r:c};var d=i[0].s;for(a=1;a<f;++a)i[a].s>d&&(d=i[a].s);var w=new n(d+1),g=A(o[s-1],w,0);if(g>t){a=0;var m=0,y=g-t,p=1<<y;for(i.sort((function(r,e){return w[e.s]-w[r.s]||r.f-e.f}));a<f;++a){var b=i[a].s;if(!(w[b]>t))break;m+=p-(1<<g-w[b]),w[b]=t}for(m>>=y;m>0;){var M=i[a].s;w[M]<t?m-=1<<t-w[M]++-1:++a}for(;a>=0&&m;--a){var k=i[a].s;w[k]==t&&(--w[k],++m)}g=t}return{t:new e(w),l:g}},A=function(r,e,n){return-1==r.s?Math.max(A(r.l,e,n+1),A(r.r,e,n+1)):e[r.s]=n},T=function(r){for(var e=r.length;e&&!r[--e];);for(var t=new n(++e),o=0,a=r[0],f=1,i=function(r){t[o++]=r},l=1;l<=e;++l)if(r[l]==a&&l!=e)++f;else{if(!a&&f>2){for(;f>138;f-=138)i(32754);f>2&&(i(f>10?f-11<<5|28690:f-3<<5|12305),f=0)}else if(f>3){for(i(a),--f;f>6;f-=6)i(8304);f>2&&(i(f-3<<5|8208),f=0)}for(;f--;)i(a);f=1,a=r[l]}return{c:t.subarray(0,o),n:e}},E=function(r,e){for(var n=0,t=0;t<e.length;++t)n+=r[t]*e[t];return n},C=function(r,e,n){var t=n.length,o=b(e+2);r[o]=255&t,r[o+1]=t>>8,r[o+2]=255^r[o],r[o+3]=255^r[o+1];for(var a=0;a<t;++a)r[o+a+4]=n[a];return 8*(o+4+t)},$=function(r,e,t,i,l,u,c,v,s,h,m){M(e,m++,t),++l[256];for(var b=x(l,15),A=b.t,$=b.l,S=x(u,15),U=S.t,I=S.l,L=T(A),j=L.c,q=L.n,D=T(U),H=D.c,O=D.n,P=new n(19),z=0;z<j.length;++z)++P[31&j[z]];for(z=0;z<H.length;++z)++P[31&H[z]];for(var W=x(P,7),_=W.t,B=W.l,F=19;F>4&&!_[f[F-1]];--F);var G,J,K,N,Q=h+5<<3,R=E(l,w)+E(u,g)+c,V=E(l,A)+E(u,U)+c+14+3*F+E(P,_)+2*P[16]+3*P[17]+7*P[18];if(s>=0&&Q<=R&&Q<=V)return C(e,m,r.subarray(s,s+h));if(M(e,m,1+(V<R)),m+=2,V<R){G=d(A,$,0),J=A,K=d(U,I,0),N=U;var X=d(_,B,0);M(e,m,q-257),M(e,m+5,O-1),M(e,m+10,F-4),m+=14;for(z=0;z<F;++z)M(e,m+3*z,_[f[z]]);m+=3*F;for(var Y=[j,H],Z=0;Z<2;++Z){var rr=Y[Z];for(z=0;z<rr.length;++z){var er=31&rr[z];M(e,m,X[er]),m+=_[er],er>15&&(M(e,m,rr[z]>>5&127),m+=rr[z]>>12)}}}else G=y,J=w,K=p,N=g;for(z=0;z<v;++z){var nr=i[z];if(nr>255){k(e,m,G[(er=nr>>18&31)+257]),m+=J[er+257],er>7&&(M(e,m,nr>>23&31),m+=o[er]);var tr=31&nr;k(e,m,K[tr]),m+=N[tr],tr>3&&(k(e,m,nr>>5&8191),m+=a[tr])}else k(e,m,G[nr]),m+=J[nr]}return k(e,m,G[256]),m+J[256]},S=new t([65540,131080,131088,131104,262176,1048704,1048832,2114560,2117632]),U=new e(0),I=function(r,f,i,l,u,s){var h=s.z||r.length,d=new e(l+h+5*(1+Math.ceil(h/7e3))+u),w=d.subarray(l,d.length-u),g=s.l,m=7&(s.r||0);if(f){m&&(w[0]=s.r>>3);for(var y=S[f-1],p=y>>13,M=8191&y,k=(1<<i)-1,x=s.p||new n(32768),A=s.h||new n(k+1),T=Math.ceil(i/3),E=2*T,U=function(e){return(r[e]^r[e+1]<<T^r[e+2]<<E)&k},I=new t(25e3),L=new n(288),j=new n(32),q=0,D=0,H=s.i||0,O=0,P=s.w||0,z=0;H+2<h;++H){var W=U(H),_=32767&H,B=A[W];if(x[_]=B,A[W]=_,P<=H){var F=h-H;if((q>7e3||O>24576)&&(F>423||!g)){m=$(r,w,0,I,L,j,D,O,z,H-z,m),O=q=D=0,z=H;for(var G=0;G<286;++G)L[G]=0;for(G=0;G<30;++G)j[G]=0}var J=2,K=0,N=M,Q=_-B&32767;if(F>2&&W==U(H-Q))for(var R=Math.min(p,F)-1,V=Math.min(32767,H),X=Math.min(258,F);Q<=V&&--N&&_!=B;){if(r[H+J]==r[H+J-Q]){for(var Y=0;Y<X&&r[H+Y]==r[H+Y-Q];++Y);if(Y>J){if(J=Y,K=Q,Y>R)break;var Z=Math.min(Q,Y-2),rr=0;for(G=0;G<Z;++G){var er=H-Q+G&32767,nr=er-x[er]&32767;nr>rr&&(rr=nr,B=er)}}}Q+=(_=B)-(B=x[_])&32767}if(K){I[O++]=268435456|c[J]<<18|v[K];var tr=31&c[J],or=31&v[K];D+=o[tr]+a[or],++L[257+tr],++j[or],P=H+J,++q}else I[O++]=r[H],++L[r[H]]}}for(H=Math.max(H,P);H<h;++H)I[O++]=r[H],++L[r[H]];m=$(r,w,g,I,L,j,D,O,z,H-z,m),g||(s.r=7&m|w[m/8|0]<<3,m-=7,s.h=A,s.p=x,s.i=H,s.w=P)}else{for(H=s.w||0;H<h+g;H+=65535){var ar=H+65535;ar>=h&&(w[m/8|0]=g,ar=h),m=C(w,m+1,r.subarray(H,ar))}s.i=h}return function(r,n,t){(null==n||n<0)&&(n=0),(null==t||t>r.length)&&(t=r.length);var o=new e(t-n);return o.set(r.subarray(n,t)),o}(d,0,l+b(m)+u)};!function(){for(var r=new Int32Array(256),e=0;e<256;++e){for(var n=e,t=9;--t;)n=(1&n&&-306674912)^n>>>1;r[e]=n}}();var L=function(){var r=1,e=0;return{p:function(n){for(var t=r,o=e,a=0|n.length,f=0;f!=a;){for(var i=Math.min(f+2655,a);f<i;++f)o+=t+=n[f];t=(65535&t)+15*(t>>16),o=(65535&o)+15*(o>>16)}r=t,e=o},d:function(){return(255&(r%=65521))<<24|(65280&r)<<8|(255&(e%=65521))<<8|e>>8}}},j=function(r,n,t,o,a){if(!a&&(a={l:1},n.dictionary)){var f=n.dictionary.subarray(-32768),i=new e(f.length+r.length);i.set(f),i.set(r,f.length),r=i,a.w=f.length}return I(r,null==n.level?6:n.level,null==n.mem?Math.ceil(1.5*Math.max(8,Math.min(13,Math.log(r.length)))):12+n.mem,t,o,a)},q=function(r,e,n){for(;n;++e)r[e]=n,n>>>=8},D=function(r,e){var n=e.level,t=0==n?0:n<6?1:9==n?3:2;if(r[0]=120,r[1]=t<<6|(e.dictionary&&32),r[1]|=31-(r[0]<<8|r[1])%31,e.dictionary){var o=L();o.p(e.dictionary),q(r,2,o.d())}};typeof TextEncoder<"u"&&new TextEncoder;var H=typeof TextDecoder<"u"&&new TextDecoder;try{H.decode(U,{stream:!0}),1}catch(r){}const O={serverPath:"https://kroki.io/"};function P(e=null){const n=Array.from((e||document.body).querySelectorAll("*")).filter((r=>r.innerHTML.trim().startsWith("//kroki ")));for(const e of n){const n=e.textContent.split("\n"),t=n[0].replace("//kroki","").trim();if(!t.trim())continue;const o=n.filter(((r,e)=>0!==e)).join("\n");if(!o.trim())continue;const a=z(o,t,O),f=document.createElement("div");f.setAttribute("style","display: flex; flex-direction: row; place-content: center;"),f.setAttribute("notion-kroki","true"),f.innerHTML=`<object type="image/svg+xml" style="max-width: 100%;" data="${a}" />`;const i=e.parentElement.parentElement,l=i.querySelector("div[notion-kroki]");if(l){const e=l.firstElementChild.getAttribute("data");if(r(`preSvgUrl:${e}`),r(`svgUrl:${a}`),e===a)continue;i.removeChild(l)}i.appendChild(f)}}function z(e,n,t){r(`kroki render type: ${n}`),r(`kroki render content:\n${e}`);const o=`${t.serverPath+n}/svg/`;var a;const f=function(r){let e="";const n=32768;for(let t=0;t<r.length;t+=n)e+=String.fromCharCode(...r.subarray(t,t+n));return e}(function(r,e){e||(e={});var n=L();n.p(r);var t=j(r,e,e.dictionary?6:2,4);return D(t,e),q(t,t.length-4,n.d()),t}((a=e,(new TextEncoder).encode(a)),{level:9}));return o+btoa(f).replace(/\+/g,"-").replace(/\//g,"_")}const W=function(r,e){let n;return(...t)=>{clearTimeout(n),n=setTimeout((()=>{n=void 0,r(...t)}),e)}}(P,100);function _(r,e){W()}P(),"undefined"!=typeof MutationObserver&&new MutationObserver(_).observe(document,{childList:!0,subtree:!0});
+// @match             *://www.notion.so/*
+// @match             *://*.notion.site/*
+// @match             *://*.super.site/*
+// @supportURL        https://github.com/zuisong/notion-kroki/issues
+// @run-at            document-idle
+// @author            zuisong
+// @description       Render notion code block as graph by kroki
+// ==/UserScript==
+function debounce(func, wait) {
+    let timeoutId;
+    return function() {
+        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
+            args[_key] = arguments[_key];
+        }
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(()=>{
+            timeoutId = undefined;
+            func(...args);
+        }, wait);
+    };
+}
+function _debug() {
+    for(var _len = arguments.length, data = new Array(_len), _key = 0; _key < _len; _key++){
+        data[_key] = arguments[_key];
+    }
+    if (isDebugMode()) {
+        console.log(...data);
+    }
+}
+function isDebugMode() {
+    return !!localStorage.getItem("debug");
+}
+
+/* esm.sh - esbuild bundle(fflate@0.8.0) denonext production */ var U = Uint8Array, Y = Uint16Array, Zr = Int32Array, wr = new U([
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    0,
+    0,
+    0,
+    0
+]), mr = new U([
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    0,
+    0
+]), Cr = new U([
+    16,
+    17,
+    18,
+    0,
+    8,
+    7,
+    9,
+    6,
+    10,
+    5,
+    11,
+    4,
+    12,
+    3,
+    13,
+    2,
+    14,
+    1,
+    15
+]), An = function(n, r) {
+    for(var t = new Y(31), e = 0; e < 31; ++e)t[e] = r += 1 << n[e - 1];
+    for(var i = new Zr(t[30]), e = 1; e < 30; ++e)for(var a = t[e]; a < t[e + 1]; ++a)i[a] = a - t[e] << 5 | e;
+    return {
+        b: t,
+        r: i
+    };
+}, Mn = An(wr, 2), tn = Mn.b, qr = Mn.r;
+tn[28] = 258, qr[258] = 28;
+var Un = An(mr, 0), Qr = Un.r, Ir = new Y(32768);
+for(C = 0; C < 32768; ++C)nr = (C & 43690) >> 1 | (C & 21845) << 1, nr = (nr & 52428) >> 2 | (nr & 13107) << 2, nr = (nr & 61680) >> 4 | (nr & 3855) << 4, Ir[C] = ((nr & 65280) >> 8 | (nr & 255) << 8) >> 1;
+var nr, C, V = function(n, r, t) {
+    for(var e = n.length, i = 0, a = new Y(r); i < e; ++i)n[i] && ++a[n[i] - 1];
+    var o = new Y(r);
+    for(i = 1; i < r; ++i)o[i] = o[i - 1] + a[i - 1] << 1;
+    var s;
+    if (t) {
+        s = new Y(1 << r);
+        var l = 15 - r;
+        for(i = 0; i < e; ++i)if (n[i]) for(var h = i << 4 | n[i], f = r - n[i], u = o[n[i] - 1]++ << f, p = u | (1 << f) - 1; u <= p; ++u)s[Ir[u] >> l] = h;
+    } else for(s = new Y(e), i = 0; i < e; ++i)n[i] && (s[i] = Ir[o[n[i] - 1]++] >> 15 - n[i]);
+    return s;
+}, tr = new U(288);
+for(C = 0; C < 144; ++C)tr[C] = 8;
+var C;
+for(C = 144; C < 256; ++C)tr[C] = 9;
+var C;
+for(C = 256; C < 280; ++C)tr[C] = 7;
+var C;
+for(C = 280; C < 288; ++C)tr[C] = 8;
+var C, gr = new U(32);
+for(C = 0; C < 32; ++C)gr[C] = 5;
+var C, Dn = V(tr, 9, 0); V(tr, 9, 1); var Tn = V(gr, 5, 0); V(gr, 5, 1); var xr = function(n) {
+    return (n + 7) / 8 | 0;
+}, X = function(n, r, t) {
+    (r == null || r < 0) && (r = 0), (t == null || t > n.length) && (t = n.length);
+    var e = new U(t - r);
+    return e.set(n.subarray(r, t)), e;
+}, _ = function(n, r, t) {
+    t <<= r & 7;
+    var e = r / 8 | 0;
+    n[e] |= t, n[e + 1] |= t >> 8;
+}, cr = function(n, r, t) {
+    t <<= r & 7;
+    var e = r / 8 | 0;
+    n[e] |= t, n[e + 1] |= t >> 8, n[e + 2] |= t >> 16;
+}, $r = function(n, r) {
+    for(var t = [], e = 0; e < n.length; ++e)n[e] && t.push({
+        s: e,
+        f: n[e]
+    });
+    var i = t.length, a = t.slice();
+    if (!i) return {
+        t: ir,
+        l: 0
+    };
+    if (i == 1) {
+        var o = new U(t[0].s + 1);
+        return o[t[0].s] = 1, {
+            t: o,
+            l: 1
+        };
+    }
+    t.sort(function(I, B) {
+        return I.f - B.f;
+    }), t.push({
+        s: -1,
+        f: 25001
+    });
+    var s = t[0], l = t[1], h = 0, f = 1, u = 2;
+    for(t[0] = {
+        s: -1,
+        f: s.f + l.f,
+        l: s,
+        r: l
+    }; f != i - 1;)s = t[t[h].f < t[u].f ? h++ : u++], l = t[h != f && t[h].f < t[u].f ? h++ : u++], t[f++] = {
+        s: -1,
+        f: s.f + l.f,
+        l: s,
+        r: l
+    };
+    for(var p = a[0].s, e = 1; e < i; ++e)a[e].s > p && (p = a[e].s);
+    var F = new Y(p + 1), m = Hr(t[f - 1], F, 0);
+    if (m > r) {
+        var e = 0, z = 0, c = m - r, x = 1 << c;
+        for(a.sort(function(B, S) {
+            return F[S.s] - F[B.s] || B.f - S.f;
+        }); e < i; ++e){
+            var M = a[e].s;
+            if (F[M] > r) z += x - (1 << m - F[M]), F[M] = r;
+            else break;
+        }
+        for(z >>= c; z > 0;){
+            var D = a[e].s;
+            F[D] < r ? z -= 1 << r - F[D]++ - 1 : ++e;
+        }
+        for(; e >= 0 && z; --e){
+            var w = a[e].s;
+            F[w] == r && (--F[w], ++z);
+        }
+        m = r;
+    }
+    return {
+        t: new U(F),
+        l: m
+    };
+}, Hr = function(n, r, t) {
+    return n.s == -1 ? Math.max(Hr(n.l, r, t + 1), Hr(n.r, r, t + 1)) : r[n.s] = t;
+}, Vr = function(n) {
+    for(var r = n.length; r && !n[--r];);
+    for(var t = new Y(++r), e = 0, i = n[0], a = 1, o = function(l) {
+        t[e++] = l;
+    }, s = 1; s <= r; ++s)if (n[s] == i && s != r) ++a;
+    else {
+        if (!i && a > 2) {
+            for(; a > 138; a -= 138)o(32754);
+            a > 2 && (o(a > 10 ? a - 11 << 5 | 28690 : a - 3 << 5 | 12305), a = 0);
+        } else if (a > 3) {
+            for(o(i), --a; a > 6; a -= 6)o(8304);
+            a > 2 && (o(a - 3 << 5 | 8208), a = 0);
+        }
+        for(; a--;)o(i);
+        a = 1, i = n[s];
+    }
+    return {
+        c: t.subarray(0, e),
+        n: r
+    };
+}, pr = function(n, r) {
+    for(var t = 0, e = 0; e < r.length; ++e)t += n[e] * r[e];
+    return t;
+}, en = function(n, r, t) {
+    var e = t.length, i = xr(r + 2);
+    n[i] = e & 255, n[i + 1] = e >> 8, n[i + 2] = n[i] ^ 255, n[i + 3] = n[i + 1] ^ 255;
+    for(var a = 0; a < e; ++a)n[i + a + 4] = t[a];
+    return (i + 4 + e) * 8;
+}, Xr = function(n, r, t, e, i, a, o, s, l, h, f) {
+    _(r, f++, t), ++i[256];
+    for(var u = $r(i, 15), p = u.t, F = u.l, m = $r(a, 15), z = m.t, c = m.l, x = Vr(p), M = x.c, D = x.n, w = Vr(z), I = w.c, B = w.n, S = new Y(19), y = 0; y < M.length; ++y)++S[M[y] & 31];
+    for(var y = 0; y < I.length; ++y)++S[I[y] & 31];
+    for(var g = $r(S, 7), A = g.t, $ = g.l, O = 19; O > 4 && !A[Cr[O - 1]]; --O);
+    var H = h + 5 << 3, Z = pr(i, tr) + pr(a, gr) + o, E = pr(i, p) + pr(a, z) + o + 14 + 3 * O + pr(S, A) + 2 * S[16] + 3 * S[17] + 7 * S[18];
+    if (l >= 0 && H <= Z && H <= E) return en(r, f, n.subarray(l, l + h));
+    var P, G, L, J;
+    if (_(r, f, 1 + (E < Z)), f += 2, E < Z) {
+        P = V(p, F, 0), G = p, L = V(z, c, 0), J = z;
+        var sr = V(A, $, 0);
+        _(r, f, D - 257), _(r, f + 5, B - 1), _(r, f + 10, O - 4), f += 14;
+        for(var y = 0; y < O; ++y)_(r, f + 3 * y, A[Cr[y]]);
+        f += 3 * O;
+        for(var N = [
+            M,
+            I
+        ], K = 0; K < 2; ++K)for(var rr = N[K], y = 0; y < rr.length; ++y){
+            var R = rr[y] & 31;
+            _(r, f, sr[R]), f += A[R], R > 15 && (_(r, f, rr[y] >> 5 & 127), f += rr[y] >> 12);
+        }
+    } else P = Dn, G = tr, L = Tn, J = gr;
+    for(var y = 0; y < s; ++y){
+        var k = e[y];
+        if (k > 255) {
+            var R = k >> 18 & 31;
+            cr(r, f, P[R + 257]), f += G[R + 257], R > 7 && (_(r, f, k >> 23 & 31), f += wr[R]);
+            var b = k & 31;
+            cr(r, f, L[b]), f += J[b], b > 3 && (cr(r, f, k >> 5 & 8191), f += mr[b]);
+        } else cr(r, f, P[k]), f += G[k];
+    }
+    return cr(r, f, P[256]), f + G[256];
+}, Zn = new Zr([
+    65540,
+    131080,
+    131088,
+    131104,
+    262176,
+    1048704,
+    1048832,
+    2114560,
+    2117632
+]), ir = new U(0), Bn = function(n, r, t, e, i, a) {
+    var o = a.z || n.length, s = new U(e + o + 5 * (1 + Math.ceil(o / 7e3)) + i), l = s.subarray(e, s.length - i), h = a.l, f = (a.r || 0) & 7;
+    if (r) {
+        f && (l[0] = a.r >> 3);
+        for(var u = Zn[r - 1], p = u >> 13, F = u & 8191, m = (1 << t) - 1, z = a.p || new Y(32768), c = a.h || new Y(m + 1), x = Math.ceil(t / 3), M = 2 * x, D = function(Jr) {
+            return (n[Jr] ^ n[Jr + 1] << x ^ n[Jr + 2] << M) & m;
+        }, w = new Zr(25e3), I = new Y(288), B = new Y(32), S = 0, y = 0, g = a.i || 0, A = 0, $ = a.w || 0, O = 0; g + 2 < o; ++g){
+            var H = D(g), Z = g & 32767, E = c[H];
+            if (z[Z] = E, c[H] = Z, $ <= g) {
+                var P = o - g;
+                if ((S > 7e3 || A > 24576) && (P > 423 || !h)) {
+                    f = Xr(n, l, 0, w, I, B, y, A, O, g - O, f), A = S = y = 0, O = g;
+                    for(var G = 0; G < 286; ++G)I[G] = 0;
+                    for(var G = 0; G < 30; ++G)B[G] = 0;
+                }
+                var L = 2, J = 0, sr = F, N = Z - E & 32767;
+                if (P > 2 && H == D(g - N)) for(var K = Math.min(p, P) - 1, rr = Math.min(32767, g), R = Math.min(258, P); N <= rr && --sr && Z != E;){
+                    if (n[g + L] == n[g + L - N]) {
+                        for(var k = 0; k < R && n[g + k] == n[g + k - N]; ++k);
+                        if (k > L) {
+                            if (L = k, J = N, k > K) break;
+                            for(var b = Math.min(N, k - 2), lr = 0, G = 0; G < b; ++G){
+                                var vr = g - N + G & 32767, Yr = z[vr], Dr = vr - Yr & 32767;
+                                Dr > lr && (lr = Dr, E = vr);
+                            }
+                        }
+                    }
+                    Z = E, E = z[Z], N += Z - E & 32767;
+                }
+                if (J) {
+                    w[A++] = 268435456 | qr[L] << 18 | Qr[J];
+                    var Sr = qr[L] & 31, Tr = Qr[J] & 31;
+                    y += wr[Sr] + mr[Tr], ++I[257 + Sr], ++B[Tr], $ = g + L, ++S;
+                } else w[A++] = n[g], ++I[n[g]];
+            }
+        }
+        for(g = Math.max(g, $); g < o; ++g)w[A++] = n[g], ++I[n[g]];
+        f = Xr(n, l, h, w, I, B, y, A, O, g - O, f), h || (a.r = f & 7 | l[f / 8 | 0] << 3, f -= 7, a.h = c, a.p = z, a.i = g, a.w = $);
+    } else {
+        for(var g = a.w || 0; g < o + h; g += 65535){
+            var jr = g + 65535;
+            jr >= o && (l[f / 8 | 0] = h, jr = o), f = en(l, f + 1, n.subarray(g, jr));
+        }
+        a.i = o;
+    }
+    return X(s, 0, e + xr(f) + i);
+}; (function() {
+    for(var n = new Int32Array(256), r = 0; r < 256; ++r){
+        for(var t = r, e = 9; --e;)t = (t & 1 && -306674912) ^ t >>> 1;
+        n[r] = t;
+    }
+    return n;
+})(); var Rr = function() {
+    var n = 1, r = 0;
+    return {
+        p: function(t) {
+            for(var e = n, i = r, a = t.length | 0, o = 0; o != a;){
+                for(var s = Math.min(o + 2655, a); o < s; ++o)i += e += t[o];
+                e = (e & 65535) + 15 * (e >> 16), i = (i & 65535) + 15 * (i >> 16);
+            }
+            n = e, r = i;
+        },
+        d: function() {
+            return n %= 65521, r %= 65521, (n & 255) << 24 | (n & 65280) << 8 | (r & 255) << 8 | r >> 8;
+        }
+    };
+}, hr = function(n, r, t, e, i) {
+    if (!i && (i = {
+        l: 1
+    }, r.dictionary)) {
+        var a = r.dictionary.subarray(-32768), o = new U(a.length + n.length);
+        o.set(a), o.set(n, a.length), n = o, i.w = a.length;
+    }
+    return Bn(n, r.level == null ? 6 : r.level, r.mem == null ? Math.ceil(Math.max(8, Math.min(13, Math.log(n.length))) * 1.5) : 12 + r.mem, t, e, i);
+}, T = function(n, r, t) {
+    for(; t; ++r)n[r] = t, t >>>= 8;
+}, hn = function(n, r) {
+    var t = r.level, e = t == 0 ? 0 : t < 6 ? 1 : t == 9 ? 3 : 2;
+    if (n[0] = 120, n[1] = e << 6 | (r.dictionary && 32), n[1] |= 31 - (n[0] << 8 | n[1]) % 31, r.dictionary) {
+        var i = Rr();
+        i.p(r.dictionary), T(n, 2, i.d());
+    }
+};
+function mn(n, r) {
+    r || (r = {});
+    var t = Rr();
+    t.p(n);
+    var e = hr(n, r, r.dictionary ? 6 : 2, 4);
+    return hn(e, r), T(e, e.length - 4, t.d()), e;
+}
+typeof TextEncoder < "u" && new TextEncoder; var nn = typeof TextDecoder < "u" && new TextDecoder, Nn = 0;
+try {
+    nn.decode(ir, {
+        stream: !0
+    }), Nn = 1;
+} catch (e) {}
+
+const defaultConfig = {
+    serverPath: "https://kroki.io/"
+};
+function main() {
+    let element = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
+    const blocks = Array.from((element || document.body).querySelectorAll("*")).filter((it)=>it.innerHTML.trim().startsWith("//kroki "));
+    for (const codeDiv of blocks){
+        const lines = codeDiv.textContent.split("\n");
+        const type = lines[0].replace("//kroki", "").trim();
+        if (!type.trim()) continue;
+        const data = lines.filter((_value, index)=>index !== 0).join("\n");
+        if (!data.trim()) continue;
+        const svgUrl = plant(data, type, defaultConfig);
+        const div = document.createElement("div");
+        div.setAttribute("style", "display: flex; flex-direction: row; place-content: center;");
+        div.setAttribute("notion-kroki", "true");
+        div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
+        const parentElement = codeDiv.parentElement.parentElement;
+        const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
+        if (preCreatedNode) {
+            const preSvgUrl = preCreatedNode.firstElementChild.getAttribute("data");
+            _debug(`preSvgUrl:${preSvgUrl}`);
+            _debug(`svgUrl:${svgUrl}`);
+            if (preSvgUrl === svgUrl) {
+                continue;
+            } else {
+                parentElement.removeChild(preCreatedNode);
+            }
+        }
+        parentElement.appendChild(div);
+    }
+}
+function textEncode(str) {
+    return new TextEncoder().encode(str);
+}
+function plant(content, type, config) {
+    _debug(`kroki render type: ${type}`);
+    _debug(`kroki render content:\n${content}`);
+    const urlPrefix = `${config.serverPath + type}/svg/`;
+    const data = textEncode(content);
+    const compressed = strFromU8(mn(data, {
+        level: 9
+    }));
+    const result = btoa(compressed).replace(/\+/g, "-").replace(/\//g, "_");
+    const svgUrl = urlPrefix + result;
+    return svgUrl;
+}
+function init_listener() {
+    if (typeof MutationObserver !== typeof undefined) {
+        new MutationObserver(check).observe(document, {
+            childList: true,
+            subtree: true
+        });
+    }
+}
+const render = debounce(main, 100);
+function check(mutations, _observer) {
+    // _debug("mutations", mutations);
+    render();
+}
+function strFromU8(dat) {
+    let r = "";
+    const s = 2 ** 15;
+    for(let i = 0; i < dat.length; i += s){
+        r += String.fromCharCode(...dat.subarray(i, i + s));
+    }
+    return r;
+}
+
+main();
+init_listener();
 //# sourceMappingURL=notion-kroki.user.js.map
