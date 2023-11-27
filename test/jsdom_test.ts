@@ -3,6 +3,7 @@ import { it } from "deno_std/testing/bdd.ts";
 import { baseTest } from "./common/base-test.ts";
 
 it(baseTest, "render docsify normal", async () => {
+  localStorage.setItem("debug", "123");
   await testDom();
 });
 

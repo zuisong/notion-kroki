@@ -16,18 +16,15 @@ const config: rollup.InputOptions & { output: rollup.OutputOptions } = {
     {
       name: "swc",
       async transform(rawCode, filename) {
-        return await swc.transform(rawCode,
-          {
-            filename,
-            jsc: { parser: { syntax: 'typescript' } },
-            env: {
-              targets: "chrome>=60,safari>=13,firefox>=60",
-            },
-            sourceMaps: true,
-          })
+        return await swc.transform(rawCode, {
+          filename,
+          jsc: { parser: { syntax: "typescript" } },
+          env: { targets: "chrome>=60,safari>=13,firefox>=60" },
+          sourceMaps: true,
+        });
       },
-    }
-  ] satisfies rollup.Plugin[],
+    },
+  ],
 };
 
 const bundle = await rollup.rollup(config);

@@ -1,3 +1,7 @@
 export type Any = Parameters<typeof console.log>[0];
 
-export const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+export function sleep(ms: number) {
+  const defer = Promise.withResolvers<void>();
+  setTimeout(defer.resolve, ms);
+  return defer.promise;
+}
