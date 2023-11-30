@@ -1,6 +1,7 @@
-import { Any, sleep } from "../utils.ts";
-
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
+import { Any } from "../../src/common/utils.ts";
+import { requiredLibs } from "../../src/userscript-meta.ts";
+import { sleep } from "../utils.ts";
 
 export async function init() {
   // deno-lint-ignore ban-ts-comment
@@ -10,6 +11,7 @@ export async function init() {
   document.body.innerHTML = '<div class="container"></div>';
   globalThis.TextDecoder = undefined as Any;
   await sleep(1);
+  await Promise.all(requiredLibs.map((lib) => import(lib)));
 }
 
 export async function tearDown() {

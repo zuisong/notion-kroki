@@ -21,6 +21,7 @@ const config: rollup.InputOptions & { output: rollup.OutputOptions } = {
           jsc: { parser: { syntax: "typescript" } },
           env: { targets: "chrome>=60,safari>=13,firefox>=60" },
           sourceMaps: true,
+          minify: false,
         });
       },
     },

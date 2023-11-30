@@ -1,6 +1,7 @@
 import { assertEquals } from "deno_std/assert/assert_equals.ts";
 import { it } from "deno_std/testing/bdd.ts";
 import { baseTest } from "./common/base-test.ts";
+import { sleep } from "./utils.ts";
 
 it(baseTest, "render docsify normal", async () => {
   localStorage.setItem("debug", "123");
@@ -51,8 +52,4 @@ ${document.documentElement.outerHTML}
   console.log("render svgUrl ->", svgUrl);
 
   await sleep(1000);
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }

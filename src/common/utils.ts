@@ -1,5 +1,7 @@
+export type Any = Parameters<typeof console.log>[0];
+
 export function debounce<
-  T extends (...args: Parameters<typeof console.log>) => void,
+  T extends (...args: Any[]) => void,
   P extends Parameters<T>,
 >(func: T, wait: number): (...args: P) => void {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -12,7 +14,7 @@ export function debounce<
   };
 }
 
-export function _debug(...data: Parameters<typeof console.log>): void {
+export function _debug(...data: Any[]): void {
   if (isDebugMode()) {
     console.log(...data);
   }

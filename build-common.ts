@@ -3,6 +3,7 @@ import {
   userscriptMetadataGenerator,
 } from "esm.sh/userscript-metadata-generator@0.2.4";
 import packageJson from "./package.json" with { type: "json" };
+import { requiredLibs } from "./src/userscript-meta.ts";
 export function meta(): string {
   const metadata: Metadata = {
     name: "notion-kroki",
@@ -16,6 +17,7 @@ export function meta(): string {
     license: "MIT",
     match: ["*://www.notion.so/*", "*://*.notion.site/*", "*://*.super.site/*"],
     supportURL: "https://github.com/zuisong/notion-kroki/issues",
+    require: requiredLibs,
     "run-at": "document-idle",
     author: "zuisong",
     description: "Render notion code block as graph by kroki",

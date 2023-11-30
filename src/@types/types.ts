@@ -1,4 +1,4 @@
-import * as fflateAlias from "fflate";
+import * as fflateAlias from "esm.sh/fflate";
 declare global {
   interface Window {
     fflate: typeof fflateAlias;

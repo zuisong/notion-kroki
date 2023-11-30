@@ -1,6 +1,5 @@
 import type { KrokiOption } from "./@types/types.ts";
 import { _debug, debounce } from "./common/utils.ts";
-import { zlibSync } from "esm.sh/fflate@0.8.0";
 const defaultConfig: KrokiOption = {
   serverPath: "https://kroki.io/",
 };
@@ -52,7 +51,7 @@ function plant(content: string, type: string, config: KrokiOption) {
 
   const urlPrefix = `${config.serverPath + type}/svg/`;
   const data: Uint8Array = textEncode(content);
-  const compressed: string = strFromU8(zlibSync(data, { level: 9 }));
+  const compressed: string = strFromU8(fflate.zlibSync(data, { level: 9 }));
   const result: string = btoa(compressed)
     .replace(/\+/g, "-")
     .replace(/\//g, "_");
