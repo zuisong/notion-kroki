@@ -67,9 +67,8 @@ function main() {
             _debug(`svgUrl:${svgUrl}`);
             if (preSvgUrl === svgUrl) {
                 continue;
-            } else {
-                parentElement.removeChild(preCreatedNode);
             }
+            parentElement.removeChild(preCreatedNode);
         }
         parentElement.appendChild(div);
     }

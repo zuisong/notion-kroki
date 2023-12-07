@@ -1,4 +1,4 @@
-import * as swc from "npm:@swc/wasm@1.3.99";
+import * as swc from "npm:@swc/wasm@1.3.100";
 import { meta } from "./build-common.ts";
 import { rollup } from "./deps.ts";
 import denoResolve from "./rollup-deno-plugin.ts";
