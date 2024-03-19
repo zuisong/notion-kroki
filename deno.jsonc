@@ -1,21 +1,15 @@
 {
   "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "imports": {
-    "deno_std/": "https://deno.land/std@0.212.0/",
     "esm.sh/": "https://esm.sh/v135/",
-    "rollup": "npm:@rollup/wasm-node@4.9.5",
-    "@happy-dom/global-registrator": "npm:@happy-dom/global-registrator@13"
+    "rollup": "npm:@rollup/wasm-node",
+    "happy-dom": "npm:happy-dom-without-node"
   },
   "scopes": {},
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "dom.asynciterable",
-      "deno.ns"
-    ]
+    "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"]
   },
   // "lock": false,
   "nodeModulesDir": false,
@@ -28,47 +22,21 @@
     "html-report": "deno task clean && deno task test-cov && genhtml -o coverage/html coverage/lcov.info"
   },
   "lint": {
-    "include": [
-      "src/",
-      "test/",
-      "*.ts",
-      "*.js*"
-    ],
+    "include": ["src/", "test/", "*.ts", "*.js*"],
     "rules": {
-      "tags": [
-        "recommended"
-      ],
-      "include": [
-        "ban-untagged-todo"
-      ],
-      "exclude": [
-        "no-unused-vars"
-      ]
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo"],
+      "exclude": ["no-unused-vars"]
     }
   },
   "fmt": {
-    "include": [
-      "src/",
-      "test/",
-      "*.ts",
-      "*.js*",
-      "*.json*",
-      "README.md"
-    ]
+    "include": ["src/", "test/", "*.ts", "*.js*", "*.json*", "README.md"]
   },
   "options": {
     "useTabs": false
   },
   "test": {
-    "include": [
-      "test/"
-    ]
+    "include": ["test/"]
   },
-  "exclude": [
-    "dist/",
-    "coverage/",
-    ".vscode/",
-    ".idea/",
-    "*.user.js"
-  ]
+  "exclude": ["dist/", "coverage/", ".vscode/", ".idea/", "*.user.js"]
 }

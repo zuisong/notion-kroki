@@ -19,10 +19,7 @@
 // ==/UserScript==
 function debounce(func, wait) {
     let timeoutId;
-    return function() {
-        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
-            args[_key] = arguments[_key];
-        }
+    return (...args)=>{
         clearTimeout(timeoutId);
         timeoutId = setTimeout(()=>{
             timeoutId = undefined;
@@ -30,10 +27,7 @@ function debounce(func, wait) {
         }, wait);
     };
 }
-function _debug() {
-    for(var _len = arguments.length, data = new Array(_len), _key = 0; _key < _len; _key++){
-        data[_key] = arguments[_key];
-    }
+function _debug(...data) {
     if (isDebugMode()) {
         console.log(...data);
     }
@@ -45,11 +39,12 @@ function isDebugMode() {
 const defaultConfig = {
     serverPath: "https://kroki.io/"
 };
-function main() {
-    let element = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
+function main(element = null) {
     const blocks = Array.from((element || document.body).querySelectorAll("*")).filter((it)=>it.innerHTML.trim().startsWith("//kroki "));
     for (const codeDiv of blocks){
-        const lines = codeDiv.textContent.split("\n");
+        var _codeDiv_textContent, _codeDiv_parentElement;
+        var _codeDiv_textContent_split;
+        const lines = (_codeDiv_textContent_split = (_codeDiv_textContent = codeDiv.textContent) === null || _codeDiv_textContent === void 0 ? void 0 : _codeDiv_textContent.split("\n")) !== null && _codeDiv_textContent_split !== void 0 ? _codeDiv_textContent_split : [];
         const type = lines[0].replace("//kroki", "").trim();
         if (!type.trim()) continue;
         const data = lines.filter((_value, index)=>index !== 0).join("\n");
@@ -59,10 +54,14 @@ function main() {
         div.setAttribute("style", "display: flex; flex-direction: row; place-content: center;");
         div.setAttribute("notion-kroki", "true");
         div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
-        const parentElement = codeDiv.parentElement.parentElement;
+        const parentElement = (_codeDiv_parentElement = codeDiv.parentElement) === null || _codeDiv_parentElement === void 0 ? void 0 : _codeDiv_parentElement.parentElement;
+        if (!parentElement) {
+            continue;
+        }
         const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
         if (preCreatedNode) {
-            const preSvgUrl = preCreatedNode.firstElementChild.getAttribute("data");
+            var _preCreatedNode_firstElementChild;
+            const preSvgUrl = (_preCreatedNode_firstElementChild = preCreatedNode.firstElementChild) === null || _preCreatedNode_firstElementChild === void 0 ? void 0 : _preCreatedNode_firstElementChild.getAttribute("data");
             _debug(`preSvgUrl:${preSvgUrl}`);
             _debug(`svgUrl:${svgUrl}`);
             if (preSvgUrl === svgUrl) {

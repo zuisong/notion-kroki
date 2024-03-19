@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe } from "deno_std/testing/bdd.ts";
+import { afterEach, beforeEach, describe } from "jsr:@std/testing/bdd";
 import { init, tearDown } from "./dom-env-init.ts";
 
 export const baseTest = describe("base case", () => {

@@ -1,1 +1,2 @@
-export { delay as sleep } from "deno_std/async/delay.ts";
+export { delay } from "jsr:@std/async";
+export type Any = Parameters<typeof console.log>[0];

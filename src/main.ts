@@ -9,7 +9,8 @@ export function main(element: HTMLElement | null = null) {
     (element || document.body).querySelectorAll("*"),
   ).filter((it) => it.innerHTML.trim().startsWith("//kroki ")) as HTMLElement[];
   for (const codeDiv of blocks) {
-    const lines = codeDiv.textContent!.split("\n");
+    const lines = codeDiv.textContent?.split("\n") ?? [];
+    if (lines.length === 0) continue
     const type = lines[0].replace("//kroki", "").trim();
     if (!type.trim()) continue;
     const data = lines.filter((_value, index) => index !== 0).join("\n");
@@ -24,10 +25,13 @@ export function main(element: HTMLElement | null = null) {
     div.innerHTML =
       `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
 
-    const parentElement = codeDiv.parentElement!.parentElement!;
+    const parentElement = codeDiv.parentElement?.parentElement;
+    if (!parentElement) {
+      continue;
+    }
     const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
     if (preCreatedNode) {
-      const preSvgUrl = preCreatedNode.firstElementChild!.getAttribute("data");
+      const preSvgUrl = preCreatedNode.firstElementChild?.getAttribute("data");
       _debug(`preSvgUrl:${preSvgUrl}`);
       _debug(`svgUrl:${svgUrl}`);
       if (preSvgUrl === svgUrl) {

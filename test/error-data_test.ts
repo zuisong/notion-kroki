@@ -1,7 +1,7 @@
-import { assertEquals } from "deno_std/assert/assert_equals.ts";
-import { it } from "deno_std/testing/bdd.ts";
+import { assertEquals } from "jsr:@std/assert";
+import { it } from "jsr:@std/testing/bdd";
 import { baseTest } from "./common/base-test.ts";
-import { sleep } from "./utils.ts";
+import { delay } from "./utils.ts";
 
 it(baseTest, "render skip error data", async () => {
   // language=HTML
@@ -25,13 +25,13 @@ it(baseTest, "render skip error data", async () => {
   main();
   document.getElementById("kroki-code")!.textContent = "//kroki ";
   main();
-  await sleep(300);
+  await delay(300);
 
   document.getElementById("kroki-code")!.textContent = `//kroki plantuml
 
 `;
   main();
-  await sleep(300);
+  await delay(300);
 });
 
 it(baseTest, "change content auto render", async () => {
@@ -55,18 +55,18 @@ it(baseTest, "change content auto render", async () => {
   const { main, init_listener } = await import("../src/main.ts");
   main();
   init_listener();
-  await sleep(300);
-  document.getElementById("kroki-code")!.textContent = `//kroki plantuml
+  await delay(300);
+  document.querySelector("#kroki-code")!.textContent = `//kroki plantuml
     a->b
     `;
-  await sleep(300);
-  document.getElementById("kroki-code")!.textContent = `//kroki plantuml
+  await delay(300);
+  document.querySelector("#kroki-code")!.textContent = `//kroki plantuml
 
 `;
 
-  await sleep(300);
+  await delay(300);
   await import("../src/main.ts");
-  await sleep(300);
+  await delay(300);
 
   const svgUrl = document
     .querySelector("div[notion-kroki]")

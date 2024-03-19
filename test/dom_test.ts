@@ -1,7 +1,7 @@
-import { assertEquals } from "deno_std/assert/assert_equals.ts";
-import { it } from "deno_std/testing/bdd.ts";
+import { assertEquals } from "jsr:@std/assert";
+import { it } from "jsr:@std/testing/bdd";
 import { baseTest } from "./common/base-test.ts";
-import { sleep } from "./utils.ts";
+import { delay } from "./utils.ts";
 
 it(baseTest, "render docsify normal", async () => {
   localStorage.setItem("debug", "123");
@@ -51,5 +51,5 @@ ${document.documentElement.outerHTML}
 
   console.log("render svgUrl ->", svgUrl);
 
-  await sleep(1000);
+  await delay(1000);
 }

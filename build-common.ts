@@ -1,5 +1,5 @@
 import {
-  Metadata,
+  type Metadata,
   userscriptMetadataGenerator,
 } from "esm.sh/userscript-metadata-generator@0.2.4";
 import packageJson from "./package.json" with { type: "json" };
