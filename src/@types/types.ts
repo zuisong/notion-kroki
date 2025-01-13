@@ -1,4 +1,4 @@
-import type * as fflateAlias from "npm:fflate@0.8.0";
+import type * as fflateAlias from "npm:fflate@0.8.2";
 declare global {
   interface Window {
     fflate: typeof fflateAlias;

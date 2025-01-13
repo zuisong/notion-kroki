@@ -12,7 +12,7 @@
 // @match             *://*.notion.site/*
 // @match             *://*.super.site/*
 // @supportURL        https://github.com/zuisong/notion-kroki/issues
-// @require           https://unpkg.com/fflate@0.8.0/umd/index.js
+// @require           https://unpkg.com/fflate@0.8.2/umd/index.js
 // @run-at            document-idle
 // @author            zuisong
 // @description       Render notion code block as graph by kroki
@@ -44,7 +44,8 @@ function main(element = null) {
     for (const codeDiv of blocks){
         var _codeDiv_textContent, _codeDiv_parentElement;
         var _codeDiv_textContent_split;
-        const lines = (_codeDiv_textContent_split = (_codeDiv_textContent = codeDiv.textContent) === null || _codeDiv_textContent === void 0 ? void 0 : _codeDiv_textContent.split("\n")) !== null && _codeDiv_textContent_split !== void 0 ? _codeDiv_textContent_split : [];
+        const lines = (_codeDiv_textContent_split = (_codeDiv_textContent = codeDiv.textContent) === null || _codeDiv_textContent === undefined ? undefined : _codeDiv_textContent.split("\n")) !== null && _codeDiv_textContent_split !== undefined ? _codeDiv_textContent_split : [];
+        if (lines.length === 0) continue;
         const type = lines[0].replace("//kroki", "").trim();
         if (!type.trim()) continue;
         const data = lines.filter((_value, index)=>index !== 0).join("\n");
@@ -54,14 +55,14 @@ function main(element = null) {
         div.setAttribute("style", "display: flex; flex-direction: row; place-content: center;");
         div.setAttribute("notion-kroki", "true");
         div.innerHTML = `<object type="image/svg+xml" style="max-width: 100%;" data="${svgUrl}" />`;
-        const parentElement = (_codeDiv_parentElement = codeDiv.parentElement) === null || _codeDiv_parentElement === void 0 ? void 0 : _codeDiv_parentElement.parentElement;
+        const parentElement = (_codeDiv_parentElement = codeDiv.parentElement) === null || _codeDiv_parentElement === undefined ? undefined : _codeDiv_parentElement.parentElement;
         if (!parentElement) {
             continue;
         }
         const preCreatedNode = parentElement.querySelector("div[notion-kroki]");
         if (preCreatedNode) {
             var _preCreatedNode_firstElementChild;
-            const preSvgUrl = (_preCreatedNode_firstElementChild = preCreatedNode.firstElementChild) === null || _preCreatedNode_firstElementChild === void 0 ? void 0 : _preCreatedNode_firstElementChild.getAttribute("data");
+            const preSvgUrl = (_preCreatedNode_firstElementChild = preCreatedNode.firstElementChild) === null || _preCreatedNode_firstElementChild === undefined ? undefined : _preCreatedNode_firstElementChild.getAttribute("data");
             _debug(`preSvgUrl:${preSvgUrl}`);
             _debug(`svgUrl:${svgUrl}`);
             if (preSvgUrl === svgUrl) {
@@ -88,7 +89,7 @@ function plant(content, type, config) {
     return svgUrl;
 }
 function init_listener() {
-    if (typeof MutationObserver !== typeof undefined) {
+    if (typeof MutationObserver !== "undefined") {
         new MutationObserver(check).observe(document, {
             childList: true,
             subtree: true

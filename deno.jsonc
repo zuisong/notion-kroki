@@ -7,12 +7,12 @@
   },
   "scopes": {},
   "compilerOptions": {
-    "allowJs": true,
+    // "allowJs": true,
     "strict": true,
     "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"]
   },
   // "lock": false,
-  "nodeModulesDir": false,
+  "nodeModulesDir": "none",
   "tasks": {
     "build": "deno task clean && deno task test-cov && deno task bundle",
     "bundle": "deno run -A rollup.config.ts",
