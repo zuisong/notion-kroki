@@ -1,13 +1,12 @@
 {
   "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "imports": {
-    "esm.sh/": "https://esm.sh/v135/",
+    "esm.sh/": "https://esm.sh/",
     "rollup": "npm:@rollup/wasm-node",
-    "happy-dom": "npm:happy-dom-without-node"
+    "happy-dom": "npm:happy-dom"
   },
   "scopes": {},
   "compilerOptions": {
-    // "allowJs": true,
     "strict": true,
     "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"]
   },

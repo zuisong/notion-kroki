@@ -6,7 +6,6 @@ export async function init() {
   const w = new Window();
   globalThis.document = w.document as Any;
   document.body.innerHTML = '<div class="container"></div>';
-  globalThis.TextDecoder = undefined as Any;
   await delay(1);
   await Promise.all(requiredLibs.map((lib) => import(lib)));
 }
